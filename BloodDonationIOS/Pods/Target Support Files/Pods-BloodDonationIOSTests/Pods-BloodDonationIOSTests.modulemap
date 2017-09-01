@@ -1,0 +1,6 @@
+framework module Pods_BloodDonationIOSTests {
+  umbrella header "Pods-BloodDonationIOSTests-umbrella.h"
+
+  export *
+  module * { export * }
+}
