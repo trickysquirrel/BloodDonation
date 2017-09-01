@@ -2,7 +2,7 @@
 //  BloodDonationIOSTests.swift
 //  BloodDonationIOSTests
 //
-//  Created by Richard Moult on 5/8/17.
+//  Created by Richard Moult on 1/9/17.
 //  Copyright © 2017 Richard Moult. All rights reserved.
 //
 
@@ -19,7 +19,7 @@ class BloodDonationIOSTests: XCTestCase {
         super.tearDown()
     }
     
-    func testExample() {
+    func test() {
     }
     
     

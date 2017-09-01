@@ -6,10 +6,11 @@
 //  Copyright © 2017 Richard Moult. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 struct BloodTypeViewModel {
     let title: String
+    let highlightColor: UIColor
 }
 
 
@@ -23,6 +24,8 @@ class BloodTypePresenter {
     
     func updateView() -> [BloodTypeViewModel] {
         let bloodTypeModels = bloodTypeSelection.fetchBloodTypes()
-        return bloodTypeModels.map { BloodTypeViewModel(title:$0.bloodType.displayString()) }
+        return bloodTypeModels.map {
+            BloodTypeViewModel(title:$0.bloodType.displayString(), highlightColor: UIColor.bloodTypeUnfocused)
+        }
     }
 }

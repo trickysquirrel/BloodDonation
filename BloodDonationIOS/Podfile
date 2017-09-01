@@ -13,10 +13,4 @@ target 'BloodDonationIOS' do
     pod 'Firebase/Messaging'
   end
 
-  target 'BloodDonationIOSUITests' do
-    inherit! :search_paths
-    pod 'Firebase/Core'
-    pod 'Firebase/Messaging'
-  end
-
 end
