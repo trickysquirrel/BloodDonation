@@ -1,4 +1,3 @@
-
 //
 //  BloodTypeSelection.swift
 //  BloodDonationIOS
@@ -15,18 +14,25 @@ struct BloodTypeModel {
     let selected: Bool
 }
 
+
 class BloodTypeSelection {
     
+    let persistentStorage: UserPersistentStorageProtocol
+    
+    init(persistentStorage: UserPersistentStorageProtocol) {
+        self.persistentStorage = persistentStorage
+    }
+    
     func fetchBloodTypes() -> [BloodTypeModel] {
-        return  [
-                BloodTypeModel(bloodType: .oNegative, selected: false),
-                BloodTypeModel(bloodType: .oPositive, selected: false),
-                BloodTypeModel(bloodType: .aNegative, selected: false),
-                BloodTypeModel(bloodType: .aPositive, selected: false),
-                BloodTypeModel(bloodType: .bNegative, selected: false),
-                BloodTypeModel(bloodType: .bPositive, selected: false),
-                BloodTypeModel(bloodType: .abNegative, selected: false),
-                BloodTypeModel(bloodType: .abPositive, selected: false)
-                ]
+        
+        var response: [BloodTypeModel] = []
+        let usersBloodType = persistentStorage.fetchBloodType()
+        let allBloodTypes: [BloodType] = [.oNegative, .oPositive, .aNegative, .aPositive, .bNegative, .bPositive, .abNegative, .abPositive]
+        
+        for bloodType in allBloodTypes {
+            let selected = (bloodType == usersBloodType)
+            response.append( BloodTypeModel(bloodType: bloodType, selected: selected) )
+        }
+        return response
     }
 }

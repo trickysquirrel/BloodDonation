@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum BloodType {    
+enum BloodType: Int {    
     case oNegative
     case oPositive
     case aNegative

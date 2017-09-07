@@ -13,17 +13,32 @@ import XCTest
 class BloodTypePresenterTests: XCTestCase {
     
     var presenter: BloodTypePresenter!
+    var userDefaultsStorage: StubPersistentStorage!
+    var userStorage: UserPersistentStorage!
     
     override func setUp() {
         super.setUp()
-        let bloodTypeSelection = BloodTypeSelection()
+        userDefaultsStorage = StubPersistentStorage()
+        userStorage = UserPersistentStorage(userDefaultsPersistentStorage: userDefaultsStorage)
+        let bloodTypeSelection = BloodTypeSelection(persistentStorage: userStorage)
         presenter = BloodTypePresenter(bloodTypeSelection: bloodTypeSelection)
     }
     
     override func tearDown() {
+        userDefaultsStorage = nil
+        userStorage = nil
         presenter = nil
         super.tearDown()
     }
+    
+    func setUpStorageWithBloodType(_ bloodType: BloodType) {
+        userStorage.persistBloodType(bloodType)
+    }
+}
+
+
+
+extension BloodTypePresenterTests {
     
     func test_updateView_returnsEightViewModels() {
         let viewModels = presenter.updateView()
@@ -50,6 +65,7 @@ class BloodTypePresenterTests: XCTestCase {
     }
 
     func test_updateView_oPositiveBloodSelected_returnsCorrectColorOnAllViewModels() {
+        setUpStorageWithBloodType(BloodType.oPositive)
         let viewModels = presenter.updateView()
         XCTAssertEqual(viewModels[0].highlightColor, UIColor.bloodTypeUnfocused)
         XCTAssertEqual(viewModels[1].highlightColor, UIColor.bloodTypeFocused)

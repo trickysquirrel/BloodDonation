@@ -25,7 +25,14 @@ class BloodTypePresenter {
     func updateView() -> [BloodTypeViewModel] {
         let bloodTypeModels = bloodTypeSelection.fetchBloodTypes()
         return bloodTypeModels.map {
-            BloodTypeViewModel(title:$0.bloodType.displayString(), highlightColor: UIColor.bloodTypeUnfocused)
+            BloodTypeViewModel(title:$0.bloodType.displayString(), highlightColor: highlightColor(bloodTypeModel: $0))
         }
+    }
+    
+    private func highlightColor(bloodTypeModel: BloodTypeModel) -> UIColor {
+        if bloodTypeModel.selected {
+            return UIColor.bloodTypeFocused
+        }
+        return UIColor.bloodTypeUnfocused
     }
 }
