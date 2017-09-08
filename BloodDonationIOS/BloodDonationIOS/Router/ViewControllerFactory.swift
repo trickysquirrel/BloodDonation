@@ -26,8 +26,8 @@ struct ViewControllerFactory {
     
     
     func locationSelector() -> LocationTableViewController {
-        let locationNetworkRequester = LocationNetworkRequester()
-        let locationFetcher = LocationFetcher(locationNetworkRequester: locationNetworkRequester)
+        let jsonNetworkRequester = JsonNetworkRequester()
+        let locationFetcher = LocationFetcher(jsonRequester: jsonNetworkRequester)
         let presenter = LocationsPresenter(locationFetcher: locationFetcher)
         let dataSource = TableViewDataSource<UITableViewCell, LocationViewModel>()
         

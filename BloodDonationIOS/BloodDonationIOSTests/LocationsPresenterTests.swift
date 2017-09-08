@@ -12,20 +12,53 @@ import XCTest
 class LocationsPresenterTests: XCTestCase {
     
     var presenter: LocationsPresenter!
-    var stubLocationNetworkRequester: StubLocationNetworkRequester!
+    var stubJsonNetworkRequester: StubJsonNetworkRequester!
     
     override func setUp() {
         super.setUp()
-        stubLocationNetworkRequester = StubLocationNetworkRequester()
-        let locationFetcher = LocationFetcher(locationNetworkRequester: stubLocationNetworkRequester)
+        stubJsonNetworkRequester = StubJsonNetworkRequester()
+        let locationFetcher = LocationFetcher(jsonRequester: stubJsonNetworkRequester)
         presenter = LocationsPresenter(locationFetcher: locationFetcher)
     }
     
     override func tearDown() {
-        stubLocationNetworkRequester = nil
+        stubJsonNetworkRequester = nil
         presenter = nil
         super.tearDown()
     }
+    
+    private var fakeResponse1Location: [String:Any] = [
+        "totalResultsCount": 3,
+        "geonames": [
+            [
+                "name": "Eltham",
+                "countryName": "Australia",
+                "adminName1": "Victoria",
+            ]
+        ]
+    ]
+    
+    private var fakeResponse3Location: [String:Any] = [
+        "totalResultsCount": 3,
+        "geonames": [
+            [
+                "name": "Eltham",
+                "countryName": "Australia",
+                "adminName1": "Victoria",
+                ],
+            [
+                "name": "Eltham",
+                "countryName": "Australia",
+                "adminName1": "New South Wales",
+                ],
+            [
+                "name": "Eltham North",
+                "countryName": "Australia",
+                "adminName1": "Victoria",
+                ]
+        ]
+    ]
+
 }
 
 
@@ -52,6 +85,9 @@ extension LocationsPresenterTests {
     
     
     func test_search_3character_respondsOnce() {
+        
+        stubJsonNetworkRequester.fakeResponse = JsonRequesterResponse.success(fakeResponse1Location)
+        
         var eventHandlerCounter: Int = 0
         presenter.onSearchResultsEvent { _ in
             eventHandlerCounter += 1
@@ -63,7 +99,7 @@ extension LocationsPresenterTests {
     
     func test_search_3character_respondsWithViewModels() {
         
-        stubLocationNetworkRequester.fakeResponse = [["name":"locationName", "state":"VIC"]]
+        stubJsonNetworkRequester.fakeResponse = JsonRequesterResponse.success(fakeResponse1Location)
         
         var viewModels: [LocationViewModel] = []
         presenter.onSearchResultsEvent { newViewModels in
@@ -76,7 +112,7 @@ extension LocationsPresenterTests {
 
     func test_search_respondsWith3Models_returns3ViewModels() {
         
-        stubLocationNetworkRequester.fakeResponse = [["name":"locationName", "state":"VIC"],["name":"locationName", "state":"VIC"],["name":"locationName", "state":"VIC"]]
+        stubJsonNetworkRequester.fakeResponse = JsonRequesterResponse.success(fakeResponse3Location)
         
         var viewModels: [LocationViewModel] = []
         presenter.onSearchResultsEvent { newViewModels in
@@ -89,14 +125,21 @@ extension LocationsPresenterTests {
     
     func test_search_respondsWithTitleAndStateAsOneString() {
         
-        stubLocationNetworkRequester.fakeResponse = [["name":"locationName", "state":"VIC"]]
+        stubJsonNetworkRequester.fakeResponse = JsonRequesterResponse.success(fakeResponse1Location)
         
         var viewModels: [LocationViewModel] = []
         presenter.onSearchResultsEvent { newViewModels in
             viewModels = newViewModels
         }
         presenter.search(string:"abc")
-        XCTAssertEqual(viewModels[0].title, "locationName / VIC")
+        XCTAssertEqual(viewModels[0].title, "Eltham / Victoria")
     }
+    
+    
+    func test_search_3character_generatedCorrectUrlString() {
+        presenter.search(string:"abc")
+        XCTAssertEqual(stubJsonNetworkRequester.providedUrlString, "http://api.geonames.org/searchJSON?username=richardmoult&country=AU&featureClass=P&name_startsWith=abc")
+    }
+
     
 }
