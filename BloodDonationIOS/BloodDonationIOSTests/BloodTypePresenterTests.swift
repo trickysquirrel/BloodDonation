@@ -13,19 +13,20 @@ import XCTest
 class BloodTypePresenterTests: XCTestCase {
     
     var presenter: BloodTypePresenter!
-    var userDefaultsStorage: StubPersistentStorage!
+    var stubUserDefaultsStorage: StubPersistentStorage!
     var userStorage: UserPersistentStorage!
     
     override func setUp() {
         super.setUp()
-        userDefaultsStorage = StubPersistentStorage()
-        userStorage = UserPersistentStorage(userDefaultsPersistentStorage: userDefaultsStorage)
-        let bloodTypeSelection = BloodTypeSelection(persistentStorage: userStorage)
-        presenter = BloodTypePresenter(bloodTypeSelection: bloodTypeSelection)
+        stubUserDefaultsStorage = StubPersistentStorage()
+        userStorage = UserPersistentStorage(userDefaultsPersistentStorage: stubUserDefaultsStorage)
+        let bloodTypeSetter = BloodTypeSetter(persistentStorage: userStorage)
+        let bloodTypeSelection = BloodTypeFetcher(persistentStorage: userStorage)
+        presenter = BloodTypePresenter(bloodTypeSelection: bloodTypeSelection, bloodTypeSetter: bloodTypeSetter)
     }
     
     override func tearDown() {
-        userDefaultsStorage = nil
+        stubUserDefaultsStorage = nil
         userStorage = nil
         presenter = nil
         super.tearDown()
@@ -37,6 +38,7 @@ class BloodTypePresenterTests: XCTestCase {
 }
 
 
+// MARK: Update View
 
 extension BloodTypePresenterTests {
     
@@ -77,4 +79,15 @@ extension BloodTypePresenterTests {
         XCTAssertEqual(viewModels[7].highlightColor, UIColor.bloodTypeUnfocused)
     }
 
+}
+
+// MARK: Set blood type
+
+extension BloodTypePresenterTests {
+    
+    func test_setBloodType_setsCorrectValueInPersistentStorage() {
+        presenter.setBloodType(BloodType.abNegative)
+        let storedBloodTypeValue = stubUserDefaultsStorage.dictionaryStorage["UserDefaultsBloodKey"] as? String
+        XCTAssertEqual(storedBloodTypeValue, "AB-")
+    }
 }

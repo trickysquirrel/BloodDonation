@@ -15,7 +15,7 @@ struct BloodTypeModel {
 }
 
 
-class BloodTypeSelection {
+class BloodTypeFetcher {
     
     let persistentStorage: UserPersistentStorageProtocol
     

@@ -20,8 +20,9 @@ class BloodTypeCollectionViewController: UICollectionViewController {
         super.viewDidLoad()
         let userDefaultsStorage = UserDefaultsPersistentStorage(userDefaults: UserDefaults.standard)
         let userStorage = UserPersistentStorage(userDefaultsPersistentStorage: userDefaultsStorage)
-        let bloodTypeSelection = BloodTypeSelection(persistentStorage: userStorage)
-        presenter = BloodTypePresenter(bloodTypeSelection: bloodTypeSelection)
+        let bloodTypeSelection = BloodTypeFetcher(persistentStorage: userStorage)
+        let bloodTypeSetter = BloodTypeSetter(persistentStorage: userStorage)
+        presenter = BloodTypePresenter(bloodTypeSelection: bloodTypeSelection, bloodTypeSetter: bloodTypeSetter)
         dataSource.configure(collectionView: self.collectionView)
         observeCollectionViewChanges()
     }

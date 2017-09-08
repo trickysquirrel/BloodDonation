@@ -16,10 +16,12 @@ struct BloodTypeViewModel {
 
 class BloodTypePresenter {
     
-    let bloodTypeSelection: BloodTypeSelection
+    let bloodTypeSelection: BloodTypeFetcher
+    let bloodTypeSetter: BloodTypeSetter
     
-    init(bloodTypeSelection: BloodTypeSelection) {
+    init(bloodTypeSelection: BloodTypeFetcher, bloodTypeSetter: BloodTypeSetter) {
         self.bloodTypeSelection = bloodTypeSelection
+        self.bloodTypeSetter = bloodTypeSetter
     }
     
     func updateView() -> [BloodTypeViewModel] {
@@ -28,6 +30,14 @@ class BloodTypePresenter {
             BloodTypeViewModel(title:$0.bloodType.displayString(), highlightColor: highlightColor(bloodTypeModel: $0))
         }
     }
+    
+    func setBloodType(_ bloodType: BloodType) {
+        bloodTypeSetter.set(bloodType: bloodType)
+    }
+}
+
+
+extension BloodTypePresenter {
     
     private func highlightColor(bloodTypeModel: BloodTypeModel) -> UIColor {
         if bloodTypeModel.selected {
