@@ -19,7 +19,8 @@ struct ViewControllerFactory {
         let bloodTypeSelection = BloodTypeFetcher(persistentStorage: userStorage)
         let bloodTypeSetter = BloodTypeSetter(persistentStorage: userStorage)
         let presenter = BloodTypePresenter(bloodTypeSelection: bloodTypeSelection, bloodTypeSetter: bloodTypeSetter)
-        viewController.configure(presenter: presenter)
+        let dataSource = CollectionViewDataSource<BloodTypeCollectionViewCell,BloodTypeViewModel>()
+        viewController.configure(presenter: presenter, dataSource: dataSource)
         return viewController
     }
 }

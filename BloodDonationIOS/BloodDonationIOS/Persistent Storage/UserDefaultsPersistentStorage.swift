@@ -21,8 +21,8 @@ struct UserDefaultsPersistentStorage: PersistentStorageProtocol {
     
     let userDefaults: UserDefaults
     
-    func setObject(_ value: Any?, forKey defaultName: String) {
-        userDefaults.set(value, forKey: defaultName)
+    func setObject(_ value: Any?, forKey key: String) {
+        userDefaults.set(value, forKey: key)
         userDefaults.synchronize()
     }
     

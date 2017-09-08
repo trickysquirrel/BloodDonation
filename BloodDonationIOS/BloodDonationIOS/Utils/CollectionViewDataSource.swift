@@ -7,8 +7,6 @@
 //
 
 import Foundation
-
-
 import UIKit
 
 
@@ -58,15 +56,6 @@ class CollectionViewDataSource<CellType, DataType>: NSObject, UICollectionViewDe
         return cell
     }
     
-//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//
-//        guard let tableRow = sections[safe:indexPath.section]?.rows[safe:indexPath.row] else { return UITableViewCell() }
-//        guard let cell = tableView.dequeueReusableCell(withIdentifier: tableRow.cellIdentifier, for: indexPath) as? CellType else { return UITableViewCell() }
-//
-//        configureCellBlock?(cell, tableRow.data)
-//        return cell
-//    }
-    
     
     func objectAtIndexPath(_ indexPath: IndexPath) -> DataType? {
         
@@ -79,17 +68,6 @@ class CollectionViewDataSource<CellType, DataType>: NSObject, UICollectionViewDe
         let collectionSections =  CollectionSection<DataType>(rows: viewModels.map { CollectionRow<DataType>(data: $0, cellIdentifier: cellIdentifier) })
         reloadData(sections: [collectionSections])
     }
-//
-//
-//    func addTableRows(viewModels: [DataType], cellIdentifier: String) {
-//        let tableRows =  viewModels.map { TableRow<DataType>(data: $0, cellIdentifier: cellIdentifier) }
-//        if let section = sections.first {
-//            var rows = section.rows
-//            rows.append(contentsOf: tableRows)
-//            let tableSections =  TableSection<DataType>(rows: rows)
-//            reloadData(tableSections: [tableSections])
-//        }
-//    }
     
     // MARK: Event handlers
     

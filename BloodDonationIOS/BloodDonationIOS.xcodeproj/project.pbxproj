@@ -181,10 +181,10 @@
 		34D4FACE1F35542500E63910 /* BloodDonationIOS */ = {
 			isa = PBXGroup;
 			children = (
-				34F56CC21F6217F2002F3A8F /* Logic */,
-				34428DB51F59342F0017DFA4 /* Persistent Storage */,
-				346F4CD31F591C5100AF1441 /* Select Blood Type */,
 				34F4ABE91F356A9100A2A882 /* Utils */,
+				34428DB51F59342F0017DFA4 /* Persistent Storage */,
+				34F56CC21F6217F2002F3A8F /* Logic */,
+				346F4CD31F591C5100AF1441 /* Select Blood Type */,
 				34F4ABE51F35562200A2A882 /* BloodDonationIOS.entitlements */,
 				34D4FACF1F35542500E63910 /* AppDelegate.swift */,
 				346F4CE91F59292600AF1441 /* Router.swift */,
@@ -212,7 +212,6 @@
 		34F4ABE91F356A9100A2A882 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				34F4ABEA1F356AAE00A2A882 /* NotificationRegister.swift */,
 				346F4CD71F591D8700AF1441 /* CollectionRowSections.swift */,
 				346F4CD91F591E2500AF1441 /* CollectionViewDataSource.swift */,
 				346F4CDB1F591EB600AF1441 /* Array+Safe.swift */,
@@ -234,6 +233,7 @@
 		34F56CC21F6217F2002F3A8F /* Logic */ = {
 			isa = PBXGroup;
 			children = (
+				34F4ABEA1F356AAE00A2A882 /* NotificationRegister.swift */,
 				346F4CE11F59248100AF1441 /* BloodTypeFetcher.swift */,
 				34F56CC01F6212A0002F3A8F /* BloodTypeSetter.swift */,
 			);
