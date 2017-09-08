@@ -13,6 +13,13 @@ struct ViewControllerFactory {
     let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
     
     func bloodTypeSelector() -> BloodTypeCollectionViewController {
-        return storyboard.instantiateViewController(withIdentifier: "BloodTypeCollectionViewControllerId") as! BloodTypeCollectionViewController
+        let viewController = storyboard.instantiateViewController(withIdentifier: "BloodTypeCollectionViewControllerId") as! BloodTypeCollectionViewController
+        let userDefaultsStorage = UserDefaultsPersistentStorage(userDefaults: UserDefaults.standard)
+        let userStorage = UserPersistentStorage(userDefaultsPersistentStorage: userDefaultsStorage)
+        let bloodTypeSelection = BloodTypeFetcher(persistentStorage: userStorage)
+        let bloodTypeSetter = BloodTypeSetter(persistentStorage: userStorage)
+        let presenter = BloodTypePresenter(bloodTypeSelection: bloodTypeSelection, bloodTypeSetter: bloodTypeSetter)
+        viewController.configure(presenter: presenter)
+        return viewController
     }
 }
