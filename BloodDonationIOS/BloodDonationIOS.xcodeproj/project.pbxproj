@@ -39,6 +39,7 @@
 		346F4CEA1F59292600AF1441 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 346F4CE91F59292600AF1441 /* Router.swift */; };
 		346F4CEC1F5929B400AF1441 /* ViewControllerFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 346F4CEB1F5929B400AF1441 /* ViewControllerFactory.swift */; };
 		34830CD51F3DDB5400D6836F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 34830CD41F3DD46400D6836F /* GoogleService-Info.plist */; };
+		348A67B31F627E2F00D4853C /* TableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348A67B21F627E2F00D4853C /* TableViewDataSource.swift */; };
 		34D4FAD01F35542500E63910 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34D4FACF1F35542500E63910 /* AppDelegate.swift */; };
 		34D4FAD51F35542500E63910 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 34D4FAD31F35542500E63910 /* Main.storyboard */; };
 		34D4FAD71F35542500E63910 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 34D4FAD61F35542500E63910 /* Assets.xcassets */; };
@@ -96,6 +97,7 @@
 		346F4CE91F59292600AF1441 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		346F4CEB1F5929B400AF1441 /* ViewControllerFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerFactory.swift; sourceTree = "<group>"; };
 		34830CD41F3DD46400D6836F /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
+		348A67B21F627E2F00D4853C /* TableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewDataSource.swift; sourceTree = "<group>"; };
 		34D4FACC1F35542500E63910 /* BloodDonationIOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BloodDonationIOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		34D4FACF1F35542500E63910 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		34D4FAD41F35542500E63910 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -164,6 +166,8 @@
 				34428DB31F5932410017DFA4 /* UIColor+App.swift */,
 				340DAB1D1F62605B00D5D156 /* LocalisedString+App.swift */,
 				340DAB2D1F626A8000D5D156 /* SearchBar.swift */,
+				346F4CD91F591E2500AF1441 /* CollectionViewDataSource.swift */,
+				348A67B21F627E2F00D4853C /* TableViewDataSource.swift */,
 			);
 			path = "UI Utils";
 			sourceTree = "<group>";
@@ -270,7 +274,6 @@
 			isa = PBXGroup;
 			children = (
 				346F4CD71F591D8700AF1441 /* CollectionRowSections.swift */,
-				346F4CD91F591E2500AF1441 /* CollectionViewDataSource.swift */,
 				346F4CDB1F591EB600AF1441 /* Array+Safe.swift */,
 				346F4CE31F59271D00AF1441 /* BloodType.swift */,
 				340DAB2B1F6268A900D5D156 /* Throttle.swift */,
@@ -534,6 +537,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				348A67B31F627E2F00D4853C /* TableViewDataSource.swift in Sources */,
 				340DAB311F6270A900D5D156 /* LocationsFetcher.swift in Sources */,
 				34428DB91F59364D0017DFA4 /* UserPersistentStorage.swift in Sources */,
 				34F56CC11F6212A0002F3A8F /* BloodTypeSetter.swift in Sources */,

@@ -24,8 +24,15 @@ struct ViewControllerFactory {
         return viewController
     }
     
+    
     func locationSelector() -> LocationTableViewController {
+        let locationNetworkRequester = LocationNetworkRequester()
+        let locationFetcher = LocationFetcher(locationNetworkRequester: locationNetworkRequester)
+        let presenter = LocationsPresenter(locationFetcher: locationFetcher)
+        let dataSource = TableViewDataSource<UITableViewCell, LocationViewModel>()
+        
         let viewController = storyboard.instantiateViewController(withIdentifier: "LocationTableViewControllerId") as! LocationTableViewController
+        viewController.configure(presenter: presenter, dataSource: dataSource)
         return viewController
     }
 }

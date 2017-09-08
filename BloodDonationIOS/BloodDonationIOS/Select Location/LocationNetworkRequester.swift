@@ -16,7 +16,7 @@ protocol LocationNetworkRequesterProtocol {
 class LocationNetworkRequester: LocationNetworkRequesterProtocol {
     
     func search(string: String, completion:completionBlock) {
-        completion([["name":"locationName", "state":"VIC"], ["name":"locationName", "state":"NSW"]])
+        completion([["name":"locationName1", "state":"VIC"], ["name":"locationName2", "state":"NSW"]])
     }
 
 }

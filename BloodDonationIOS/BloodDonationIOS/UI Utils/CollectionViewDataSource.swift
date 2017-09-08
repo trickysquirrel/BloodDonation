@@ -32,7 +32,7 @@ class CollectionViewDataSource<CellType, DataType>: NSObject, UICollectionViewDe
     
     func reloadData(sections: [CollectionSection<DataType>]) {
         guard let collectionView = collectionView else {
-            print("warning tableView nil please use configure");
+            print("warning collectionView nil please use configure");
             return
         }
         self.sections = sections
