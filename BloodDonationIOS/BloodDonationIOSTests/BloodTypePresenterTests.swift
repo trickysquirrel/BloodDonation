@@ -43,40 +43,81 @@ class BloodTypePresenterTests: XCTestCase {
 extension BloodTypePresenterTests {
     
     func test_updateView_returnsEightViewModels() {
-        let viewModels = presenter.updateView()
-        XCTAssertEqual(viewModels.count, 8)
-    }
-
-    func test_updateView_noBloodTypePreviousSelected_returnsEightViewModelsWithCorrectLabels() {
-        let viewModels = presenter.updateView()
-        XCTAssertEqual(viewModels[0].title, "O-")
-        XCTAssertEqual(viewModels[1].title, "O+")
-        XCTAssertEqual(viewModels[2].title, "A-")
-        XCTAssertEqual(viewModels[3].title, "A+")
-        XCTAssertEqual(viewModels[4].title, "B-")
-        XCTAssertEqual(viewModels[5].title, "B+")
-        XCTAssertEqual(viewModels[6].title, "AB-")
-        XCTAssertEqual(viewModels[7].title, "AB+")
+        var returnedViewModels: [BloodTypeViewModel] = []
+        presenter.onEventUpdate{ viewModels in
+            returnedViewModels = viewModels
+        }
+        presenter.updateView()
+        XCTAssertEqual(returnedViewModels.count, 8)
     }
     
+
+    func test_updateView_noBloodTypePreviousSelected_returnsEightViewModelsWithCorrectLabels() {
+        var returnedViewModels: [BloodTypeViewModel] = []
+        presenter.onEventUpdate{ viewModels in
+            returnedViewModels = viewModels
+        }
+        presenter.updateView()
+        
+        XCTAssertEqual(returnedViewModels[0].title, "O-")
+        XCTAssertEqual(returnedViewModels[1].title, "O+")
+        XCTAssertEqual(returnedViewModels[2].title, "A-")
+        XCTAssertEqual(returnedViewModels[3].title, "A+")
+        XCTAssertEqual(returnedViewModels[4].title, "B-")
+        XCTAssertEqual(returnedViewModels[5].title, "B+")
+        XCTAssertEqual(returnedViewModels[6].title, "AB-")
+        XCTAssertEqual(returnedViewModels[7].title, "AB+")
+    }
+    
+
+    func test_updateView_noBloodTypePreviousSelected_returnsEightViewModelsWithCorrectType() {
+        var returnedViewModels: [BloodTypeViewModel] = []
+        presenter.onEventUpdate{ viewModels in
+            returnedViewModels = viewModels
+        }
+        presenter.updateView()
+        
+        XCTAssertEqual(returnedViewModels[0].type, .oNegative)
+        XCTAssertEqual(returnedViewModels[1].type, .oPositive)
+        XCTAssertEqual(returnedViewModels[2].type, .aNegative)
+        XCTAssertEqual(returnedViewModels[3].type, .aPositive)
+        XCTAssertEqual(returnedViewModels[4].type, .bNegative)
+        XCTAssertEqual(returnedViewModels[5].type, .bPositive)
+        XCTAssertEqual(returnedViewModels[6].type, .abNegative)
+        XCTAssertEqual(returnedViewModels[7].type, .abPositive)
+    }
+    
+    
     func test_updateView_noBloodTypePreviousSelected_returnsEightViewModelsWithUnfocusedColor() {
-        let viewModels = presenter.updateView()
-        for viewModel in viewModels {
+        var returnedViewModels: [BloodTypeViewModel] = []
+        presenter.onEventUpdate{ viewModels in
+            returnedViewModels = viewModels
+        }
+        presenter.updateView()
+
+        for viewModel in returnedViewModels {
             XCTAssertEqual(viewModel.highlightColor, UIColor.bloodTypeUnfocused)
         }
     }
 
+    
     func test_updateView_oPositiveBloodSelected_returnsCorrectColorOnAllViewModels() {
         setUpStorageWithBloodType(BloodType.oPositive)
-        let viewModels = presenter.updateView()
-        XCTAssertEqual(viewModels[0].highlightColor, UIColor.bloodTypeUnfocused)
-        XCTAssertEqual(viewModels[1].highlightColor, UIColor.bloodTypeFocused)
-        XCTAssertEqual(viewModels[2].highlightColor, UIColor.bloodTypeUnfocused)
-        XCTAssertEqual(viewModels[3].highlightColor, UIColor.bloodTypeUnfocused)
-        XCTAssertEqual(viewModels[4].highlightColor, UIColor.bloodTypeUnfocused)
-        XCTAssertEqual(viewModels[5].highlightColor, UIColor.bloodTypeUnfocused)
-        XCTAssertEqual(viewModels[6].highlightColor, UIColor.bloodTypeUnfocused)
-        XCTAssertEqual(viewModels[7].highlightColor, UIColor.bloodTypeUnfocused)
+
+        var returnedViewModels: [BloodTypeViewModel] = []
+        presenter.onEventUpdate{ viewModels in
+            returnedViewModels = viewModels
+        }
+        presenter.updateView()
+        
+        XCTAssertEqual(returnedViewModels[0].highlightColor, UIColor.bloodTypeUnfocused)
+        XCTAssertEqual(returnedViewModels[1].highlightColor, UIColor.bloodTypeFocused)
+        XCTAssertEqual(returnedViewModels[2].highlightColor, UIColor.bloodTypeUnfocused)
+        XCTAssertEqual(returnedViewModels[3].highlightColor, UIColor.bloodTypeUnfocused)
+        XCTAssertEqual(returnedViewModels[4].highlightColor, UIColor.bloodTypeUnfocused)
+        XCTAssertEqual(returnedViewModels[5].highlightColor, UIColor.bloodTypeUnfocused)
+        XCTAssertEqual(returnedViewModels[6].highlightColor, UIColor.bloodTypeUnfocused)
+        XCTAssertEqual(returnedViewModels[7].highlightColor, UIColor.bloodTypeUnfocused)
     }
 
 }
@@ -85,9 +126,22 @@ extension BloodTypePresenterTests {
 
 extension BloodTypePresenterTests {
     
-    func test_setBloodType_setsCorrectValueInPersistentStorage() {
-        presenter.setBloodType(BloodType.abNegative)
+    func test_updateBloodType_setsCorrectValueInPersistentStorage() {
+        presenter.updateBloodType(BloodType.abNegative)
         let storedBloodTypeValue = stubUserDefaultsStorage.dictionaryStorage["UserDefaultsBloodKey"] as? String
         XCTAssertEqual(storedBloodTypeValue, "AB-")
     }
+
+    
+    func test_updateBloodType_callsUpdateEventBlock() {
+        
+        var didCallUpdateEventBlock = false
+        presenter.onEventUpdate{ _ in
+            didCallUpdateEventBlock = true
+        }
+        
+        presenter.updateBloodType(BloodType.abNegative)
+        XCTAssertTrue(didCallUpdateEventBlock)
+    }
+
 }

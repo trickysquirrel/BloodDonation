@@ -24,26 +24,28 @@ class BloodTypeCollectionViewController: UICollectionViewController {
         let bloodTypeSetter = BloodTypeSetter(persistentStorage: userStorage)
         presenter = BloodTypePresenter(bloodTypeSelection: bloodTypeSelection, bloodTypeSetter: bloodTypeSetter)
         dataSource.configure(collectionView: self.collectionView)
-        observeCollectionViewChanges()
+        observeChanges()
     }
     
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        if let viewModels = presenter?.updateView() {
-            dataSource.resetRows(viewModels: viewModels, cellIdentifier: reuseIdentifier)
-        }
+        presenter?.updateView()
     }
     
 
-    private func observeCollectionViewChanges() {
+    private func observeChanges() {
+        
+        presenter?.onEventUpdate{ [weak self] viewModels in
+            self?.dataSource.resetRows(viewModels: viewModels, cellIdentifier: reuseIdentifier)
+        }
         
         dataSource.onEventConfigureCell { (cell, viewModel) in
             cell.configure(viewModel: viewModel)
         }
 
-        dataSource.onEventItemSelected { (viewModel, indexPath) in
-            print("perform next thing")
+        dataSource.onEventItemSelected { [weak self] (viewModel, indexPath) in
+            self?.presenter?.updateBloodType(viewModel.type)
         }
     }
 

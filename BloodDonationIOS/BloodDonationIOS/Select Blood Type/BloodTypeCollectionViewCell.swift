@@ -14,5 +14,6 @@ class BloodTypeCollectionViewCell: UICollectionViewCell {
     
     func configure(viewModel: BloodTypeViewModel) {
         label.text = viewModel.title
+        label.backgroundColor = viewModel.highlightColor
     }
 }
