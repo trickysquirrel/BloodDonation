@@ -8,7 +8,7 @@
 
 import UIKit
 
-struct Router {
+class Router {
     
     let window: UIWindow?
     let viewControllerFactory: ViewControllerFactory
@@ -23,8 +23,25 @@ struct Router {
     }
     
     func displayBloodTypeSeletion() {
-        let controller = viewControllerFactory.bloodTypeSelector()
-        pushOnController(controller)
+        let action = makeDisplayLocationSectionAction()
+        let viewController = viewControllerFactory.bloodTypeSelector(showLocationAction: action)
+        pushOnController(viewController)
+    }
+    
+    func displayLocationSelection() {
+        let viewController = viewControllerFactory.locationSelector()
+        pushOnController(viewController)
+    }
+}
+
+// MARK:- Actions
+
+extension Router {
+    
+    fileprivate func makeDisplayLocationSectionAction() -> ActionProtocol {
+        return Action(performBlock: { [weak self] in
+            self?.displayLocationSelection()
+        })
     }
 }
 
@@ -32,7 +49,7 @@ struct Router {
 
 extension Router {
     
-    private func pushOnController(_ controller: UIViewController) {
+    fileprivate func pushOnController(_ controller: UIViewController) {
         if navigationController.viewControllers.count == 0 {
             navigationController.viewControllers = [controller]
         }

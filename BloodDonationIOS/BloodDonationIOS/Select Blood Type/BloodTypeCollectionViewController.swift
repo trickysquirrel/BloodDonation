@@ -14,11 +14,16 @@ class BloodTypeCollectionViewController: UICollectionViewController {
     
     private var dataSource: CollectionViewDataSource<BloodTypeCollectionViewCell,BloodTypeViewModel>?
     private var presenter: BloodTypePresenter?
+    private var showLocationAction: ActionProtocol?
 
     
-    func configure(presenter: BloodTypePresenter, dataSource: CollectionViewDataSource<BloodTypeCollectionViewCell,BloodTypeViewModel>) {
+    func configure(presenter: BloodTypePresenter,
+                   dataSource: CollectionViewDataSource<BloodTypeCollectionViewCell,BloodTypeViewModel>,
+                   showLocationAction: ActionProtocol) {
+        self.title = Localisations.selectBloodTypeTitle.localised()
         self.presenter = presenter
         self.dataSource = dataSource
+        self.showLocationAction = showLocationAction
         dataSource.configure(collectionView: self.collectionView)
         observeChanges()
     }
@@ -42,6 +47,7 @@ class BloodTypeCollectionViewController: UICollectionViewController {
 
         dataSource?.onEventItemSelected { [weak self] (viewModel, indexPath) in
             self?.presenter?.updateBloodType(viewModel.type)
+            self?.showLocationAction?.perform()
         }
     }
 

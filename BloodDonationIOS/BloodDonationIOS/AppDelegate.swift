@@ -16,6 +16,7 @@ import FirebaseMessaging
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    var router: Router?
     var backgroundTask: UIBackgroundTaskIdentifier = UIBackgroundTaskInvalid
 
 
@@ -24,8 +25,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow(frame: UIScreen.main.bounds)
 
         let viewControllerFactory = ViewControllerFactory()
-        let router = Router(window: window, viewControllerFactory: viewControllerFactory)
-        router.displayBloodTypeSeletion()
+        router = Router(window: window, viewControllerFactory: viewControllerFactory)
+        router?.displayBloodTypeSeletion()
+        
 
         
         

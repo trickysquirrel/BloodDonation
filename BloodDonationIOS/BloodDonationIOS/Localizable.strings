@@ -1,0 +1,9 @@
+/* 
+  Localizable.strings
+  BloodDonationIOS
+
+  Created by Richard Moult on 8/9/17.
+  Copyright © 2017 Richard Moult. All rights reserved.
+*/
+
+"LOCALKEY_SelectBloodTypeTitle" = "Select Blood Type";

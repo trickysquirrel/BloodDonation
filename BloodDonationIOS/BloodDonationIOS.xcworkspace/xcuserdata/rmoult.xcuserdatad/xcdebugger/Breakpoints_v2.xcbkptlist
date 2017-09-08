@@ -2,4 +2,70 @@
 <Bucket
    type = "0"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BloodDonationIOS/Utils/Throttle.swift"
+            timestampString = "526546818.786005"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "24"
+            endingLineNumber = "24"
+            landmarkName = "value(withDelay:object:response:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BloodDonationIOS/Utils/Throttle.swift"
+            timestampString = "526546818.786139"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "20"
+            endingLineNumber = "20"
+            landmarkName = "value(withDelay:object:response:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "BloodDonationIOS.Throttle.value(withDelay: Swift.Double, object: A, response: (A) -&gt; ()) -&gt; ()"
+                  moduleName = "BloodDonationIOS"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/rmoult/Documents/BloodDonation/BloodDonationIOS/BloodDonationIOS/Utils/Throttle.swift"
+                  timestampString = "526543957.710439"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "20"
+                  endingLineNumber = "20"
+                  offsetFromSymbolStart = "421">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (__ObjC.Timer) -&gt; () in BloodDonationIOS.Throttle.value(withDelay: Swift.Double, object: A, response: (A) -&gt; ()) -&gt; ()"
+                  moduleName = "BloodDonationIOS"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/rmoult/Documents/BloodDonation/BloodDonationIOS/BloodDonationIOS/Utils/Throttle.swift"
+                  timestampString = "526543957.713924"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "16"
+                  endingLineNumber = "16"
+                  offsetFromSymbolStart = "54">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>
