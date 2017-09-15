@@ -27,6 +27,10 @@ class LocationsPresenterTests: XCTestCase {
         super.tearDown()
     }
     
+    private var fakeResponseError: Error = NSError(domain: "domain", code: 0, userInfo: [NSLocalizedDescriptionKey:"error string"])
+
+    private var fakeResponseErrorUnknown: Error = NSError(domain: "domain", code: 0, userInfo: [NSLocalizedDescriptionKey:"unknown"])
+    
     private var fakeResponse1Location: [String:Any] = [
         "totalResultsCount": 3,
         "geonames": [
@@ -122,7 +126,7 @@ extension LocationsPresenterTests {
         }
         presenter.search(string:"abc")
         XCTAssertEqual(viewModels.count, 0)
-        XCTAssertEqual(userInformation, "Searching")
+        XCTAssertEqual(userInformation, "searching...")
     }
 
 
@@ -179,9 +183,30 @@ extension LocationsPresenterTests {
     
     
     func test_search_3character_generatedCorrectUrlString() {
-        presenter.search(string:"abc")
-        XCTAssertEqual(stubJsonNetworkRequester.providedUrlString, "http://api.geonames.org/searchJSON?username=richardmoult&country=AU&featureClass=P&name_startsWith=abc")
+        presenter.search(string:"abc def")
+        XCTAssertEqual(stubJsonNetworkRequester.providedUrlString, "http://api.geonames.org/searchJSON?username=richardmoult&country=AU&featureClass=P&name_startsWith=abc%20def")
     }
 
     
+    func test_search_networkError_returnLocalisedDescription() {
+        stubJsonNetworkRequester.fakeResponse = JsonRequesterResponse.error(fakeResponseError)
+        var userInformation: String? = ""
+        presenter.onEventNewLocations { newViewModels, information in
+            userInformation = information
+        }
+        presenter.search(string:"abc")
+        XCTAssertEqual(userInformation, "error string")
+    }
+
+    
+    func test_search_networkErrorNil_returnUnknownLocalisedDescription() {
+        stubJsonNetworkRequester.fakeResponse = JsonRequesterResponse.error(fakeResponseErrorUnknown)
+        var userInformation: String? = ""
+        presenter.onEventNewLocations { newViewModels, information in
+            userInformation = information
+        }
+        presenter.search(string:"abc")
+        XCTAssertEqual(userInformation, "unknown error please try again")
+    }
+
 }

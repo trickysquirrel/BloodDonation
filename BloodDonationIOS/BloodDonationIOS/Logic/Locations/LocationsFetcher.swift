@@ -13,9 +13,16 @@ struct LocationModel {
     let area: String
 }
 
+
+enum LocationFetcherResponse {
+    case success([LocationModel])
+    case error(Error)
+}
+
+
 class LocationFetcher {
     
-    typealias completionBlock = ([LocationModel]) -> ()
+    typealias completionBlock = (LocationFetcherResponse) -> ()
     private let jsonRequester: JsonRequester
     
     init(jsonRequester: JsonRequester) {
@@ -28,15 +35,15 @@ class LocationFetcher {
             case .success(let dictionary):
                 let geoNames = self?.extractGeoNames(dictionary: dictionary) ?? [[:]]
                 let models = geoNames.flatMap { self?.makeLocationModel(dictionary: $0) }
-                completion(models)
-            case .error:
-                print("error")
+                completion(.success(models))
+            case .error(let error):
+                completion(.error(error))
             }
         }
     }
     
     private func makeSearchURLString(string: String) -> String {
-        return String(format: "http://api.geonames.org/searchJSON?username=richardmoult&country=AU&featureClass=P&name_startsWith=%@", string)
+        return String(format: "http://api.geonames.org/searchJSON?username=richardmoult&country=AU&featureClass=P&name_startsWith=%@", string.stringByAddingPercentEncodingForRFC3986())
     }
     
     private func extractGeoNames(dictionary: [String:Any]) -> [[String:Any]]? {

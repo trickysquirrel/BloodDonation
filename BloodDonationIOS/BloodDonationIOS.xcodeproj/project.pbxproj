@@ -26,6 +26,7 @@
 		34428DBD1F593A6A0017DFA4 /* BloodType+Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34428DBC1F593A6A0017DFA4 /* BloodType+Storage.swift */; };
 		34428DBF1F593A9C0017DFA4 /* UserDefaultsStorageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34428DBE1F593A9C0017DFA4 /* UserDefaultsStorageTests.swift */; };
 		34428DC21F593B560017DFA4 /* StubPersistentStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34428DC11F593B560017DFA4 /* StubPersistentStorage.swift */; };
+		3463FEC81F6BCD0B00B3DF02 /* String+UrlEncoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3463FEC71F6BCD0B00B3DF02 /* String+UrlEncoding.swift */; };
 		346F4CD51F591C9000AF1441 /* BloodTypeCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 346F4CD41F591C9000AF1441 /* BloodTypeCollectionViewController.swift */; };
 		346F4CD81F591D8700AF1441 /* CollectionRowSections.swift in Sources */ = {isa = PBXBuildFile; fileRef = 346F4CD71F591D8700AF1441 /* CollectionRowSections.swift */; };
 		346F4CDA1F591E2500AF1441 /* CollectionViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 346F4CD91F591E2500AF1441 /* CollectionViewDataSource.swift */; };
@@ -85,6 +86,7 @@
 		34428DBC1F593A6A0017DFA4 /* BloodType+Storage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BloodType+Storage.swift"; sourceTree = "<group>"; };
 		34428DBE1F593A9C0017DFA4 /* UserDefaultsStorageTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsStorageTests.swift; sourceTree = "<group>"; };
 		34428DC11F593B560017DFA4 /* StubPersistentStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StubPersistentStorage.swift; sourceTree = "<group>"; };
+		3463FEC71F6BCD0B00B3DF02 /* String+UrlEncoding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+UrlEncoding.swift"; sourceTree = "<group>"; };
 		346F4CD41F591C9000AF1441 /* BloodTypeCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BloodTypeCollectionViewController.swift; sourceTree = "<group>"; };
 		346F4CD71F591D8700AF1441 /* CollectionRowSections.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionRowSections.swift; sourceTree = "<group>"; };
 		346F4CD91F591E2500AF1441 /* CollectionViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewDataSource.swift; sourceTree = "<group>"; };
@@ -296,6 +298,7 @@
 				346F4CDB1F591EB600AF1441 /* Array+Safe.swift */,
 				346F4CE31F59271D00AF1441 /* BloodType.swift */,
 				340DAB2B1F6268A900D5D156 /* Throttle.swift */,
+				3463FEC71F6BCD0B00B3DF02 /* String+UrlEncoding.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -582,6 +585,7 @@
 				346F4CEA1F59292600AF1441 /* Router.swift in Sources */,
 				34C7AD5F1F636905004D1040 /* LoadingIndicator.swift in Sources */,
 				34428DB41F5932410017DFA4 /* UIColor+App.swift in Sources */,
+				3463FEC81F6BCD0B00B3DF02 /* String+UrlEncoding.swift in Sources */,
 				340DAB261F62653600D5D156 /* LocationTableViewController.swift in Sources */,
 				348A67B71F628BD800D4853C /* NetworkRequester.swift in Sources */,
 			);

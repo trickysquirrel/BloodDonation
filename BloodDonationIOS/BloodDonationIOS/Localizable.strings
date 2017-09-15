@@ -8,3 +8,5 @@
 
 "LOCALKEY_SelectBloodTypeTitle" = "Select Blood Type";
 "LOCALKEY_MinimumLocationCharSearch" = "minimum 3 characters";
+"LOCALKEY_Searching" = "searching...";
+"LOCALKEY_UnknownError" = "unknown error please try again";

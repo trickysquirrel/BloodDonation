@@ -37,7 +37,7 @@ class JsonNetworkRequester : JsonRequester {
                     completion(.success(json))
                 }
                 else {
-                    let error = NSError(domain: "JsonNetworkRequester", code: 1, userInfo: nil)
+                    let error = NSError(domain: "JsonNetworkRequester", code: 1, userInfo: [NSLocalizedDescriptionKey:"unknown"])
                     completion(.error(error))
                 }
             case .failure(let error):
