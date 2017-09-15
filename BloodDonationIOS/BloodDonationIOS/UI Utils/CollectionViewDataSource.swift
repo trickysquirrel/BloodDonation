@@ -65,7 +65,7 @@ class CollectionViewDataSource<CellType, DataType>: NSObject, UICollectionViewDe
     // MARK: Update table row helpers
     
     func resetRows(viewModels: [DataType], cellIdentifier: String) {
-        let collectionSections =  CollectionSection<DataType>(rows: viewModels.map { CollectionRow<DataType>(data: $0, cellIdentifier: cellIdentifier) })
+        let collectionSections =  CollectionSection<DataType>(title: nil, rows: viewModels.map { CollectionRow<DataType>(data: $0, cellIdentifier: cellIdentifier) })
         reloadData(sections: [collectionSections])
     }
     

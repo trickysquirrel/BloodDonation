@@ -40,6 +40,7 @@
 		34830CD51F3DDB5400D6836F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 34830CD41F3DD46400D6836F /* GoogleService-Info.plist */; };
 		348A67B31F627E2F00D4853C /* TableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348A67B21F627E2F00D4853C /* TableViewDataSource.swift */; };
 		348A67B71F628BD800D4853C /* NetworkRequester.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348A67B61F628BD800D4853C /* NetworkRequester.swift */; };
+		34C7AD5F1F636905004D1040 /* LoadingIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C7AD5E1F636905004D1040 /* LoadingIndicator.swift */; };
 		34D4FAD01F35542500E63910 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34D4FACF1F35542500E63910 /* AppDelegate.swift */; };
 		34D4FAD51F35542500E63910 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 34D4FAD31F35542500E63910 /* Main.storyboard */; };
 		34D4FAD71F35542500E63910 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 34D4FAD61F35542500E63910 /* Assets.xcassets */; };
@@ -98,6 +99,7 @@
 		34830CD41F3DD46400D6836F /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
 		348A67B21F627E2F00D4853C /* TableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewDataSource.swift; sourceTree = "<group>"; };
 		348A67B61F628BD800D4853C /* NetworkRequester.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRequester.swift; sourceTree = "<group>"; };
+		34C7AD5E1F636905004D1040 /* LoadingIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingIndicator.swift; sourceTree = "<group>"; };
 		34D4FACC1F35542500E63910 /* BloodDonationIOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BloodDonationIOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		34D4FACF1F35542500E63910 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		34D4FAD41F35542500E63910 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -167,6 +169,7 @@
 				340DAB2D1F626A8000D5D156 /* SearchBar.swift */,
 				346F4CD91F591E2500AF1441 /* CollectionViewDataSource.swift */,
 				348A67B21F627E2F00D4853C /* TableViewDataSource.swift */,
+				34C7AD5E1F636905004D1040 /* LoadingIndicator.swift */,
 			);
 			path = "UI Utils";
 			sourceTree = "<group>";
@@ -577,6 +580,7 @@
 				340DAB241F62626400D5D156 /* Action.swift in Sources */,
 				346F4CDE1F59205700AF1441 /* BloodTypeCollectionViewCell.swift in Sources */,
 				346F4CEA1F59292600AF1441 /* Router.swift in Sources */,
+				34C7AD5F1F636905004D1040 /* LoadingIndicator.swift in Sources */,
 				34428DB41F5932410017DFA4 /* UIColor+App.swift in Sources */,
 				340DAB261F62653600D5D156 /* LocationTableViewController.swift in Sources */,
 				348A67B71F628BD800D4853C /* NetworkRequester.swift in Sources */,

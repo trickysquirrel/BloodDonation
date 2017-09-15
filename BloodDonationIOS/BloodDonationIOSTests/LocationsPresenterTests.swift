@@ -66,7 +66,7 @@ extension LocationsPresenterTests {
     
     func test_search_1character_respondsOnce() {
         var eventHandlerCounter: Int = 0
-        presenter.onSearchResultsEvent { _ in
+        presenter.onEventNewLocations { _, _ in 
             eventHandlerCounter += 1
         }
         presenter.search(string:"a")
@@ -74,65 +74,107 @@ extension LocationsPresenterTests {
     }
 
     
-    func test_search_1character_respondsWithEmptyViewModels() {
+    func test_search_1character_respondsWithEmptyViewModel() {
         var viewModels: [LocationViewModel] = []
-        presenter.onSearchResultsEvent { newViewModels in
+        presenter.onEventNewLocations { newViewModels, information in
             viewModels = newViewModels
         }
         presenter.search(string:"a")
         XCTAssertEqual(viewModels.count, 0)
     }
+
     
+    func test_search_1character_respondsWithUserInformation() {
+        var userInformation: String?
+        presenter.onEventNewLocations { newViewModels, information in
+            userInformation = information
+        }
+        presenter.search(string:"a")
+        XCTAssertEqual(userInformation, "minimum 3 characters")
+    }
+
     
-    func test_search_3character_respondsOnce() {
+    func test_search_3character_respondsTwice() {
         
         stubJsonNetworkRequester.fakeResponse = JsonRequesterResponse.success(fakeResponse1Location)
         
         var eventHandlerCounter: Int = 0
-        presenter.onSearchResultsEvent { _ in
+        presenter.onEventNewLocations { _,_ in
             eventHandlerCounter += 1
         }
         presenter.search(string:"abc")
-        XCTAssertEqual(eventHandlerCounter, 1)
+        XCTAssertEqual(eventHandlerCounter, 2)
+    }
+    
+    
+    func test_search_3character_respondsFirstWithUserInformationSearching() {
+        
+        stubJsonNetworkRequester.fakeResponse = JsonRequesterResponse.success(fakeResponse1Location)
+        var responseCount: Int = 0
+        var userInformation: String?
+        var viewModels: [LocationViewModel] = []
+        presenter.onEventNewLocations { newViewModels, information in
+            if responseCount == 0 {
+                viewModels = newViewModels
+                userInformation = information
+            }
+            responseCount += 1
+        }
+        presenter.search(string:"abc")
+        XCTAssertEqual(viewModels.count, 0)
+        XCTAssertEqual(userInformation, "Searching")
     }
 
+
     
-    func test_search_3character_respondsWithViewModels() {
+    func test_search_3character_respondsSecondWithViewModels() {
         
         stubJsonNetworkRequester.fakeResponse = JsonRequesterResponse.success(fakeResponse1Location)
         
+        var responseCount: Int = 0
+        var userInformation: String? = ""
         var viewModels: [LocationViewModel] = []
-        presenter.onSearchResultsEvent { newViewModels in
-            viewModels = newViewModels
+        presenter.onEventNewLocations { newViewModels, information in
+            if responseCount == 1 {
+                viewModels = newViewModels
+                userInformation = information
+            }
+            responseCount += 1
         }
         presenter.search(string:"abc")
         XCTAssertEqual(viewModels.count, 1)
+        XCTAssertNil(userInformation)
     }
-    
 
-    func test_search_respondsWith3Models_returns3ViewModels() {
+    
+    func test_search_3character_respondsWithNilUserInformation() {
+        
+        stubJsonNetworkRequester.fakeResponse = JsonRequesterResponse.success(fakeResponse1Location)
+        
+        var userInformation: String? = ""
+        presenter.onEventNewLocations { newViewModels, information in
+            userInformation = information
+        }
+        presenter.search(string:"abc")
+        XCTAssertNil(userInformation)
+    }
+
+
+    func test_search_respondsWith3Models_returns3ViewModelsWithCorrectValues() {
         
         stubJsonNetworkRequester.fakeResponse = JsonRequesterResponse.success(fakeResponse3Location)
         
         var viewModels: [LocationViewModel] = []
-        presenter.onSearchResultsEvent { newViewModels in
+        presenter.onEventNewLocations { newViewModels, information in
             viewModels = newViewModels
         }
+        
         presenter.search(string:"abc")
+        
         XCTAssertEqual(viewModels.count, 3)
-    }
-    
-    
-    func test_search_respondsWithTitleAndStateAsOneString() {
-        
-        stubJsonNetworkRequester.fakeResponse = JsonRequesterResponse.success(fakeResponse1Location)
-        
-        var viewModels: [LocationViewModel] = []
-        presenter.onSearchResultsEvent { newViewModels in
-            viewModels = newViewModels
-        }
-        presenter.search(string:"abc")
         XCTAssertEqual(viewModels[0].title, "Eltham / Victoria")
+        XCTAssertEqual(viewModels[1].title, "Eltham / New South Wales")
+        XCTAssertEqual(viewModels[2].title, "Eltham North / Victoria")
     }
     
     

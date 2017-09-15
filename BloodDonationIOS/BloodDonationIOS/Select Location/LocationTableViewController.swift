@@ -14,13 +14,16 @@ class LocationTableViewController: UITableViewController {
 
     private var dataSource: TableViewDataSource<UITableViewCell, LocationViewModel>?
     private var presenter: LocationsPresenter?
+    private var loadingIndicator: LoadingIndicatorProtocol?
     @IBOutlet weak var searchBar: SearchBar!
     
     
     func configure(presenter: LocationsPresenter,
-                   dataSource: TableViewDataSource<UITableViewCell, LocationViewModel>) {
+                   dataSource: TableViewDataSource<UITableViewCell, LocationViewModel>,
+                   loadingIndicator: LoadingIndicatorProtocol) {
         self.presenter = presenter
         self.dataSource = dataSource
+        self.loadingIndicator = loadingIndicator
     }
     
     
@@ -34,11 +37,14 @@ class LocationTableViewController: UITableViewController {
     private func observeChanges() {
         
         searchBar.onEventChanged { [weak self] searchText in
+            self?.loadingIndicator?.show(true)
             self?.presenter?.search(string: searchText)
         }
 
-        presenter?.onSearchResultsEvent(updateBlock: { [weak self] viewModels in
-            self?.dataSource?.resetSections(viewModels: [viewModels], cellIdentifier: reuseIdentifier)
+        presenter?.onEventNewLocations(updateBlock: { [weak self] viewModels, userInformation in
+            self?.loadingIndicator?.show(false)
+            self?.dataSource?.resetSections(title: userInformation, viewModels: [viewModels], cellIdentifier: reuseIdentifier)
+            print(userInformation ?? "error dummy")
         })
         
         dataSource?.onEventConfigureCell { cell, viewModel in

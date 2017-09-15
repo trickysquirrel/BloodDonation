@@ -12,6 +12,8 @@ enum Localisations: String {
     
     // Saved Jobs
     case selectBloodTypeTitle = "LOCALKEY_SelectBloodTypeTitle"
+    case minimumLocationCharSearch = "LOCALKEY_MinimumLocationCharSearch"
+
     
     func localised() -> String {
         return NSLocalizedString(self.rawValue, comment: self.rawValue)

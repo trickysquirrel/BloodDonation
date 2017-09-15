@@ -30,9 +30,9 @@ class JsonNetworkRequester : JsonRequester {
         alamofireRequest?.cancel()
         
         alamofireRequest = Alamofire.request(urlString).validate().responseJSON { response in
+            
             switch response.result {
             case .success(let json):
-                print("Validation Successful \(json)")
                 if let json = json as? [String:Any] {
                     completion(.success(json))
                 }
@@ -46,5 +46,5 @@ class JsonNetworkRequester : JsonRequester {
             }
         }
     }
-    // Alamofire.request(.GET, "http://httpbin.org/get", parameters: ["foo": "bar"])
+
 }

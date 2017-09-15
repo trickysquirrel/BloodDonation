@@ -16,13 +16,14 @@ struct CollectionRow<T> {
 
 
 struct CollectionSection<T> {
+    let title: String?
     let rows:[CollectionRow<T>]
     
-    static func combine(rows:[CollectionRow<T>]...) -> [CollectionSection<T>] {
-        var sections: [CollectionSection<T>] = []
-        for row: [CollectionRow<T>] in rows {
-            sections.append( CollectionSection<T>(rows:row) )
-        }
-        return sections
-    }
+//    static func combine(rows:[CollectionRow<T>]...) -> [CollectionSection<T>] {
+//        var sections: [CollectionSection<T>] = []
+//        for row: [CollectionRow<T>] in rows {
+//            sections.append( CollectionSection<T>(rows:row) )
+//        }
+//        return sections
+//    }
 }

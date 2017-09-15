@@ -48,6 +48,10 @@ class TableViewDataSource<CellType, DataType>: NSObject, UITableViewDelegate, UI
         return sections[safe: section]?.rows.count ?? 0
     }
     
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        let section = sections[safe:section]
+        return section?.title
+    }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
@@ -69,8 +73,8 @@ class TableViewDataSource<CellType, DataType>: NSObject, UITableViewDelegate, UI
         return (sections.count > 0) ? true : false
     }
     
-    func resetSections(viewModels: [[DataType]], cellIdentifier: String) {
-        let tableSections =  viewModels.map { CollectionSection<DataType>(rows: $0.map { CollectionRow<DataType>(data: $0, cellIdentifier: cellIdentifier) }) }
+    func resetSections(title: String?=nil, viewModels: [[DataType]], cellIdentifier: String) {
+        let tableSections =  viewModels.map { CollectionSection<DataType>(title: title, rows: $0.map { CollectionRow<DataType>(data: $0, cellIdentifier: cellIdentifier) }) }
         reloadData(tableSections: tableSections)
     }
     

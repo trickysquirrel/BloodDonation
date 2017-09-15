@@ -14,8 +14,8 @@ struct LocationViewModel {
 
 class LocationsPresenter {
     
-    typealias UpdateBlock = ([LocationViewModel]) -> ()
-    private var onEventUpdateBlock: UpdateBlock?
+    typealias ViewModelsUpdateBlock = ([LocationViewModel], String?) -> ()
+    private var onEventViewModelsBlock: ViewModelsUpdateBlock?
     private let locationFetcher: LocationFetcher
     
     
@@ -24,19 +24,22 @@ class LocationsPresenter {
     }
     
     
-    func onSearchResultsEvent(updateBlock: @escaping UpdateBlock) {
-        self.onEventUpdateBlock = updateBlock
+    func onEventNewLocations(updateBlock: @escaping ViewModelsUpdateBlock) {
+        self.onEventViewModelsBlock = updateBlock
     }
-    
+
     
     func search(string: String) {
+        
         guard string.characters.count > 2 else {
-            self.onEventUpdateBlock?([])
+            self.onEventViewModelsBlock?([], Localisations.minimumLocationCharSearch.localised())
             return
         }
+        
+        self.onEventViewModelsBlock?([], "Searching")
         locationFetcher.search(string: string) { locationModels in
             let viewModels = locationModels.map { LocationViewModel(title:$0.title + " / " + $0.area) }
-            self.onEventUpdateBlock?(viewModels)
+            self.onEventViewModelsBlock?(viewModels, nil)
         }
     }
 

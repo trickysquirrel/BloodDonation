@@ -30,9 +30,10 @@ struct ViewControllerFactory {
         let locationFetcher = LocationFetcher(jsonRequester: jsonNetworkRequester)
         let presenter = LocationsPresenter(locationFetcher: locationFetcher)
         let dataSource = TableViewDataSource<UITableViewCell, LocationViewModel>()
+        let loadingIndicator = LoadingIndicator()
         
         let viewController = storyboard.instantiateViewController(withIdentifier: "LocationTableViewControllerId") as! LocationTableViewController
-        viewController.configure(presenter: presenter, dataSource: dataSource)
+        viewController.configure(presenter: presenter, dataSource: dataSource, loadingIndicator: loadingIndicator)
         return viewController
     }
 }
