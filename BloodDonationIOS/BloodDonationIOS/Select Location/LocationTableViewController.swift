@@ -15,15 +15,18 @@ class LocationTableViewController: UITableViewController {
     private var dataSource: TableViewDataSource<UITableViewCell, LocationViewModel>?
     private var presenter: LocationsPresenter?
     private var loadingIndicator: LoadingIndicatorProtocol?
+    private var bloodType: BloodType?
     @IBOutlet weak var searchBar: SearchBar!
     
     
     func configure(presenter: LocationsPresenter,
                    dataSource: TableViewDataSource<UITableViewCell, LocationViewModel>,
-                   loadingIndicator: LoadingIndicatorProtocol) {
+                   loadingIndicator: LoadingIndicatorProtocol,
+                   bloodType: BloodType) {
         self.presenter = presenter
         self.dataSource = dataSource
         self.loadingIndicator = loadingIndicator
+        self.bloodType = bloodType
     }
     
     

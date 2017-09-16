@@ -9,18 +9,19 @@
 import Foundation
 
 protocol ActionProtocol {
-    func perform()
+    associatedtype V
+    func perform(value: V)
 }
 
-class Action: ActionProtocol {
+class Action<V>: ActionProtocol {
     
-    private let performBlock: (()->())
+    private let performBlock: ((V)->())
     
-    init(performBlock: @escaping (()->())) {
+    init(performBlock: @escaping ((V)->())) {
         self.performBlock = performBlock
     }
     
-    func perform() {
-        performBlock()
+    func perform(value: V) {
+        performBlock(value)
     }
 }
