@@ -46,7 +46,6 @@ class BloodTypeCollectionViewController: UICollectionViewController {
         }
 
         dataSource?.onEventItemSelected { [weak self] (viewModel, indexPath) in
-            self?.presenter?.updateBloodType(viewModel.type)
             self?.showLocationAction?.perform()
         }
     }

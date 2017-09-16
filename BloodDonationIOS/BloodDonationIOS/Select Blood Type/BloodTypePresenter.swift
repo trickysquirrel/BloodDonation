@@ -18,15 +18,13 @@ struct BloodTypeViewModel {
 class BloodTypePresenter {
     
     private let bloodTypeFetcher: BloodTypeFetching
-    private let bloodTypeSetter: BloodTypeSetter
 
     typealias UpdateBlock = ([BloodTypeViewModel]) -> ()
     var onEventUpdateBlock: UpdateBlock?
     
     
-    init(bloodTypeFetcher: BloodTypeFetching, bloodTypeSetter: BloodTypeSetter) {
+    init(bloodTypeFetcher: BloodTypeFetching) {
         self.bloodTypeFetcher = bloodTypeFetcher
-        self.bloodTypeSetter = bloodTypeSetter
     }
     
     
@@ -45,11 +43,6 @@ class BloodTypePresenter {
         onEventUpdateBlock?(viewModels)
     }
     
-    
-    func updateBloodType(_ bloodType: BloodType) {
-        bloodTypeSetter.set(bloodType: bloodType)
-        updateView()
-    }
 }
 
 
