@@ -41,7 +41,7 @@ class LocationTableViewController: UITableViewController {
             self?.presenter?.search(string: searchText)
         }
 
-        presenter?.onEventNewLocations(updateBlock: { [weak self] viewModels, userInformation in
+        presenter?.onEventNewLocations(block: { [weak self] viewModels, userInformation in
             self?.loadingIndicator?.show(false)
             self?.dataSource?.resetSections(title: userInformation, viewModels: [viewModels], cellIdentifier: reuseIdentifier)
             print(userInformation ?? "error dummy")

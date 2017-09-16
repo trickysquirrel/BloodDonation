@@ -1,37 +1,23 @@
 //
-//  BloodTypeSelection.swift
+//  BloodTypeFetcher.swift
 //  BloodDonationIOS
 //
-//  Created by Richard Moult on 1/9/17.
+//  Created by Richard Moult on 16/9/17.
 //  Copyright © 2017 Richard Moult. All rights reserved.
 //
 
 import Foundation
 
 
-struct BloodTypeModel {
-    let bloodType: BloodType
-    let selected: Bool
-}
-
-
-class BloodTypeFetcher {
-    
-    let persistentStorage: UserPersistentStorageProtocol
-    
-    init(persistentStorage: UserPersistentStorageProtocol) {
-        self.persistentStorage = persistentStorage
-    }
+class BloodTypeFetcher: BloodTypeFetching {
     
     func fetchBloodTypes() -> [BloodTypeModel] {
         
         var response: [BloodTypeModel] = []
-        let usersBloodType = persistentStorage.fetchBloodType()
         let allBloodTypes: [BloodType] = [.oNegative, .oPositive, .aNegative, .aPositive, .bNegative, .bPositive, .abNegative, .abPositive]
         
         for bloodType in allBloodTypes {
-            let selected = (bloodType == usersBloodType)
-            response.append( BloodTypeModel(bloodType: bloodType, selected: selected) )
+            response.append( BloodTypeModel(bloodType: bloodType, selected: false) )
         }
         return response
     }

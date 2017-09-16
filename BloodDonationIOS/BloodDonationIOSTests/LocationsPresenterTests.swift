@@ -65,6 +65,7 @@ class LocationsPresenterTests: XCTestCase {
 
 }
 
+// MARK:- onEventNewLocations
 
 extension LocationsPresenterTests {
     
@@ -210,3 +211,71 @@ extension LocationsPresenterTests {
     }
 
 }
+
+// MARK:- onEventShowLoading
+
+extension LocationsPresenterTests {
+    
+    // TODO: add a new event handler just for the loading indicator
+    // the controller no longer works correctly as presenter sends back the "searching..." information
+    
+    
+    // onEventShowLoadingBlock
+    
+    func test_search_1character_setsLoadingToFalse() {
+        var showLoading: Bool?
+        presenter.onEventShowLoadingBlock { show in
+            showLoading = show
+        }
+        presenter.search(string:"a")
+        XCTAssertFalse(showLoading!)
+    }
+
+    
+    func test_search_3character_setsLoadingToTrueFirst() {
+        var blockCounter = 0
+        var showLoading: Bool?
+        presenter.onEventShowLoadingBlock { show in
+            if blockCounter == 0 {
+                showLoading = show
+            }
+            blockCounter += 1
+        }
+        presenter.search(string:"abc")
+        XCTAssertTrue(showLoading!)
+    }
+
+    func test_search_successLocationResponse_setsLoadingToFalse() {
+        stubJsonNetworkRequester.fakeResponse = JsonRequesterResponse.success(fakeResponse3Location)
+        
+        var blockCounter = 0
+        var showLoading: Bool?
+        presenter.onEventShowLoadingBlock { show in
+            if blockCounter == 1 {
+                showLoading = show
+            }
+            blockCounter += 1
+        }
+        presenter.search(string:"abc")
+        XCTAssertFalse(showLoading!)
+    }
+
+    
+    func test_search_errorLocationResponse_setsLoadingToFalse() {
+        stubJsonNetworkRequester.fakeResponse = JsonRequesterResponse.error(fakeResponseError)
+        
+        var blockCounter = 0
+        var showLoading: Bool?
+        presenter.onEventShowLoadingBlock { show in
+            if blockCounter == 1 {
+                showLoading = show
+            }
+            blockCounter += 1
+        }
+        presenter.search(string:"abc")
+        XCTAssertFalse(showLoading!)
+    }
+
+    
+}
+

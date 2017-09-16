@@ -21,8 +21,8 @@ class BloodTypePresenterTests: XCTestCase {
         stubUserDefaultsStorage = StubPersistentStorage()
         userStorage = UserPersistentStorage(userDefaultsPersistentStorage: stubUserDefaultsStorage)
         let bloodTypeSetter = BloodTypeSetter(persistentStorage: userStorage)
-        let bloodTypeSelection = BloodTypeFetcher(persistentStorage: userStorage)
-        presenter = BloodTypePresenter(bloodTypeSelection: bloodTypeSelection, bloodTypeSetter: bloodTypeSetter)
+        let bloodTypeFetcher = BloodTypeStoredFetcher(persistentStorage: userStorage)
+        presenter = BloodTypePresenter(bloodTypeFetcher: bloodTypeFetcher, bloodTypeSetter: bloodTypeSetter)
     }
     
     override func tearDown() {

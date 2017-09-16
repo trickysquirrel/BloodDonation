@@ -15,7 +15,9 @@ struct LocationViewModel {
 class LocationsPresenter {
     
     typealias ViewModelsUpdateBlock = ([LocationViewModel], String?) -> ()
+    typealias ShowLoadingUpdateBlock = (Bool) -> ()
     private var onEventViewModelsBlock: ViewModelsUpdateBlock?
+    private var onEventShowLoadingBlock: ShowLoadingUpdateBlock?
     private let locationFetcher: LocationFetcher
     
     
@@ -24,43 +26,63 @@ class LocationsPresenter {
     }
     
     
-    func onEventNewLocations(updateBlock: @escaping ViewModelsUpdateBlock) {
-        self.onEventViewModelsBlock = updateBlock
+    func onEventNewLocations(block: @escaping ViewModelsUpdateBlock) {
+        self.onEventViewModelsBlock = block
     }
 
+    
+    func onEventShowLoadingBlock(block: @escaping ShowLoadingUpdateBlock) {
+        self.onEventShowLoadingBlock = block
+    }
+    
     
     func search(string: String) {
         
         guard string.characters.count > 2 else {
-            self.onEventViewModelsBlock?([], Localisations.minimumLocationCharSearch.localised())
+            respondWithNotEnoughCharacters()
             return
         }
         
-        self.onEventViewModelsBlock?([], Localisations.searching.localised())
+        respondWithSearchStarting()
         
         locationFetcher.search(string: string) { [weak self] response in
             
+            self?.respondWithHideLoading()
+            
             switch response {
             case .success(let locationModels):
-                let viewModels = locationModels.map { LocationViewModel(title:$0.title + " / " + $0.area) }
-                self?.onEventViewModelsBlock?(viewModels, nil)
+                self?.respondWithViewModels(locationModels: locationModels)
             case .error(let error):
-                self?.onEventViewModelsBlock?([], self?.stringError(error))
+                self?.respondWithError(error:error)
             }
         }
     }
-    
-    
-    private func stringError(_ error: Error?) -> String {
-        print("error ===== \(String(describing: error))")
-        print("error ===== \(String(describing: error?.localizedDescription))")
-        guard (error?.localizedDescription != "unknown") else {
-            return Localisations.unknownError.localised()
-        }
-        guard let error = error else {
-            return Localisations.unknownError.localised()
-        }
-        return error.localizedDescription
-    }
+}
 
+// MARK: Responses
+
+extension LocationsPresenter {
+    
+    private func respondWithHideLoading() {
+        self.onEventShowLoadingBlock?(false)
+    }
+    
+    private func respondWithError(error: Error?) {
+        self.onEventViewModelsBlock?([], Localisations.localiseError(error))
+    }
+    
+    private func respondWithViewModels(locationModels:[LocationModel]) {
+        let viewModels = locationModels.map { LocationViewModel(title:$0.title + " / " + $0.area) }
+        self.onEventViewModelsBlock?(viewModels, nil)
+    }
+    
+    private func respondWithSearchStarting() {
+        self.onEventShowLoadingBlock?(true)
+        self.onEventViewModelsBlock?([], Localisations.searching.localised())
+    }
+    
+    private func respondWithNotEnoughCharacters() {
+        self.onEventShowLoadingBlock?(false)
+        self.onEventViewModelsBlock?([], Localisations.minimumLocationCharSearch.localised())
+    }
 }

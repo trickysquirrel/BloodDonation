@@ -20,4 +20,13 @@ enum Localisations: String {
         return NSLocalizedString(self.rawValue, comment: self.rawValue)
     }
     
+    static func localiseError(_ error: Error?) -> String {
+        guard (error?.localizedDescription != "unknown") else {
+            return Localisations.unknownError.localised()
+        }
+        guard let error = error else {
+            return Localisations.unknownError.localised()
+        }
+        return error.localizedDescription
+    }
 }

@@ -16,9 +16,9 @@ struct ViewControllerFactory {
         let viewController = storyboard.instantiateViewController(withIdentifier: "BloodTypeCollectionViewControllerId") as! BloodTypeCollectionViewController
         let userDefaultsStorage = UserDefaultsPersistentStorage(userDefaults: UserDefaults.standard)
         let userStorage = UserPersistentStorage(userDefaultsPersistentStorage: userDefaultsStorage)
-        let bloodTypeSelection = BloodTypeFetcher(persistentStorage: userStorage)
+        let bloodTypeFetcher = BloodTypeStoredFetcher(persistentStorage: userStorage)
         let bloodTypeSetter = BloodTypeSetter(persistentStorage: userStorage)
-        let presenter = BloodTypePresenter(bloodTypeSelection: bloodTypeSelection, bloodTypeSetter: bloodTypeSetter)
+        let presenter = BloodTypePresenter(bloodTypeFetcher: bloodTypeFetcher, bloodTypeSetter: bloodTypeSetter)
         let dataSource = CollectionViewDataSource<BloodTypeCollectionViewCell,BloodTypeViewModel>()
         viewController.configure(presenter: presenter, dataSource: dataSource, showLocationAction: showLocationAction)
         return viewController
