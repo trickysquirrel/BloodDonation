@@ -10,6 +10,7 @@ import Foundation
 
 struct LocationViewModel {
     let title: String
+    let location: LocationModel
 }
 
 class LocationsPresenter {
@@ -72,7 +73,7 @@ extension LocationsPresenter {
     }
     
     private func respondWithViewModels(locationModels:[LocationModel]) {
-        let viewModels = locationModels.map { LocationViewModel(title:$0.title + " / " + $0.area) }
+        let viewModels = locationModels.map { LocationViewModel(title:$0.title + " / " + $0.area, location: $0) }
         self.onEventViewModelsBlock?(viewModels, nil)
     }
     

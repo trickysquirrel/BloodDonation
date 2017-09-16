@@ -15,18 +15,20 @@ class LocationTableViewController: UITableViewController {
     private var dataSource: TableViewDataSource<UITableViewCell, LocationViewModel>?
     private var presenter: LocationsPresenter?
     private var loadingIndicator: LoadingIndicatorProtocol?
-    private var bloodType: BloodType?
+    private var showRegistrationAction: ShowRegistrationAction?
+    
+
     @IBOutlet weak var searchBar: SearchBar!
     
     
     func configure(presenter: LocationsPresenter,
                    dataSource: TableViewDataSource<UITableViewCell, LocationViewModel>,
                    loadingIndicator: LoadingIndicatorProtocol,
-                   bloodType: BloodType) {
+                   showRegistrationAction: ShowRegistrationAction) {
         self.presenter = presenter
         self.dataSource = dataSource
         self.loadingIndicator = loadingIndicator
-        self.bloodType = bloodType
+        self.showRegistrationAction = showRegistrationAction
     }
     
     
@@ -56,6 +58,7 @@ class LocationTableViewController: UITableViewController {
         
         dataSource?.onEventItemSelected(selectCell: { [weak self] (viewModel, indexPath) in
             self?.tableView.deselectRow(at: indexPath, animated: true)
+            self?.showRegistrationAction?.perform(location: viewModel.location)
         })
     }
 

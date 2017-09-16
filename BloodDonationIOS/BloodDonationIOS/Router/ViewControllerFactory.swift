@@ -12,7 +12,7 @@ struct ViewControllerFactory {
     
     let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
     
-    func bloodTypeSelector(showLocationAction: Action<BloodType>) -> BloodTypeCollectionViewController {
+    func bloodTypeSelector(showLocationAction: ShowLocationAction) -> BloodTypeCollectionViewController {
         let viewController = storyboard.instantiateViewController(withIdentifier: "BloodTypeCollectionViewControllerId") as! BloodTypeCollectionViewController
 //        let userDefaultsStorage = UserDefaultsPersistentStorage(userDefaults: UserDefaults.standard)
 //        let userStorage = UserPersistentStorage(userDefaultsPersistentStorage: userDefaultsStorage)
@@ -24,7 +24,7 @@ struct ViewControllerFactory {
     }
     
     
-    func locationSelector(bloodType: BloodType) -> LocationTableViewController {
+    func locationSelector(showRegistrationAction: ShowRegistrationAction) -> LocationTableViewController {
         let jsonNetworkRequester = JsonNetworkRequester()
         let locationFetcher = LocationFetcher(jsonRequester: jsonNetworkRequester)
         let presenter = LocationsPresenter(locationFetcher: locationFetcher)
@@ -32,7 +32,13 @@ struct ViewControllerFactory {
         let loadingIndicator = LoadingIndicator()
         
         let viewController = storyboard.instantiateViewController(withIdentifier: "LocationTableViewControllerId") as! LocationTableViewController
-        viewController.configure(presenter: presenter, dataSource: dataSource, loadingIndicator: loadingIndicator, bloodType: bloodType)
+        viewController.configure(presenter: presenter, dataSource: dataSource, loadingIndicator: loadingIndicator, showRegistrationAction: showRegistrationAction)
+        return viewController
+    }
+    
+    
+    func register(bloodType: BloodType, location: LocationModel) -> UIViewController {
+        let viewController = storyboard.instantiateViewController(withIdentifier: "RegisterViewControllerId")
         return viewController
     }
 }

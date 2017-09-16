@@ -100,6 +100,10 @@ extension BloodTypePresenterTests {
         }
     }
 
+    // This should be on the view controller
+    func test_onCellSelection_passesCorrectBloodTypeToAction() {
+        // TODO: create fake data source, for event to occur and check action is given correct value
+    }
     
 //    func test_updateView_oPositiveBloodSelected_returnsCorrectColorOnAllViewModels() {
 //        setUpStorageWithBloodType(BloodType.oPositive)

@@ -22,7 +22,6 @@ On app start first time ask user for Blood type
 If user has selected blood type ask for location
 Then display a confirmation screen with blood type and location on selection
     . generate a topic and au/vic/eltham/o+
-    . inform user if they have already registered elsewhere - remove previous one topic and data base
     . register topic
     . save blood type and location
 

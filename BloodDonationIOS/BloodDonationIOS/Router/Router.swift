@@ -29,7 +29,13 @@ class Router {
     }
     
     func displayLocationSelection(bloodType: BloodType) {
-        let viewController = viewControllerFactory.locationSelector(bloodType: bloodType)
+        let action = makeDisplayRegistrationAction(bloodType: bloodType)
+        let viewController = viewControllerFactory.locationSelector(showRegistrationAction: action)
+        pushOnController(viewController)
+    }
+    
+    func displayRegistration(bloodType: BloodType, location: LocationModel) {
+        let viewController = viewControllerFactory.register(bloodType: bloodType, location: location)
         pushOnController(viewController)
     }
 }
@@ -38,9 +44,15 @@ class Router {
 
 extension Router {
     
-    fileprivate func makeDisplayLocationSectionAction() -> Action<BloodType> {
-        return Action<BloodType>(performBlock: { [weak self] bloodType in
+    fileprivate func makeDisplayLocationSectionAction() -> ShowLocationAction {
+        return ShowLocationAction(performBlock: { [weak self] bloodType in
             self?.displayLocationSelection(bloodType: bloodType)
+        })
+    }
+    
+    fileprivate func makeDisplayRegistrationAction(bloodType: BloodType) -> ShowRegistrationAction {
+        return ShowRegistrationAction(bloodType: bloodType, performBlock: { [weak self] (bloodType, location) in
+            self?.displayRegistration(bloodType: bloodType, location: location)
         })
     }
 }

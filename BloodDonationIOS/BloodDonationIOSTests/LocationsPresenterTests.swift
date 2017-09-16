@@ -165,7 +165,23 @@ extension LocationsPresenterTests {
     }
 
 
-    func test_search_respondsWith3Models_returns3ViewModelsWithCorrectValues() {
+    func test_search_respondsWith3Models_returns3ViewModelsWithCorrectLocationModelValues() {
+        
+        stubJsonNetworkRequester.fakeResponse = JsonRequesterResponse.success(fakeResponse3Location)
+        
+        var viewModels: [LocationViewModel] = []
+        presenter.onEventNewLocations { newViewModels, information in
+            viewModels = newViewModels
+        }
+        
+        presenter.search(string:"abc")
+        
+        XCTAssertEqual(viewModels[0].location.title, "Eltham")
+        XCTAssertEqual(viewModels[0].location.area, "Victoria")
+    }
+
+    
+    func test_search_respondsWith3Models_returns3ViewModelsWithCorrectTitle() {
         
         stubJsonNetworkRequester.fakeResponse = JsonRequesterResponse.success(fakeResponse3Location)
         
@@ -181,7 +197,7 @@ extension LocationsPresenterTests {
         XCTAssertEqual(viewModels[1].title, "Eltham / New South Wales")
         XCTAssertEqual(viewModels[2].title, "Eltham North / Victoria")
     }
-    
+
     
     func test_search_3character_generatedCorrectUrlString() {
         presenter.search(string:"abc def")
@@ -215,12 +231,6 @@ extension LocationsPresenterTests {
 // MARK:- onEventShowLoading
 
 extension LocationsPresenterTests {
-    
-    // TODO: add a new event handler just for the loading indicator
-    // the controller no longer works correctly as presenter sends back the "searching..." information
-    
-    
-    // onEventShowLoadingBlock
     
     func test_search_1character_setsLoadingToFalse() {
         var showLoading: Bool?
