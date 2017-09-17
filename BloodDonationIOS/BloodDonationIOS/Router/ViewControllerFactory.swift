@@ -15,8 +15,6 @@ struct ViewControllerFactory {
     
     func bloodTypeSelector(showLocationAction: ShowLocationAction) -> BloodTypeCollectionViewController {
         let viewController = storyboard.instantiateViewController(withIdentifier: "BloodTypeCollectionViewControllerId") as! BloodTypeCollectionViewController
-//        let userDefaultsStorage = UserDefaultsPersistentStorage(userDefaults: UserDefaults.standard)
-//        let userStorage = UserPersistentStorage(userDefaultsPersistentStorage: userDefaultsStorage)
         let bloodTypeFetcher = BloodTypeFetcher()
         let presenter = BloodTypePresenter(bloodTypeFetcher: bloodTypeFetcher)
         let dataSource = CollectionViewDataSource<BloodTypeCollectionViewCell,BloodTypeViewModel>()
@@ -38,8 +36,10 @@ struct ViewControllerFactory {
     
     
     func register(bloodType: BloodType, location: LocationModel) -> UIViewController {
+        let userDefaultsStorage = UserDefaultsPersistentStorage(userDefaults: UserDefaults.standard)
+        let userStorage = UserPersistentStorage(userDefaultsPersistentStorage: userDefaultsStorage)
         let messagingSubscriber = MessagingSubscriber()
-        let presenter = RegistrationPresenter(bloodType: bloodType, location: location, notificationRegister: notificationRegister, messagingSubscriber: messagingSubscriber)
+        let presenter = RegistrationPresenter(bloodType: bloodType, location: location, notificationRegister: notificationRegister, messagingSubscriber: messagingSubscriber, userStorage: userStorage)
         let viewController = storyboard.instantiateViewController(withIdentifier: "RegisterViewControllerId") as! RegistrationViewController
         viewController.configure(presenter: presenter)
         return viewController

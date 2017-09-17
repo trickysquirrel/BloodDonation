@@ -30,6 +30,8 @@ class RegistrationViewController: UIViewController {
             switch response {
             case .updateView(let viewModel):
                 registrationView.configure(viewModel: viewModel)
+            case .registrationSuccess:
+                print("registration success")
             case .error(let errorMessage):
                 print("\(errorMessage)")
             }

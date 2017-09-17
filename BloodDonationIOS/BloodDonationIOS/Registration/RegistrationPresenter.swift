@@ -15,7 +15,7 @@ struct RegistrationViewModel {
 
 enum RegistrationResponse {
     case updateView(RegistrationViewModel)
-//    case success
+    case registrationSuccess
     case error(String)
 }
 
@@ -26,13 +26,15 @@ class RegistrationPresenter {
     private let location: LocationModel
     private let notificationRegister: NotificationRegesterProtocol
     private let messagingSubscriber: MessagingSubscriberProtocol
+    private let userStorage: UserPersistentStorageProtocol
     
     
-    init(bloodType: BloodType, location: LocationModel, notificationRegister: NotificationRegesterProtocol, messagingSubscriber: MessagingSubscriberProtocol) {
+    init(bloodType: BloodType, location: LocationModel, notificationRegister: NotificationRegesterProtocol, messagingSubscriber: MessagingSubscriberProtocol, userStorage: UserPersistentStorageProtocol) {
         self.bloodType = bloodType
         self.location = location
         self.notificationRegister = notificationRegister
         self.messagingSubscriber = messagingSubscriber
+        self.userStorage = userStorage
     }
     
     
@@ -44,12 +46,18 @@ class RegistrationPresenter {
     
     
     func registerUser(completion:(RegistrationResponse)->())  {
+        
         notificationRegister.register { [weak self] (success) in
+            
+            guard let strongSelf = self else { return }
+            
             if success == false {
                 completion(.error(Localisations.notificationRegistrationError.localised()))
             }
             else {
-                self?.messagingSubscriber.subscribe(topic: makeTopicTitle(location: location, bloodType: bloodType))
+                strongSelf.messagingSubscriber.subscribe(topic: makeTopicTitle(location: location, bloodType: bloodType))
+                strongSelf.userStorage.persistBloodType(strongSelf.bloodType)
+                completion(.registrationSuccess)
             }
         }
     }

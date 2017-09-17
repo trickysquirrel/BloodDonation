@@ -17,14 +17,18 @@ class RegistrationPresenterTests: XCTestCase {
     var presenter: RegistrationPresenter!
     var stubNotificationRegister: StubNotificationRegister!
     var stubMessagingSubscriber: StubMessagingSubscriber!
+    var stubPersistenceStorage: StubPersistentStorage!
+    var userPersistentStorage: UserPersistentStorage!
     
     override func setUp() {
         super.setUp()
+        stubPersistenceStorage = StubPersistentStorage()
+        userPersistentStorage = UserPersistentStorage(userDefaultsPersistentStorage: stubPersistenceStorage)
         stubMessagingSubscriber = StubMessagingSubscriber()
         stubNotificationRegister = StubNotificationRegister()
         expectedBloodType = BloodType.aNegative
         expectedLocation = LocationModel(name: "Eltham North", area:"Victoria", countryCode: .AU)
-        presenter = RegistrationPresenter(bloodType: expectedBloodType, location: expectedLocation, notificationRegister: stubNotificationRegister, messagingSubscriber: stubMessagingSubscriber)
+        presenter = RegistrationPresenter(bloodType: expectedBloodType, location: expectedLocation, notificationRegister: stubNotificationRegister, messagingSubscriber: stubMessagingSubscriber, userStorage: userPersistentStorage)
     }
     
     override func tearDown() {
@@ -32,6 +36,7 @@ class RegistrationPresenterTests: XCTestCase {
         expectedBloodType = nil
         stubNotificationRegister = nil
         stubMessagingSubscriber = nil
+        stubPersistenceStorage = nil
         presenter = nil
         super.tearDown()
     }
@@ -61,6 +66,20 @@ class RegistrationPresenterTests: XCTestCase {
         }
         return errorMessage
     }
+
+    private func registerUserSuccess() -> Bool {
+        var success = false
+        presenter.registerUser { response in
+            switch response {
+            case .registrationSuccess:
+                success = true
+            default:
+                break
+            }
+        }
+        return success
+    }
+
 }
 
 // MARK: updateView
@@ -79,13 +98,15 @@ extension RegistrationPresenterTests {
 extension RegistrationPresenterTests {
     
     func test_registerUser_notigiationRegistrationError_returnErrorString() {
-        // set up error
         stubNotificationRegister.success = false
         let errorMessage = registerUserError()
         XCTAssertEqual(errorMessage, "You must allow notifications so that we can inform you when your blood type is required")
     }
 
     func test_registerUser_notigiationRegistrationError_doesNotUpdateUserPersistenceData() {
+        stubNotificationRegister.success = false
+        _ = registerUserError()
+        XCTAssertEqual(stubPersistenceStorage.dictionaryStorage.count, 0)
     }
 
     func test_registerUser_notifiationRegistrationSuccess_registersForTopic() {
@@ -94,13 +115,17 @@ extension RegistrationPresenterTests {
         XCTAssertEqual(stubMessagingSubscriber.providedTopic, "au/victoria/eltham north/a-")
     }
 
-    func test_registerUser_notifiationRegistrationSuccess_registerTopicError_doesNotUpdateUserPersistenceData() {
-    }
-
-    func test_registerUser_notifiationRegistrationSuccess_registerTopicSuccess_returnsSuccessString() {
+    func test_registerUser_notifiationRegistrationSuccess_registerTopicSuccess_returnsSuccess() {
+        stubNotificationRegister.success = true
+        let success = registerUserSuccess()
+        XCTAssertTrue(success)
     }
 
     func test_registerUser_notifiationRegistrationSuccess_registerTopicSuccess_updateUserPersistenceData() {
+        stubNotificationRegister.success = true
+        _ = registerUserSuccess()
+        XCTAssertEqual(stubPersistenceStorage.dictionaryStorage.count, 1)
+        XCTAssertEqual(stubPersistenceStorage.dictionaryStorage["UserDefaultsBloodKey"] as! String, "A-")
     }
 
 }
