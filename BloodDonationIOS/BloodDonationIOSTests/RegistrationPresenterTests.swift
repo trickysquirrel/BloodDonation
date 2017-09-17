@@ -124,8 +124,11 @@ extension RegistrationPresenterTests {
     func test_registerUser_notifiationRegistrationSuccess_registerTopicSuccess_updateUserPersistenceData() {
         stubNotificationRegister.success = true
         _ = registerUserSuccess()
-        XCTAssertEqual(stubPersistenceStorage.dictionaryStorage.count, 1)
+        XCTAssertEqual(stubPersistenceStorage.dictionaryStorage.count, 4)
         XCTAssertEqual(stubPersistenceStorage.dictionaryStorage["UserDefaultsBloodKey"] as! String, "A-")
+        XCTAssertEqual(stubPersistenceStorage.dictionaryStorage["UserDefaultsLocationCodeKey"] as! String, "AU")
+        XCTAssertEqual(stubPersistenceStorage.dictionaryStorage["UserDefaultsLocationAreaKey"] as! String, "Victoria")
+        XCTAssertEqual(stubPersistenceStorage.dictionaryStorage["UserDefaultsLocationNameKey"] as! String, "Eltham North")
     }
 
 }

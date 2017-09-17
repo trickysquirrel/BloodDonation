@@ -37,5 +37,22 @@ class UserDefaultsStorageTests: XCTestCase {
         let bloodType = userDefaultsStorage.fetchBloodType()
         XCTAssertEqual(bloodType, .bNegative)
     }
+
+    func test_persistLocation_setTheCorrectKeyAndValue() {
+        let location = LocationModel(name: "Name", area: "area", countryCode: .AU)
+        userDefaultsStorage.persistLocation(location)
+        XCTAssertEqual(stubPersistentStorage.dictionaryStorage["UserDefaultsLocationCodeKey"] as! String, "AU")
+        XCTAssertEqual(stubPersistentStorage.dictionaryStorage["UserDefaultsLocationAreaKey"] as! String, "area")
+        XCTAssertEqual(stubPersistentStorage.dictionaryStorage["UserDefaultsLocationNameKey"] as! String, "Name")
+    }
     
+    func test_fetchLocation_returnsCorrectEnum() {
+        let expectedlocation = LocationModel(name: "Name", area: "area", countryCode: .AU)
+        userDefaultsStorage.persistLocation(expectedlocation)
+        let location = userDefaultsStorage.fetchLocation()
+        XCTAssertEqual(location!.name, expectedlocation.name)
+        XCTAssertEqual(location!.area, expectedlocation.area)
+        XCTAssertEqual(location!.countryCode, expectedlocation.countryCode)
+    }
+
 }
