@@ -98,36 +98,45 @@
             </objects>
             <point key="canvasLocation" x="1649" y="139"/>
         </scene>
-        <!--View Controller-->
+        <!--Registration View Controller-->
         <scene sceneID="j3Z-vZ-QVN">
             <objects>
-                <viewController storyboardIdentifier="RegisterViewControllerId" id="ULU-7O-KZJ" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="RNM-8n-Bvm">
+                <viewController storyboardIdentifier="RegisterViewControllerId" id="ULU-7O-KZJ" customClass="RegistrationViewController" customModule="BloodDonationIOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="RNM-8n-Bvm" customClass="RegistrationView" customModule="BloodDonationIOS" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Bloodtype" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pa0-wr-k3d">
-                                <rect key="frame" x="37" y="47" width="193" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bloodtype" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pa0-wr-k3d">
+                                <rect key="frame" x="37" y="47" width="78" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="location" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ha5-Gk-OeR">
-                                <rect key="frame" x="37" y="105" width="150" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="location" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ha5-Gk-OeR">
+                                <rect key="frame" x="37" y="105" width="60.5" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CaD-Te-4vj">
-                                <rect key="frame" x="141" y="200" width="89" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CaD-Te-4vj">
+                                <rect key="frame" x="37" y="198" width="55" height="30"/>
                                 <state key="normal" title="Confirm"/>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Pa0-wr-k3d" firstAttribute="top" secondItem="xNx-mB-0g0" secondAttribute="top" constant="27" id="MKt-or-jXP"/>
+                            <constraint firstItem="ha5-Gk-OeR" firstAttribute="leading" secondItem="xNx-mB-0g0" secondAttribute="leading" constant="37" id="aNu-cP-182"/>
+                            <constraint firstItem="CaD-Te-4vj" firstAttribute="leading" secondItem="xNx-mB-0g0" secondAttribute="leading" constant="37" id="dv1-Yf-gB1"/>
+                            <constraint firstItem="Pa0-wr-k3d" firstAttribute="leading" secondItem="xNx-mB-0g0" secondAttribute="leading" constant="37" id="fMx-36-P4a"/>
+                            <constraint firstItem="ha5-Gk-OeR" firstAttribute="top" secondItem="Pa0-wr-k3d" secondAttribute="bottom" constant="37" id="hub-qL-Lgu"/>
+                            <constraint firstItem="CaD-Te-4vj" firstAttribute="top" secondItem="ha5-Gk-OeR" secondAttribute="bottom" constant="72" id="w3G-Pb-e9E"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="xNx-mB-0g0"/>
+                        <connections>
+                            <outlet property="labelBloodType" destination="Pa0-wr-k3d" id="Upb-1r-aJX"/>
+                            <outlet property="labelLocation" destination="ha5-Gk-OeR" id="ngH-ov-LCN"/>
+                        </connections>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1Ut-Yh-R1T" userLabel="First Responder" sceneMemberID="firstResponder"/>

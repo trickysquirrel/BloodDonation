@@ -38,7 +38,9 @@ struct ViewControllerFactory {
     
     
     func register(bloodType: BloodType, location: LocationModel) -> UIViewController {
-        let viewController = storyboard.instantiateViewController(withIdentifier: "RegisterViewControllerId")
+        let presenter = RegistrationPresenter(bloodType: bloodType, location: location)
+        let viewController = storyboard.instantiateViewController(withIdentifier: "RegisterViewControllerId") as! RegistrationViewController
+        viewController.configure(presenter: presenter)
         return viewController
     }
 }

@@ -176,7 +176,7 @@ extension LocationsPresenterTests {
         
         presenter.search(string:"abc")
         
-        XCTAssertEqual(viewModels[0].location.title, "Eltham")
+        XCTAssertEqual(viewModels[0].location.name, "Eltham")
         XCTAssertEqual(viewModels[0].location.area, "Victoria")
     }
 

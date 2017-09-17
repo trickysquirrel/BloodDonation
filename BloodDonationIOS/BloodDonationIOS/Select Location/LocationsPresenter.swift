@@ -11,6 +11,7 @@ import Foundation
 struct LocationViewModel {
     let title: String
     let location: LocationModel
+    // TODO add country code
 }
 
 class LocationsPresenter {
@@ -73,7 +74,7 @@ extension LocationsPresenter {
     }
     
     private func respondWithViewModels(locationModels:[LocationModel]) {
-        let viewModels = locationModels.map { LocationViewModel(title:$0.title + " / " + $0.area, location: $0) }
+        let viewModels = locationModels.map { LocationViewModel(title:$0.name + " / " + $0.area, location: $0) }
         self.onEventViewModelsBlock?(viewModels, nil)
     }
     

@@ -8,12 +8,6 @@
 
 import Foundation
 
-struct LocationModel {
-    let title: String
-    let area: String
-}
-
-
 enum LocationFetcherResponse {
     case success([LocationModel])
     case error(Error)
@@ -54,6 +48,6 @@ class LocationFetcher {
     private func makeLocationModel(dictionary: [String:Any]) -> LocationModel? {
         guard let title = dictionary["name"] as? String else { return nil }
         guard let area = dictionary["adminName1"] as? String else { return nil }
-        return LocationModel(title: title, area: area)
+        return LocationModel(name: title, area: area, countryCode: .AU)
     }
 }
