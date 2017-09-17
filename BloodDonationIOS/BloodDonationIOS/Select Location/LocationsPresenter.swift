@@ -18,6 +18,7 @@ class LocationsPresenter {
     
     typealias ViewModelsUpdateBlock = ([LocationViewModel], String?) -> ()
     typealias ShowLoadingUpdateBlock = (Bool) -> ()
+    // trying something new - not sure I like this as it generates more variables that have potential to cause issues
     private var onEventViewModelsBlock: ViewModelsUpdateBlock?
     private var onEventShowLoadingBlock: ShowLoadingUpdateBlock?
     private let locationFetcher: LocationFetcher

@@ -20,6 +20,9 @@
 		34391DB21F6CC2BC00BE4955 /* BloodTypeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34391DB11F6CC2BC00BE4955 /* BloodTypeModel.swift */; };
 		34391DB41F6CC2F100BE4955 /* BloodTypeFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34391DB31F6CC2F100BE4955 /* BloodTypeFetcher.swift */; };
 		343C78F31F6E1CC10096885B /* LocationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 343C78F21F6E1CC10096885B /* LocationModel.swift */; };
+		343C78F51F6E5DE10096885B /* StubNotificationRegester.swift in Sources */ = {isa = PBXBuildFile; fileRef = 343C78F41F6E5DE10096885B /* StubNotificationRegester.swift */; };
+		343C78F71F6E5FD90096885B /* MessagingSubscriber.swift in Sources */ = {isa = PBXBuildFile; fileRef = 343C78F61F6E5FD90096885B /* MessagingSubscriber.swift */; };
+		343C78F91F6E62EC0096885B /* StubMessagingSubscription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 343C78F81F6E62EC0096885B /* StubMessagingSubscription.swift */; };
 		34428DB21F59310A0017DFA4 /* BloodTypePresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34428DB11F59310A0017DFA4 /* BloodTypePresenterTests.swift */; };
 		34428DB41F5932410017DFA4 /* UIColor+App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34428DB31F5932410017DFA4 /* UIColor+App.swift */; };
 		34428DB71F5935AE0017DFA4 /* UserDefaultsPersistentStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34428DB61F5935AE0017DFA4 /* UserDefaultsPersistentStorage.swift */; };
@@ -85,6 +88,9 @@
 		34391DB11F6CC2BC00BE4955 /* BloodTypeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BloodTypeModel.swift; sourceTree = "<group>"; };
 		34391DB31F6CC2F100BE4955 /* BloodTypeFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BloodTypeFetcher.swift; sourceTree = "<group>"; };
 		343C78F21F6E1CC10096885B /* LocationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationModel.swift; sourceTree = "<group>"; };
+		343C78F41F6E5DE10096885B /* StubNotificationRegester.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StubNotificationRegester.swift; sourceTree = "<group>"; };
+		343C78F61F6E5FD90096885B /* MessagingSubscriber.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagingSubscriber.swift; sourceTree = "<group>"; };
+		343C78F81F6E62EC0096885B /* StubMessagingSubscription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StubMessagingSubscription.swift; sourceTree = "<group>"; };
 		34428DA71F592ED90017DFA4 /* BloodDonationIOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BloodDonationIOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		34428DAB1F592EDA0017DFA4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		34428DB11F59310A0017DFA4 /* BloodTypePresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BloodTypePresenterTests.swift; sourceTree = "<group>"; };
@@ -219,6 +225,8 @@
 			children = (
 				34428DC11F593B560017DFA4 /* StubPersistentStorage.swift */,
 				340DAB341F62744800D5D156 /* StubJsonNetworkRequester.swift */,
+				343C78F41F6E5DE10096885B /* StubNotificationRegester.swift */,
+				343C78F81F6E62EC0096885B /* StubMessagingSubscription.swift */,
 			);
 			path = Stubs;
 			sourceTree = "<group>";
@@ -290,10 +298,7 @@
 			isa = PBXGroup;
 			children = (
 				340DAB221F62624E00D5D156 /* Router */,
-				340DAB2F1F626C8500D5D156 /* UI Utils */,
-				34F4ABE91F356A9100A2A882 /* Utils */,
-				34428DB51F59342F0017DFA4 /* Persistent Storage */,
-				34F56CC21F6217F2002F3A8F /* Logic */,
+				34F56CC21F6217F2002F3A8F /* App Logic */,
 				346F4CD31F591C5100AF1441 /* Select Blood Type */,
 				340DAB211F62613E00D5D156 /* Select Location */,
 				34B6BBC51F6CC9890006915F /* Registration */,
@@ -341,14 +346,18 @@
 			path = "Persistent Storage";
 			sourceTree = "<group>";
 		};
-		34F56CC21F6217F2002F3A8F /* Logic */ = {
+		34F56CC21F6217F2002F3A8F /* App Logic */ = {
 			isa = PBXGroup;
 			children = (
+				340DAB2F1F626C8500D5D156 /* UI Utils */,
+				34F4ABE91F356A9100A2A882 /* Utils */,
+				34428DB51F59342F0017DFA4 /* Persistent Storage */,
 				348A67B51F628B6800D4853C /* Locations */,
 				348A67B41F628B5C00D4853C /* Blood Type */,
 				34F4ABEA1F356AAE00A2A882 /* NotificationRegister.swift */,
+				343C78F61F6E5FD90096885B /* MessagingSubscriber.swift */,
 			);
-			path = Logic;
+			path = "App Logic";
 			sourceTree = "<group>";
 		};
 		52D6AB71E350583C0189D013 /* Pods */ = {
@@ -578,9 +587,11 @@
 				34428DC21F593B560017DFA4 /* StubPersistentStorage.swift in Sources */,
 				340DAB351F62744800D5D156 /* StubJsonNetworkRequester.swift in Sources */,
 				34428DBB1F5938D10017DFA4 /* BloodTypeStorageTests.swift in Sources */,
+				343C78F91F6E62EC0096885B /* StubMessagingSubscription.swift in Sources */,
 				34428DB21F59310A0017DFA4 /* BloodTypePresenterTests.swift in Sources */,
 				340DAB2A1F62660700D5D156 /* LocationsPresenterTests.swift in Sources */,
 				34A0933C1F6E198800F81E47 /* RegistrationPresenterTests.swift in Sources */,
+				343C78F51F6E5DE10096885B /* StubNotificationRegester.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -624,6 +635,7 @@
 				3463FEC81F6BCD0B00B3DF02 /* String+UrlEncoding.swift in Sources */,
 				340DAB261F62653600D5D156 /* LocationTableViewController.swift in Sources */,
 				348A67B71F628BD800D4853C /* NetworkRequester.swift in Sources */,
+				343C78F71F6E5FD90096885B /* MessagingSubscriber.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

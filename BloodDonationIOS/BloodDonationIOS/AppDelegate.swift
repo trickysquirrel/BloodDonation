@@ -17,14 +17,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     var router: Router?
+    var notificationRegister: NotificationRegister?
     var backgroundTask: UIBackgroundTaskIdentifier = UIBackgroundTaskInvalid
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
         window = UIWindow(frame: UIScreen.main.bounds)
+        
+        notificationRegister = NotificationRegister(application: application)
+        
+        guard   let notificationRegister = notificationRegister,
+                let window = window else {
+            return true
+        }
 
-        let viewControllerFactory = ViewControllerFactory()
+        let viewControllerFactory = ViewControllerFactory(notificationRegister: notificationRegister)
         router = Router(window: window, viewControllerFactory: viewControllerFactory)
         router?.displayBloodTypeSeletion()
         

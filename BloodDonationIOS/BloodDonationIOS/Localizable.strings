@@ -10,3 +10,4 @@
 "LOCALKEY_MinimumLocationCharSearch" = "minimum 3 characters";
 "LOCALKEY_Searching" = "searching...";
 "LOCALKEY_UnknownError" = "unknown error please try again";
+"LOCALKEY_NotificationRegistrationError" = "You must allow notifications so that we can inform you when your blood type is required";

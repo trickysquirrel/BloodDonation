@@ -22,11 +22,18 @@ class RegistrationViewController: UIViewController {
     }
     
     private func updateView() {
-        guard   let viewModel = presenter?.updateView(),
-                let registrationView = view as? RegistrationView else {
+        guard   let registrationView = view as? RegistrationView else {
                 return
         }
-        registrationView.configure(viewModel: viewModel)
+        
+        presenter?.updateView(completion: { response in
+            switch response {
+            case .updateView(let viewModel):
+                registrationView.configure(viewModel: viewModel)
+            case .error(let errorMessage):
+                print("\(errorMessage)")
+            }
+        })        
     }
 
 }

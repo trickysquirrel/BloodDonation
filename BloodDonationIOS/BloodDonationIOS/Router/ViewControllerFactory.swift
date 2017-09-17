@@ -10,6 +10,7 @@ import UIKit
 
 struct ViewControllerFactory {
     
+    let notificationRegister: NotificationRegister
     let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
     
     func bloodTypeSelector(showLocationAction: ShowLocationAction) -> BloodTypeCollectionViewController {
@@ -29,8 +30,7 @@ struct ViewControllerFactory {
         let locationFetcher = LocationFetcher(jsonRequester: jsonNetworkRequester)
         let presenter = LocationsPresenter(locationFetcher: locationFetcher)
         let dataSource = TableViewDataSource<UITableViewCell, LocationViewModel>()
-        let loadingIndicator = LoadingIndicator()
-        
+        let loadingIndicator = LoadingIndicator()        
         let viewController = storyboard.instantiateViewController(withIdentifier: "LocationTableViewControllerId") as! LocationTableViewController
         viewController.configure(presenter: presenter, dataSource: dataSource, loadingIndicator: loadingIndicator, showRegistrationAction: showRegistrationAction)
         return viewController
@@ -38,7 +38,8 @@ struct ViewControllerFactory {
     
     
     func register(bloodType: BloodType, location: LocationModel) -> UIViewController {
-        let presenter = RegistrationPresenter(bloodType: bloodType, location: location)
+        let messagingSubscriber = MessagingSubscriber()
+        let presenter = RegistrationPresenter(bloodType: bloodType, location: location, notificationRegister: notificationRegister, messagingSubscriber: messagingSubscriber)
         let viewController = storyboard.instantiateViewController(withIdentifier: "RegisterViewControllerId") as! RegistrationViewController
         viewController.configure(presenter: presenter)
         return viewController
