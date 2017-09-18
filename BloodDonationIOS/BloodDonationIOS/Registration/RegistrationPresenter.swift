@@ -56,6 +56,7 @@ class RegistrationPresenter {
             }
             else {
                 strongSelf.messagingSubscriber.subscribe(topic: makeTopicTitle(location: location, bloodType: bloodType))
+                strongSelf.messagingSubscriber.subscribe(topic: "alldevices")
                 strongSelf.userStorage.persistBloodType(strongSelf.bloodType)
                 strongSelf.userStorage.persistLocation(strongSelf.location)
                 completion(.registrationSuccess)

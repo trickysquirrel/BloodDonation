@@ -12,9 +12,9 @@ import Foundation
 
 class StubMessagingSubscriber: MessagingSubscriberProtocol {
     
-    private(set) var providedTopic: String = ""
+    private(set) var providedTopic: [String] = []
     
     func subscribe(topic: String) {
-        providedTopic = topic
+        providedTopic.append(topic)
     }
 }

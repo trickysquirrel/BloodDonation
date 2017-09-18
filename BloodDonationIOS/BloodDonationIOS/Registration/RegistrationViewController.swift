@@ -12,30 +12,42 @@ class RegistrationViewController: UIViewController {
     
     private var presenter: RegistrationPresenter?
 
+    
     func configure(presenter: RegistrationPresenter) {
         self.presenter = presenter
     }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         updateView()
     }
     
+    
     private func updateView() {
-        guard   let registrationView = view as? RegistrationView else {
-                return
+        presenter?.updateView(completion: { [weak self] response in
+            self?.handlePresenterResponse(response: response)
+        })
+    }
+    
+    
+    @IBAction func userSelectedConfirmationButton() {
+        presenter?.registerUser(completion: { [weak self] response in
+            self?.handlePresenterResponse(response: response)
+        })
+    }
+    
+    
+    private func handlePresenterResponse(response: RegistrationResponse) {
+        guard let registrationView = view as? RegistrationView else { return }
+        switch response {
+        case .updateView(let viewModel):
+            registrationView.configure(viewModel: viewModel)
+        case .registrationSuccess:
+            print("registration success")
+        case .error(let errorMessage):
+            print("\(errorMessage)")
         }
-        
-        presenter?.updateView(completion: { response in
-            switch response {
-            case .updateView(let viewModel):
-                registrationView.configure(viewModel: viewModel)
-            case .registrationSuccess:
-                print("registration success")
-            case .error(let errorMessage):
-                print("\(errorMessage)")
-            }
-        })        
     }
 
 }

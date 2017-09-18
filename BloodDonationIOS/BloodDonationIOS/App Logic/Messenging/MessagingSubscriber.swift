@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import FirebaseMessaging
 
 protocol MessagingSubscriberProtocol {
     func subscribe(topic: String)
@@ -15,5 +16,6 @@ protocol MessagingSubscriberProtocol {
 class MessagingSubscriber: MessagingSubscriberProtocol {
     
     func subscribe(topic: String) {
+        Messaging.messaging().subscribe(toTopic: topic)
     }
 }

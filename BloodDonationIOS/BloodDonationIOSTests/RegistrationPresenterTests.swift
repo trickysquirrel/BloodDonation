@@ -109,10 +109,11 @@ extension RegistrationPresenterTests {
         XCTAssertEqual(stubPersistenceStorage.dictionaryStorage.count, 0)
     }
 
-    func test_registerUser_notifiationRegistrationSuccess_registersForTopic() {
+    func test_registerUser_notifiationRegistrationSuccess_registersForLocationBloodTopicAndAllDevices() {
         stubNotificationRegister.success = true
         _ = registerUserError()
-        XCTAssertEqual(stubMessagingSubscriber.providedTopic, "au/victoria/eltham north/a-")
+        XCTAssertEqual(stubMessagingSubscriber.providedTopic[0], "au/victoria/eltham north/a-")
+        XCTAssertEqual(stubMessagingSubscriber.providedTopic[1], "alldevices")
     }
 
     func test_registerUser_notifiationRegistrationSuccess_registerTopicSuccess_returnsSuccess() {
