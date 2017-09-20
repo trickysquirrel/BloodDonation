@@ -59,43 +59,24 @@ class RegistrationPresenter {
         }
     }
     
-    private func persistLocationAndBlood() {
-        self.userStorage.persistBloodType(bloodType)
-        self.userStorage.persistLocation(location)
-    }
-    
-    private func registerForAllTopics() {
-        self.messagingSubscriber.subscribe(topic: makeAreaNameBloodTopicTitle(location: location, bloodType: bloodType))
-        self.messagingSubscriber.subscribe(topic: makeAreaNameTopicTitle(location: location, bloodType: bloodType))
-        self.messagingSubscriber.subscribe(topic: makeAreaBloodTopicTitle(location: location, bloodType: bloodType))
-        self.messagingSubscriber.subscribe(topic: makeAreaTopicTitle(location: location, bloodType: bloodType))
-    }
 }
 
 // MARK: Utils
 
 extension RegistrationPresenter {
     
-    private func makeAreaNameBloodTopicTitle(location: LocationModel, bloodType: BloodType) -> String {
-        let upperCaseString = location.countryCode.rawValue + "/" + location.area + "/" + location.name + "/" + bloodType.displayString()
-        return upperCaseString.lowercased()
+    private func persistLocationAndBlood() {
+        self.userStorage.persistBloodType(bloodType)
+        self.userStorage.persistLocation(location)
     }
-
-    private func makeAreaNameTopicTitle(location: LocationModel, bloodType: BloodType) -> String {
-        let upperCaseString = location.countryCode.rawValue + "/" + location.area + "/" + location.name
-        return upperCaseString.lowercased()
+    
+    private func registerForAllTopics() {
+        let topicList = MessagingTopicGenerator().allTopics(location: location, blood: bloodType)
+        for topic in topicList {
+            self.messagingSubscriber.subscribe(topic: topic)
+        }
     }
-
-    private func makeAreaBloodTopicTitle(location: LocationModel, bloodType: BloodType) -> String {
-        let upperCaseString = location.countryCode.rawValue + "/" + location.area + "/" + bloodType.displayString()
-        return upperCaseString.lowercased()
-    }
-
-    private func makeAreaTopicTitle(location: LocationModel, bloodType: BloodType) -> String {
-        let upperCaseString = location.countryCode.rawValue + "/" + location.area
-        return upperCaseString.lowercased()
-    }
-
+    
     private func makeAreaNameTitle(location: LocationModel) -> String {
         return location.countryCode.rawValue + ", " + location.area + ", " + location.name
     }

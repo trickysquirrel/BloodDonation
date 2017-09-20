@@ -56,6 +56,7 @@
 		34D4FAD51F35542500E63910 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 34D4FAD31F35542500E63910 /* Main.storyboard */; };
 		34D4FAD71F35542500E63910 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 34D4FAD61F35542500E63910 /* Assets.xcassets */; };
 		34D4FADA1F35542500E63910 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 34D4FAD81F35542500E63910 /* LaunchScreen.storyboard */; };
+		34E7F9021F72213F00F99657 /* MessagingTopicGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34E7F9011F72213F00F99657 /* MessagingTopicGenerator.swift */; };
 		34EF80781F71E409009C743B /* InformationAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34EF80771F71E409009C743B /* InformationAlert.swift */; };
 		34F4ABE81F356A7000A2A882 /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 34F4ABE71F356A7000A2A882 /* UserNotifications.framework */; };
 		34F4ABEB1F356AAE00A2A882 /* NotificationRegister.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34F4ABEA1F356AAE00A2A882 /* NotificationRegister.swift */; };
@@ -129,6 +130,7 @@
 		34D4FAD61F35542500E63910 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		34D4FAD91F35542500E63910 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		34D4FADB1F35542500E63910 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		34E7F9011F72213F00F99657 /* MessagingTopicGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagingTopicGenerator.swift; sourceTree = "<group>"; };
 		34EF80771F71E409009C743B /* InformationAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformationAlert.swift; sourceTree = "<group>"; };
 		34F4ABE51F35562200A2A882 /* BloodDonationIOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BloodDonationIOS.entitlements; sourceTree = "<group>"; };
 		34F4ABE71F356A7000A2A882 /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
@@ -200,14 +202,6 @@
 			path = "UI Utils";
 			sourceTree = "<group>";
 		};
-		342C8D281F6FCC2E00F869F7 /* Messenging */ = {
-			isa = PBXGroup;
-			children = (
-				343C78F61F6E5FD90096885B /* MessagingSubscriber.swift */,
-			);
-			path = Messenging;
-			sourceTree = "<group>";
-		};
 		34428DA81F592EDA0017DFA4 /* BloodDonationIOSTests */ = {
 			isa = PBXGroup;
 			children = (
@@ -246,6 +240,8 @@
 			isa = PBXGroup;
 			children = (
 				34F4ABEA1F356AAE00A2A882 /* NotificationRegister.swift */,
+				343C78F61F6E5FD90096885B /* MessagingSubscriber.swift */,
+				34E7F9011F72213F00F99657 /* MessagingTopicGenerator.swift */,
 			);
 			path = "Push Notifications";
 			sourceTree = "<group>";
@@ -373,7 +369,6 @@
 				34428DB51F59342F0017DFA4 /* Persistent Storage */,
 				348A67B51F628B6800D4853C /* Locations */,
 				348A67B41F628B5C00D4853C /* Blood Type */,
-				342C8D281F6FCC2E00F869F7 /* Messenging */,
 				345A79B41F6FCD7E00769989 /* Push Notifications */,
 			);
 			path = "App Logic";
@@ -648,6 +643,7 @@
 				34428DBD1F593A6A0017DFA4 /* BloodType+Storage.swift in Sources */,
 				340DAB241F62626400D5D156 /* ShowLocationAction.swift in Sources */,
 				34EF80781F71E409009C743B /* InformationAlert.swift in Sources */,
+				34E7F9021F72213F00F99657 /* MessagingTopicGenerator.swift in Sources */,
 				346F4CDE1F59205700AF1441 /* BloodTypeCollectionViewCell.swift in Sources */,
 				346F4CEA1F59292600AF1441 /* Router.swift in Sources */,
 				34C7AD5F1F636905004D1040 /* LoadingIndicator.swift in Sources */,
