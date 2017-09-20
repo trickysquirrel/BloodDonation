@@ -59,7 +59,7 @@
 		34E7F9021F72213F00F99657 /* MessagingTopicGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34E7F9011F72213F00F99657 /* MessagingTopicGenerator.swift */; };
 		34EF80781F71E409009C743B /* InformationAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34EF80771F71E409009C743B /* InformationAlert.swift */; };
 		34F4ABE81F356A7000A2A882 /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 34F4ABE71F356A7000A2A882 /* UserNotifications.framework */; };
-		34F4ABEB1F356AAE00A2A882 /* NotificationRegister.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34F4ABEA1F356AAE00A2A882 /* NotificationRegister.swift */; };
+		34F4ABEB1F356AAE00A2A882 /* MessagingRegister.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34F4ABEA1F356AAE00A2A882 /* MessagingRegister.swift */; };
 		34F56CC11F6212A0002F3A8F /* BloodTypeSetter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34F56CC01F6212A0002F3A8F /* BloodTypeSetter.swift */; };
 		3661F2B4F0DA9E327EF9AEC0 /* Pods_BloodDonationIOSTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 888B1F3F4FD1DBD4EBC13C76 /* Pods_BloodDonationIOSTests.framework */; };
 		58502D62B8188B38CC5518EE /* Pods_BloodDonationIOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AF58D67E27577AD57ADC0CF /* Pods_BloodDonationIOS.framework */; };
@@ -134,7 +134,7 @@
 		34EF80771F71E409009C743B /* InformationAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformationAlert.swift; sourceTree = "<group>"; };
 		34F4ABE51F35562200A2A882 /* BloodDonationIOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BloodDonationIOS.entitlements; sourceTree = "<group>"; };
 		34F4ABE71F356A7000A2A882 /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
-		34F4ABEA1F356AAE00A2A882 /* NotificationRegister.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationRegister.swift; sourceTree = "<group>"; };
+		34F4ABEA1F356AAE00A2A882 /* MessagingRegister.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagingRegister.swift; sourceTree = "<group>"; };
 		34F4ABEC1F35792E00A2A882 /* todo */ = {isa = PBXFileReference; lastKnownFileType = text; path = todo; sourceTree = "<group>"; };
 		34F56CC01F6212A0002F3A8F /* BloodTypeSetter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BloodTypeSetter.swift; sourceTree = "<group>"; };
 		3C6E2D5F307498D366158FBE /* Pods-BloodDonationIOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BloodDonationIOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BloodDonationIOS/Pods-BloodDonationIOS.debug.xcconfig"; sourceTree = "<group>"; };
@@ -239,7 +239,7 @@
 		345A79B41F6FCD7E00769989 /* Push Notifications */ = {
 			isa = PBXGroup;
 			children = (
-				34F4ABEA1F356AAE00A2A882 /* NotificationRegister.swift */,
+				34F4ABEA1F356AAE00A2A882 /* MessagingRegister.swift */,
 				343C78F61F6E5FD90096885B /* MessagingSubscriber.swift */,
 				34E7F9011F72213F00F99657 /* MessagingTopicGenerator.swift */,
 			);
@@ -625,7 +625,7 @@
 				346F4CE41F59271D00AF1441 /* BloodType.swift in Sources */,
 				340DAB2E1F626A8000D5D156 /* SearchBar.swift in Sources */,
 				34428DB71F5935AE0017DFA4 /* UserDefaultsPersistentStorage.swift in Sources */,
-				34F4ABEB1F356AAE00A2A882 /* NotificationRegister.swift in Sources */,
+				34F4ABEB1F356AAE00A2A882 /* MessagingRegister.swift in Sources */,
 				346F4CDA1F591E2500AF1441 /* CollectionViewDataSource.swift in Sources */,
 				340DAB2C1F6268A900D5D156 /* Throttle.swift in Sources */,
 				34B6BBC41F6CC4160006915F /* BloodTypeFetching.swift in Sources */,

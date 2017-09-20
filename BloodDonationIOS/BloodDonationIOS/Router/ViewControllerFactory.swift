@@ -10,7 +10,7 @@ import UIKit
 
 struct ViewControllerFactory {
     
-    let notificationRegister: NotificationRegister
+    let notificationRegister: MessagingRegister
     let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
     
     func bloodTypeSelector(showLocationAction: ShowLocationAction) -> BloodTypeCollectionViewController {

@@ -28,7 +28,7 @@ enum NotificationRegisterResponse {
 // TODO: maybe this class should perform the push notification register and register for topics
 // need to extract the messaging stuff into another wrapper class
 
-class NotificationRegister: NSObject, NotificationRegisterProtocol {
+class MessagingRegister: NSObject, NotificationRegisterProtocol {
     
     private weak var application: UIApplication?
     private var completionBlock: ResponseBlock?
@@ -57,7 +57,7 @@ class NotificationRegister: NSObject, NotificationRegisterProtocol {
 
 // MARK: Called as a result of calling registerForRemoteNotifications
 
-extension NotificationRegister: PushNotificationRegisterResponse {
+extension MessagingRegister: PushNotificationRegisterResponse {
     
     func systemSuccessfullyRegistered() {
         completionBlock?(.success)
@@ -71,7 +71,7 @@ extension NotificationRegister: PushNotificationRegisterResponse {
 
 // MARK: Firebase message delegate
 
-extension NotificationRegister: MessagingDelegate {
+extension MessagingRegister: MessagingDelegate {
     
     func application(received remoteMessage: MessagingRemoteMessage) {
         print(remoteMessage.appData)
@@ -88,7 +88,7 @@ extension NotificationRegister: MessagingDelegate {
 
 
 
-extension NotificationRegister : UNUserNotificationCenterDelegate {
+extension MessagingRegister : UNUserNotificationCenterDelegate {
     
     var applicationStateString: String {
         if UIApplication.shared.applicationState == .active {

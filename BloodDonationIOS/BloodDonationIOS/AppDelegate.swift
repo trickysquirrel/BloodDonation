@@ -27,7 +27,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         window = UIWindow(frame: UIScreen.main.bounds)
         
-        let notificationRegister = NotificationRegister(application: application)
+        let notificationRegister = MessagingRegister(application: application)
         pushNotificationRegisterResponse = notificationRegister
         
         guard let window = window else {

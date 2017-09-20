@@ -12,10 +12,10 @@ struct MessagingTopicGenerator {
     
     func allTopics(location: LocationModel, blood: BloodType) -> [String] {
         return [
-            makeAreaNameBloodTopicTitle(location: location, bloodType: blood),
-            makeAreaNameTopicTitle(location: location, bloodType: blood),
-            makeAreaBloodTopicTitle(location: location, bloodType: blood),
-            makeAreaTopicTitle(location: location, bloodType: blood)
+            makeAreaNameBloodTopic(location: location, bloodType: blood),
+            makeAreaNameTopic(location: location, bloodType: blood),
+            makeAreaBloodTopic(location: location, bloodType: blood),
+            makeAreaTopic(location: location, bloodType: blood)
             ]
     }
     
@@ -25,22 +25,22 @@ struct MessagingTopicGenerator {
 
 private extension MessagingTopicGenerator {
     
-    private func makeAreaNameBloodTopicTitle(location: LocationModel, bloodType: BloodType) -> String {
+    private func makeAreaNameBloodTopic(location: LocationModel, bloodType: BloodType) -> String {
         let upperCaseString = location.countryCode.rawValue + "/" + location.area + "/" + location.name + "/" + bloodType.displayString()
         return upperCaseString.lowercased()
     }
     
-    private func makeAreaNameTopicTitle(location: LocationModel, bloodType: BloodType) -> String {
+    private func makeAreaNameTopic(location: LocationModel, bloodType: BloodType) -> String {
         let upperCaseString = location.countryCode.rawValue + "/" + location.area + "/" + location.name
         return upperCaseString.lowercased()
     }
     
-    private func makeAreaBloodTopicTitle(location: LocationModel, bloodType: BloodType) -> String {
+    private func makeAreaBloodTopic(location: LocationModel, bloodType: BloodType) -> String {
         let upperCaseString = location.countryCode.rawValue + "/" + location.area + "/" + bloodType.displayString()
         return upperCaseString.lowercased()
     }
     
-    private func makeAreaTopicTitle(location: LocationModel, bloodType: BloodType) -> String {
+    private func makeAreaTopic(location: LocationModel, bloodType: BloodType) -> String {
         let upperCaseString = location.countryCode.rawValue + "/" + location.area
         return upperCaseString.lowercased()
     }
