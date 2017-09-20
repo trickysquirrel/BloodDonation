@@ -9,7 +9,7 @@
 import Foundation
 
 
-class AllBloodTypesFetcher {
+struct AllBloodTypesFetcher {
     
     func fetchBloodTypes() -> [BloodType] {        
         let allBloodTypes: [BloodType] = [.oNegative, .oPositive, .aNegative, .aPositive, .bNegative, .bPositive, .abNegative, .abPositive]

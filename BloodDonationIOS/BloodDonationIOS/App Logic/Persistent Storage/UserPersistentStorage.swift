@@ -15,6 +15,7 @@ protocol UserPersistentStorageProtocol {
     func persistLocation(_ location: LocationModel)
     func fetchLocation() -> LocationModel?
     func hasPersistedData() -> Bool
+    func deleteAllData()
 }
 
 
@@ -60,6 +61,13 @@ struct UserPersistentStorage: UserPersistentStorageProtocol {
 
     func hasPersistedData() -> Bool {
         return (fetchBloodType() != nil) ? true : false
+    }
+    
+    func deleteAllData() {
+        userDefaultsPersistentStorage.removeObjectForKey("UserDefaultsBloodKey")
+        userDefaultsPersistentStorage.removeObjectForKey("UserDefaultsLocationNameKey")
+        userDefaultsPersistentStorage.removeObjectForKey("UserDefaultsLocationAreaKey")
+        userDefaultsPersistentStorage.removeObjectForKey("UserDefaultsLocationCodeKey")
     }
 
 }

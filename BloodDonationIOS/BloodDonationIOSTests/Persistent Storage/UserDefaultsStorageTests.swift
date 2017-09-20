@@ -66,5 +66,27 @@ class UserDefaultsStorageTests: XCTestCase {
         XCTAssertTrue(hasPersistedData)
     }
 
+    func test_deleteAllData_removesAllData() {
+        
+        userDefaultsStorage.persistBloodType(BloodType.bNegative)
+        let location = LocationModel(name: "Name", area: "area", countryCode: .AU)
+        userDefaultsStorage.persistLocation(location)
+        
+        // check they where first added
+        XCTAssertEqual(stubPersistentStorage.dictionaryStorage.count, 4)
+        XCTAssertNotNil(stubPersistentStorage.dictionaryStorage["UserDefaultsBloodKey"])
+        XCTAssertNotNil(stubPersistentStorage.dictionaryStorage["UserDefaultsLocationNameKey"])
+        XCTAssertNotNil(stubPersistentStorage.dictionaryStorage["UserDefaultsLocationAreaKey"])
+        XCTAssertNotNil(stubPersistentStorage.dictionaryStorage["UserDefaultsLocationCodeKey"])
+
+        userDefaultsStorage.deleteAllData()
+        
+        // check they have now been removed
+        XCTAssertEqual(stubPersistentStorage.dictionaryStorage.count, 0)
+        XCTAssertNil(stubPersistentStorage.dictionaryStorage["UserDefaultsBloodKey"])
+        XCTAssertNil(stubPersistentStorage.dictionaryStorage["UserDefaultsLocationNameKey"])
+        XCTAssertNil(stubPersistentStorage.dictionaryStorage["UserDefaultsLocationAreaKey"])
+        XCTAssertNil(stubPersistentStorage.dictionaryStorage["UserDefaultsLocationCodeKey"])
+    }
     
 }

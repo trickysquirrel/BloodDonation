@@ -8,8 +8,6 @@
 
 import UIKit
 
-
-
 class Alert {
     
     func displayErrorAlertTitle(title: String="Error", message: String, presentingViewController: UIViewController?) {

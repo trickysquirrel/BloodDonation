@@ -15,6 +15,8 @@ enum Localisations: String {
     case minimumLocationCharSearch = "LOCALKEY_MinimumLocationCharSearch"
     case searching = "LOCALKEY_Searching"
     case unknownError = "LOCALKEY_UnknownError"
+    case unknownBloodType = "LOCALKEY_UnknownBloodType"
+    case unknownLocation = "LOCALKEY_UnknownLocation"
     case notificationRegistrationError = "LOCALKEY_NotificationRegistrationError"
     case locationNotFound = "LOCALKEY_LocationNotFound"
     

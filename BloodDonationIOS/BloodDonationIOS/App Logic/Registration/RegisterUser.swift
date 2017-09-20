@@ -18,4 +18,5 @@ struct RegisterUser {
         userStorage.persistLocation(location)
     }
     
+    
 }

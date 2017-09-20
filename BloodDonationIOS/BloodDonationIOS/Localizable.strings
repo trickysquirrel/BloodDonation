@@ -12,3 +12,5 @@
 "LOCALKEY_UnknownError" = "unknown error please try again";
 "LOCALKEY_NotificationRegistrationError" = "You must allow notifications so that we can inform you when your blood type is required";
 "LOCALKEY_LocationNotFound" = "Location not found please try again";
+"LOCALKEY_UnknownBloodType" = "unknown";
+"LOCALKEY_UnknownLocation" = "unknown";

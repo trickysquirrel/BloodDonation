@@ -13,8 +13,13 @@ import Foundation
 class StubMessagingSubscriber: MessagingSubscriberProtocol {
     
     private(set) var providedTopic: [String] = []
-    
+    private(set) var unsubscribeTopic: [String] = []
+
     func subscribe(topic: String) {
         providedTopic.append(topic)
+    }
+    
+    func unsubscribe(topic: String) {
+        unsubscribeTopic.append(topic)
     }
 }
