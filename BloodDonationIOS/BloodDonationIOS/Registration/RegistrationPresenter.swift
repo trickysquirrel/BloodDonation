@@ -50,7 +50,7 @@ class RegistrationPresenter {
         notificationRegister.register { [weak self] (response) in            
             switch response {
             case .success:
-                self?.registerForAllTopics()
+                self?.registerAllTopics()
                 self?.persistLocationAndBlood()
                 completion(.registrationSuccess)
             case .error(let error):
@@ -58,7 +58,6 @@ class RegistrationPresenter {
             }
         }
     }
-    
 }
 
 // MARK: Utils
@@ -66,14 +65,14 @@ class RegistrationPresenter {
 extension RegistrationPresenter {
     
     private func persistLocationAndBlood() {
-        self.userStorage.persistBloodType(bloodType)
-        self.userStorage.persistLocation(location)
+        userStorage.persistBloodType(bloodType)
+        userStorage.persistLocation(location)
     }
     
-    private func registerForAllTopics() {
+    private func registerAllTopics() {
         let topicList = MessagingTopicGenerator().allTopics(location: location, blood: bloodType)
         for topic in topicList {
-            self.messagingSubscriber.subscribe(topic: topic)
+            messagingSubscriber.subscribe(topic: topic)
         }
     }
     
