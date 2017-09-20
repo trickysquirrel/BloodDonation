@@ -11,14 +11,10 @@ import Foundation
 
 class BloodTypeFetcher: BloodTypeFetching {
     
-    func fetchBloodTypes() -> [BloodTypeModel] {
+    func fetchBloodTypes() -> [BloodType] {
         
-        var response: [BloodTypeModel] = []
         let allBloodTypes: [BloodType] = [.oNegative, .oPositive, .aNegative, .aPositive, .bNegative, .bPositive, .abNegative, .abPositive]
         
-        for bloodType in allBloodTypes {
-            response.append( BloodTypeModel(bloodType: bloodType, selected: false) )
-        }
-        return response
+        return allBloodTypes
     }
 }

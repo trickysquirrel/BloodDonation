@@ -19,7 +19,6 @@
 		340DAB351F62744800D5D156 /* StubJsonNetworkRequester.swift in Sources */ = {isa = PBXBuildFile; fileRef = 340DAB341F62744800D5D156 /* StubJsonNetworkRequester.swift */; };
 		3416652E1F723234002D4960 /* RegisterUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3416652D1F723234002D4960 /* RegisterUser.swift */; };
 		341665311F723456002D4960 /* UserRegisteredViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 341665301F723456002D4960 /* UserRegisteredViewController.swift */; };
-		34391DB21F6CC2BC00BE4955 /* BloodTypeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34391DB11F6CC2BC00BE4955 /* BloodTypeModel.swift */; };
 		34391DB41F6CC2F100BE4955 /* BloodTypeFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34391DB31F6CC2F100BE4955 /* BloodTypeFetcher.swift */; };
 		343C78F31F6E1CC10096885B /* LocationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 343C78F21F6E1CC10096885B /* LocationModel.swift */; };
 		343C78F51F6E5DE10096885B /* StubNotificationRegester.swift in Sources */ = {isa = PBXBuildFile; fileRef = 343C78F41F6E5DE10096885B /* StubNotificationRegester.swift */; };
@@ -94,7 +93,6 @@
 		340DAB341F62744800D5D156 /* StubJsonNetworkRequester.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StubJsonNetworkRequester.swift; sourceTree = "<group>"; };
 		3416652D1F723234002D4960 /* RegisterUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterUser.swift; sourceTree = "<group>"; };
 		341665301F723456002D4960 /* UserRegisteredViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRegisteredViewController.swift; sourceTree = "<group>"; };
-		34391DB11F6CC2BC00BE4955 /* BloodTypeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BloodTypeModel.swift; sourceTree = "<group>"; };
 		34391DB31F6CC2F100BE4955 /* BloodTypeFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BloodTypeFetcher.swift; sourceTree = "<group>"; };
 		343C78F21F6E1CC10096885B /* LocationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationModel.swift; sourceTree = "<group>"; };
 		343C78F41F6E5DE10096885B /* StubNotificationRegester.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StubNotificationRegester.swift; sourceTree = "<group>"; };
@@ -279,7 +277,6 @@
 		348A67B41F628B5C00D4853C /* Blood Type */ = {
 			isa = PBXGroup;
 			children = (
-				34391DB11F6CC2BC00BE4955 /* BloodTypeModel.swift */,
 				34B6BBC31F6CC4160006915F /* BloodTypeFetching.swift */,
 				34391DB31F6CC2F100BE4955 /* BloodTypeFetcher.swift */,
 				346F4CE11F59248100AF1441 /* BloodTypeStoredFetcher.swift */,
@@ -665,7 +662,6 @@
 				34B6BBC41F6CC4160006915F /* BloodTypeFetching.swift in Sources */,
 				346F4CEC1F5929B400AF1441 /* ViewControllerFactory.swift in Sources */,
 				340DAB281F6265E700D5D156 /* LocationsPresenter.swift in Sources */,
-				34391DB21F6CC2BC00BE4955 /* BloodTypeModel.swift in Sources */,
 				340DAB1E1F62605B00D5D156 /* LocalisedString+App.swift in Sources */,
 				346F4CDC1F591EB600AF1441 /* Array+Safe.swift in Sources */,
 				346F4CD81F591D8700AF1441 /* CollectionRowSections.swift in Sources */,

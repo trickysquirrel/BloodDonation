@@ -10,7 +10,6 @@ import UIKit
 
 struct BloodTypeViewModel {
     let title: String
-    let highlightColor: UIColor
     let type: BloodType
 }
 
@@ -34,24 +33,12 @@ class BloodTypePresenter {
     
     
     func updateView() {
-        let bloodTypeModels = bloodTypeFetcher.fetchBloodTypes()
-        let viewModels =  bloodTypeModels.map {
-            BloodTypeViewModel(title:$0.bloodType.displayString(),
-                               highlightColor: highlightColor(bloodTypeModel: $0),
-                               type: $0.bloodType)
+        let bloodTypes = bloodTypeFetcher.fetchBloodTypes()
+        let viewModels =  bloodTypes.map {
+            BloodTypeViewModel(title:$0.displayString(), type: $0)
         }
         onEventUpdateBlock?(viewModels)
     }
     
 }
 
-
-extension BloodTypePresenter {
-    
-    private func highlightColor(bloodTypeModel: BloodTypeModel) -> UIColor {
-        if bloodTypeModel.selected {
-            return UIColor.bloodTypeFocused
-        }
-        return UIColor.bloodTypeUnfocused
-    }
-}

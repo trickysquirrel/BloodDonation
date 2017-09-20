@@ -9,5 +9,5 @@
 import Foundation
 
 protocol BloodTypeFetching {
-    func fetchBloodTypes() -> [BloodTypeModel]
+    func fetchBloodTypes() -> [BloodType]
 }

@@ -86,20 +86,7 @@ extension BloodTypePresenterTests {
         XCTAssertEqual(returnedViewModels[6].type, .abNegative)
         XCTAssertEqual(returnedViewModels[7].type, .abPositive)
     }
-    
-    
-    func test_updateView_returnsEightViewModelsWithUnfocusedColor() {
-        var returnedViewModels: [BloodTypeViewModel] = []
-        presenter.onEventUpdate{ viewModels in
-            returnedViewModels = viewModels
-        }
-        presenter.updateView()
-
-        for viewModel in returnedViewModels {
-            XCTAssertEqual(viewModel.highlightColor, UIColor.bloodTypeUnfocused)
-        }
-    }
-
+     
     // This should be on the view controller
     func test_onCellSelection_passesCorrectBloodTypeToAction() {
         // TODO: create fake data source, for event to occur and check action is given correct value

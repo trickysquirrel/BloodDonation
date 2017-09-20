@@ -9,6 +9,6 @@
 import UIKit
 
 extension UIColor {
-    static let bloodTypeFocused = UIColor.red
-    static let bloodTypeUnfocused = UIColor.gray
+//    static let bloodTypeFocused = UIColor.red
+//    static let bloodTypeUnfocused = UIColor.gray
 }
