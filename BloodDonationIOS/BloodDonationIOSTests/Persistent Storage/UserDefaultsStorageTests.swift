@@ -54,5 +54,17 @@ class UserDefaultsStorageTests: XCTestCase {
         XCTAssertEqual(location!.area, expectedlocation.area)
         XCTAssertEqual(location!.countryCode, expectedlocation.countryCode)
     }
+    
+    func test_hasPersistedData_noData_returnsFalse() {
+        let hasPersistedData = userDefaultsStorage.hasPersistedData()
+        XCTAssertFalse(hasPersistedData)
+    }
 
+    func test_hasPersistedData_withData_returnsTrue() {
+        userDefaultsStorage.persistBloodType(BloodType.bNegative)
+        let hasPersistedData = userDefaultsStorage.hasPersistedData()
+        XCTAssertTrue(hasPersistedData)
+    }
+
+    
 }

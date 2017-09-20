@@ -26,15 +26,15 @@ class RegistrationPresenter {
     private let location: LocationModel
     private let notificationRegister: NotificationRegisterProtocol
     private let messagingSubscriber: MessagingSubscriberProtocol
-    private let userStorage: UserPersistentStorageProtocol
+    private let registerUser: RegisterUser
     
     
-    init(bloodType: BloodType, location: LocationModel, notificationRegister: NotificationRegisterProtocol, messagingSubscriber: MessagingSubscriberProtocol, userStorage: UserPersistentStorageProtocol) {
+    init(bloodType: BloodType, location: LocationModel, notificationRegister: NotificationRegisterProtocol, messagingSubscriber: MessagingSubscriberProtocol, registerUser: RegisterUser) {
         self.bloodType = bloodType
         self.location = location
         self.notificationRegister = notificationRegister
         self.messagingSubscriber = messagingSubscriber
-        self.userStorage = userStorage
+        self.registerUser = registerUser
     }
     
     
@@ -51,7 +51,7 @@ class RegistrationPresenter {
             switch response {
             case .success:
                 self?.registerAllTopics()
-                self?.persistLocationAndBlood()
+                self?.registerAllUserInfo()
                 completion(.registrationSuccess)
             case .error(let error):
                 completion(.error(Localisations.localiseError(error)))
@@ -64,9 +64,8 @@ class RegistrationPresenter {
 
 extension RegistrationPresenter {
     
-    private func persistLocationAndBlood() {
-        userStorage.persistBloodType(bloodType)
-        userStorage.persistLocation(location)
+    private func registerAllUserInfo() {
+        registerUser.register(location: location, bloodType: bloodType)
     }
     
     private func registerAllTopics() {

@@ -128,11 +128,14 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Pa0-wr-k3d" secondAttribute="trailing" constant="20" symbolic="YES" id="AD5-Vk-LPJ"/>
                             <constraint firstItem="Pa0-wr-k3d" firstAttribute="top" secondItem="xNx-mB-0g0" secondAttribute="top" constant="27" id="MKt-or-jXP"/>
                             <constraint firstItem="ha5-Gk-OeR" firstAttribute="leading" secondItem="xNx-mB-0g0" secondAttribute="leading" constant="37" id="aNu-cP-182"/>
                             <constraint firstItem="CaD-Te-4vj" firstAttribute="leading" secondItem="xNx-mB-0g0" secondAttribute="leading" constant="37" id="dv1-Yf-gB1"/>
                             <constraint firstItem="Pa0-wr-k3d" firstAttribute="leading" secondItem="xNx-mB-0g0" secondAttribute="leading" constant="37" id="fMx-36-P4a"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="ha5-Gk-OeR" secondAttribute="trailing" constant="20" symbolic="YES" id="gL5-43-S6F"/>
                             <constraint firstItem="ha5-Gk-OeR" firstAttribute="top" secondItem="Pa0-wr-k3d" secondAttribute="bottom" constant="37" id="hub-qL-Lgu"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="CaD-Te-4vj" secondAttribute="trailing" constant="20" symbolic="YES" id="jAN-0p-BVd"/>
                             <constraint firstItem="CaD-Te-4vj" firstAttribute="top" secondItem="ha5-Gk-OeR" secondAttribute="bottom" constant="72" id="w3G-Pb-e9E"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="xNx-mB-0g0"/>
@@ -145,6 +148,72 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1Ut-Yh-R1T" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2525.5999999999999" y="138.98050974512745"/>
+        </scene>
+        <!--User Registered View Controller-->
+        <scene sceneID="LUZ-vY-D6b">
+            <objects>
+                <viewController storyboardIdentifier="UserRegisteredViewControllerId" id="de2-Vy-20P" customClass="UserRegisteredViewController" customModule="BloodDonationIOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="dpU-ow-3iy" customClass="RegistrationView" customModule="BloodDonationIOS" customModuleProvider="target">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="registered user" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pvT-6o-BJQ">
+                                <rect key="frame" x="39" y="59" width="115.5" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bloodtype" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yd2-4x-NIE">
+                                <rect key="frame" x="39" y="119" width="78" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="location" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mTk-bt-fqe">
+                                <rect key="frame" x="39" y="181" width="60.5" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="you can reset your information below" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tTN-mL-TvN">
+                                <rect key="frame" x="24" y="251" width="335" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7tO-g0-2Cj">
+                                <rect key="frame" x="24" y="288" width="35" height="30"/>
+                                <state key="normal" title="reset"/>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="7tO-g0-2Cj" firstAttribute="leading" secondItem="XNF-F1-ypp" secondAttribute="leading" constant="24" id="5FS-Tb-YSH"/>
+                            <constraint firstItem="tTN-mL-TvN" firstAttribute="top" secondItem="mTk-bt-fqe" secondAttribute="bottom" constant="49" id="7pd-fv-SCD"/>
+                            <constraint firstItem="yd2-4x-NIE" firstAttribute="leading" secondItem="XNF-F1-ypp" secondAttribute="leading" constant="39" id="ALV-jb-XvB"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="7tO-g0-2Cj" secondAttribute="trailing" constant="20" symbolic="YES" id="F9X-NB-tYz"/>
+                            <constraint firstItem="pvT-6o-BJQ" firstAttribute="top" secondItem="XNF-F1-ypp" secondAttribute="top" constant="39" id="I7B-ef-ogC"/>
+                            <constraint firstItem="XNF-F1-ypp" firstAttribute="trailing" secondItem="tTN-mL-TvN" secondAttribute="trailing" constant="16" id="JqZ-KX-q6o"/>
+                            <constraint firstItem="mTk-bt-fqe" firstAttribute="leading" secondItem="XNF-F1-ypp" secondAttribute="leading" constant="39" id="NnO-bo-PMN"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="pvT-6o-BJQ" secondAttribute="trailing" constant="20" symbolic="YES" id="Q4I-4W-G1g"/>
+                            <constraint firstItem="pvT-6o-BJQ" firstAttribute="leading" secondItem="XNF-F1-ypp" secondAttribute="leading" constant="39" id="QtI-gU-V2i"/>
+                            <constraint firstItem="tTN-mL-TvN" firstAttribute="leading" secondItem="XNF-F1-ypp" secondAttribute="leading" constant="24" id="TKT-8E-gx5"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="yd2-4x-NIE" secondAttribute="trailing" constant="20" symbolic="YES" id="fyS-wi-ZTE"/>
+                            <constraint firstItem="7tO-g0-2Cj" firstAttribute="top" secondItem="tTN-mL-TvN" secondAttribute="bottom" constant="16" id="lVs-MK-Xma"/>
+                            <constraint firstItem="mTk-bt-fqe" firstAttribute="top" secondItem="yd2-4x-NIE" secondAttribute="bottom" constant="41" id="tRB-Eu-QvG"/>
+                            <constraint firstItem="yd2-4x-NIE" firstAttribute="top" secondItem="pvT-6o-BJQ" secondAttribute="bottom" constant="39" id="tSP-ze-OaD"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="mTk-bt-fqe" secondAttribute="trailing" constant="20" symbolic="YES" id="z7n-yV-Ijb"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="XNF-F1-ypp"/>
+                        <connections>
+                            <outlet property="labelBloodType" destination="yd2-4x-NIE" id="B9Z-1g-wJL"/>
+                            <outlet property="labelLocation" destination="mTk-bt-fqe" id="bV9-lc-Acc"/>
+                        </connections>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vKr-BM-DPg" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3372" y="137.18140929535232"/>
         </scene>
     </scenes>
 </document>

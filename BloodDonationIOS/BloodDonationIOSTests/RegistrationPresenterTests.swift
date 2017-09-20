@@ -18,20 +18,22 @@ class RegistrationPresenterTests: XCTestCase {
     var stubNotificationRegister: StubNotificationRegister!
     var stubMessagingSubscriber: StubMessagingSubscriber!
     var stubPersistenceStorage: StubPersistentStorage!
-    var userPersistentStorage: UserPersistentStorage!
+    var registerUser: RegisterUser!
     
     override func setUp() {
         super.setUp()
         stubPersistenceStorage = StubPersistentStorage()
-        userPersistentStorage = UserPersistentStorage(userDefaultsPersistentStorage: stubPersistenceStorage)
+        let userPersistentStorage = UserPersistentStorage(userDefaultsPersistentStorage: stubPersistenceStorage)
+        registerUser = RegisterUser(userStorage: userPersistentStorage)
         stubMessagingSubscriber = StubMessagingSubscriber()
         stubNotificationRegister = StubNotificationRegister()
         expectedBloodType = BloodType.aNegative
         expectedLocation = LocationModel(name: "Eltham North", area:"Victoria", countryCode: .AU)
-        presenter = RegistrationPresenter(bloodType: expectedBloodType, location: expectedLocation, notificationRegister: stubNotificationRegister, messagingSubscriber: stubMessagingSubscriber, userStorage: userPersistentStorage)
+        presenter = RegistrationPresenter(bloodType: expectedBloodType, location: expectedLocation, notificationRegister: stubNotificationRegister, messagingSubscriber: stubMessagingSubscriber, registerUser: registerUser)
     }
     
     override func tearDown() {
+        registerUser = nil
         expectedLocation = nil
         expectedBloodType = nil
         stubNotificationRegister = nil

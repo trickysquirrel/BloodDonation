@@ -26,17 +26,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         FirebaseApp.configure()
         
         window = UIWindow(frame: UIScreen.main.bounds)
-        
+        guard let window = window else { return true }
+
         let notificationRegister = MessagingRegister(application: application)
         pushNotificationRegisterResponse = notificationRegister
         
-        guard let window = window else {
-            return true
-        }
+        let userDefaultsStorage = UserDefaultsPersistentStorage(userDefaults: UserDefaults.standard)
+        let userStorage = UserPersistentStorage(userDefaultsPersistentStorage: userDefaultsStorage)
 
-        let viewControllerFactory = ViewControllerFactory(notificationRegister: notificationRegister)
-        router = Router(window: window, viewControllerFactory: viewControllerFactory)
-        router?.displayBloodTypeSeletion()
+        let viewControllerFactory = ViewControllerFactory(notificationRegister: notificationRegister, userStorage: userStorage)
+        
+        let userRegistered = UserRegistered(userStorage: userStorage)
+        
+        router = Router(window: window, viewControllerFactory: viewControllerFactory, userRegistered: userRegistered)
+        router?.displayFirstViewController()
         
 
         

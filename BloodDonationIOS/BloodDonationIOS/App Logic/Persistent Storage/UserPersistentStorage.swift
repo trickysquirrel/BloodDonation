@@ -14,6 +14,7 @@ protocol UserPersistentStorageProtocol {
     func fetchBloodType() -> BloodType?
     func persistLocation(_ location: LocationModel)
     func fetchLocation() -> LocationModel?
+    func hasPersistedData() -> Bool
 }
 
 
@@ -57,5 +58,8 @@ struct UserPersistentStorage: UserPersistentStorageProtocol {
         return LocationModel(name: storedLocationName, area: storedLocationArea, countryCode: locationCountryCode)
     }
 
+    func hasPersistedData() -> Bool {
+        return (fetchBloodType() != nil) ? true : false
+    }
 
 }

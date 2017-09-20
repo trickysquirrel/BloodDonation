@@ -8,12 +8,29 @@
 
 import UIKit
 
-struct ViewControllerFactory {
+
+protocol ViewControllerFactoryProtocol {
+    func registeredUser() -> UIViewController
+    func bloodTypeSelector(showLocationAction: ShowLocationAction) -> UIViewController
+    func locationSelector(showRegistrationAction: ShowRegistrationAction) -> UIViewController
+    func register(bloodType: BloodType, location: LocationModel) -> UIViewController
+}
+
+
+struct ViewControllerFactory: ViewControllerFactoryProtocol {
     
     let notificationRegister: MessagingRegister
     let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+    let userStorage: UserPersistentStorageProtocol
     
-    func bloodTypeSelector(showLocationAction: ShowLocationAction) -> BloodTypeCollectionViewController {
+    
+    func registeredUser() -> UIViewController {
+        let viewController = storyboard.instantiateViewController(withIdentifier: "UserRegisteredViewControllerId") as! UserRegisteredViewController
+        return viewController
+    }
+    
+    
+    func bloodTypeSelector(showLocationAction: ShowLocationAction) -> UIViewController {
         let viewController = storyboard.instantiateViewController(withIdentifier: "BloodTypeCollectionViewControllerId") as! BloodTypeCollectionViewController
         let bloodTypeFetcher = BloodTypeFetcher()
         let presenter = BloodTypePresenter(bloodTypeFetcher: bloodTypeFetcher)
@@ -23,7 +40,7 @@ struct ViewControllerFactory {
     }
     
     
-    func locationSelector(showRegistrationAction: ShowRegistrationAction) -> LocationTableViewController {
+    func locationSelector(showRegistrationAction: ShowRegistrationAction) -> UIViewController {
         let jsonNetworkRequester = JsonNetworkRequester()
         let locationFetcher = LocationFetcher(jsonRequester: jsonNetworkRequester)
         let presenter = LocationsPresenter(locationFetcher: locationFetcher)
@@ -37,10 +54,9 @@ struct ViewControllerFactory {
     
     func register(bloodType: BloodType, location: LocationModel) -> UIViewController {
         let alert = Alert()
-        let userDefaultsStorage = UserDefaultsPersistentStorage(userDefaults: UserDefaults.standard)
-        let userStorage = UserPersistentStorage(userDefaultsPersistentStorage: userDefaultsStorage)
+        let registerUser = RegisterUser(userStorage: userStorage)
         let messagingSubscriber = MessagingSubscriber()
-        let presenter = RegistrationPresenter(bloodType: bloodType, location: location, notificationRegister: notificationRegister, messagingSubscriber: messagingSubscriber, userStorage: userStorage)
+        let presenter = RegistrationPresenter(bloodType: bloodType, location: location, notificationRegister: notificationRegister, messagingSubscriber: messagingSubscriber, registerUser: registerUser)
         let viewController = storyboard.instantiateViewController(withIdentifier: "RegisterViewControllerId") as! RegistrationViewController
         viewController.configure(presenter: presenter, alert: alert)
         return viewController

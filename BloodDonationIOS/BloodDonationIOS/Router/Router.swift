@@ -11,15 +11,36 @@ import UIKit
 class Router {
     
     let window: UIWindow?
-    let viewControllerFactory: ViewControllerFactory
+    let viewControllerFactory: ViewControllerFactoryProtocol
     let navigationController: UINavigationController
+    let userRegistered: UserRegistered
     
-    init(window: UIWindow?, viewControllerFactory: ViewControllerFactory) {
+    init(window: UIWindow?, viewControllerFactory: ViewControllerFactoryProtocol, userRegistered: UserRegistered) {
         self.window = window
         self.viewControllerFactory = viewControllerFactory
         self.navigationController = UINavigationController()
+        self.userRegistered = userRegistered
         window?.rootViewController = navigationController
         window?.makeKeyAndVisible()
+    }
+    
+    func displayFirstViewController() {
+        if userRegistered.hasUserAlreadyRegistered() {
+            displayUserRegistered()
+        }
+        else {
+            displayBloodTypeSeletion()
+        }
+    }
+}
+
+// MARK: Display view controllers
+
+private extension Router {
+    
+    func displayUserRegistered() {
+        let viewController = viewControllerFactory.registeredUser()
+        pushOnController(viewController)
     }
     
     func displayBloodTypeSeletion() {
@@ -42,15 +63,15 @@ class Router {
 
 // MARK:- Actions
 
-extension Router {
+private extension Router {
     
-    fileprivate func makeDisplayLocationSectionAction() -> ShowLocationAction {
+    func makeDisplayLocationSectionAction() -> ShowLocationAction {
         return ShowLocationAction(performBlock: { [weak self] bloodType in
             self?.displayLocationSelection(bloodType: bloodType)
         })
     }
     
-    fileprivate func makeDisplayRegistrationAction(bloodType: BloodType) -> ShowRegistrationAction {
+    func makeDisplayRegistrationAction(bloodType: BloodType) -> ShowRegistrationAction {
         return ShowRegistrationAction(bloodType: bloodType, performBlock: { [weak self] (bloodType, location) in
             self?.displayRegistration(bloodType: bloodType, location: location)
         })
@@ -59,9 +80,9 @@ extension Router {
 
 // MARK:- Navigation Type
 
-extension Router {
+ private extension Router {
     
-    fileprivate func pushOnController(_ controller: UIViewController) {
+    func pushOnController(_ controller: UIViewController) {
         if navigationController.viewControllers.count == 0 {
             navigationController.viewControllers = [controller]
         }
