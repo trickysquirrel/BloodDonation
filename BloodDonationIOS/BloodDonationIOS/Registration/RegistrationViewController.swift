@@ -11,10 +11,11 @@ import UIKit
 class RegistrationViewController: UIViewController {
     
     private var presenter: RegistrationPresenter?
-
+    private var alert: Alert?
     
-    func configure(presenter: RegistrationPresenter) {
+    func configure(presenter: RegistrationPresenter, alert: Alert) {
         self.presenter = presenter
+        self.alert = alert
     }
     
     
@@ -46,7 +47,7 @@ class RegistrationViewController: UIViewController {
         case .registrationSuccess:
             print("registration success")
         case .error(let errorMessage):
-            print("\(errorMessage)")
+            self.alert?.displayErrorAlertTitle(title: "Error", message: errorMessage, presentingViewController: self)
         }
     }
 

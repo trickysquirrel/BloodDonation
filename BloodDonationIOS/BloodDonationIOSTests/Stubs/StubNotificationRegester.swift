@@ -10,12 +10,14 @@ import Foundation
 @testable import BloodDonationIOS
 
 
-class StubNotificationRegister: NotificationRegesterProtocol {
+class StubNotificationRegister: NotificationRegisterProtocol {
     
-    public var success: Bool = false
+    public var response: NotificationRegisterResponse?
     
-    func register(completion:(Bool)->()) {
-        completion(success)
+    func register(completion:@escaping (NotificationRegisterResponse)->()) {
+        if let response = response {
+            completion(response)
+        }
     }
     
 }

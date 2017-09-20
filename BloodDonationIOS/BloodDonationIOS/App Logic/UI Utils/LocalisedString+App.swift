@@ -16,6 +16,7 @@ enum Localisations: String {
     case searching = "LOCALKEY_Searching"
     case unknownError = "LOCALKEY_UnknownError"
     case notificationRegistrationError = "LOCALKEY_NotificationRegistrationError"
+    case locationNotFound = "LOCALKEY_LocationNotFound"
     
     func localised() -> String {
         return NSLocalizedString(self.rawValue, comment: self.rawValue)

@@ -30,7 +30,13 @@ class LocationsPresenterTests: XCTestCase {
     private var fakeResponseError: Error = NSError(domain: "domain", code: 0, userInfo: [NSLocalizedDescriptionKey:"error string"])
 
     private var fakeResponseErrorUnknown: Error = NSError(domain: "domain", code: 0, userInfo: [NSLocalizedDescriptionKey:"unknown"])
+
     
+    private var fakeResponse0Location: [String:Any] = [
+        "totalResultsCount": 3,
+        "geonames": []
+    ]
+
     private var fakeResponse1Location: [String:Any] = [
         "totalResultsCount": 3,
         "geonames": [
@@ -225,6 +231,26 @@ extension LocationsPresenterTests {
         presenter.search(string:"abc")
         XCTAssertEqual(userInformation, "unknown error please try again")
     }
+    
+    func test_search_noResults_respondsWithZeroViewModelsUserInformationTryAgain() {
+        
+        stubJsonNetworkRequester.fakeResponse = JsonRequesterResponse.success(fakeResponse0Location)
+        
+        var responseCount: Int = 0
+        var userInformation: String? = ""
+        var viewModels: [LocationViewModel] = []
+        presenter.onEventNewLocations { newViewModels, information in
+            if responseCount == 1 {
+                viewModels = newViewModels
+                userInformation = information
+            }
+            responseCount += 1
+        }
+        presenter.search(string:"abc")
+        XCTAssertEqual(viewModels.count, 0)
+        XCTAssertEqual(userInformation, "Location not found please try again")
+    }
+
 
 }
 

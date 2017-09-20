@@ -121,6 +121,9 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CaD-Te-4vj">
                                 <rect key="frame" x="37" y="198" width="55" height="30"/>
                                 <state key="normal" title="Confirm"/>
+                                <connections>
+                                    <action selector="userSelectedConfirmationButton" destination="ULU-7O-KZJ" eventType="touchUpInside" id="JuC-W3-eIY"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

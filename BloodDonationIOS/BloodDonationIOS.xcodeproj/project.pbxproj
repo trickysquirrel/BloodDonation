@@ -56,6 +56,7 @@
 		34D4FAD51F35542500E63910 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 34D4FAD31F35542500E63910 /* Main.storyboard */; };
 		34D4FAD71F35542500E63910 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 34D4FAD61F35542500E63910 /* Assets.xcassets */; };
 		34D4FADA1F35542500E63910 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 34D4FAD81F35542500E63910 /* LaunchScreen.storyboard */; };
+		34EF80781F71E409009C743B /* InformationAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34EF80771F71E409009C743B /* InformationAlert.swift */; };
 		34F4ABE81F356A7000A2A882 /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 34F4ABE71F356A7000A2A882 /* UserNotifications.framework */; };
 		34F4ABEB1F356AAE00A2A882 /* NotificationRegister.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34F4ABEA1F356AAE00A2A882 /* NotificationRegister.swift */; };
 		34F56CC11F6212A0002F3A8F /* BloodTypeSetter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34F56CC01F6212A0002F3A8F /* BloodTypeSetter.swift */; };
@@ -128,6 +129,7 @@
 		34D4FAD61F35542500E63910 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		34D4FAD91F35542500E63910 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		34D4FADB1F35542500E63910 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		34EF80771F71E409009C743B /* InformationAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformationAlert.swift; sourceTree = "<group>"; };
 		34F4ABE51F35562200A2A882 /* BloodDonationIOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BloodDonationIOS.entitlements; sourceTree = "<group>"; };
 		34F4ABE71F356A7000A2A882 /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
 		34F4ABEA1F356AAE00A2A882 /* NotificationRegister.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationRegister.swift; sourceTree = "<group>"; };
@@ -193,6 +195,7 @@
 				348A67B21F627E2F00D4853C /* TableViewDataSource.swift */,
 				34C7AD5E1F636905004D1040 /* LoadingIndicator.swift */,
 				346F4CE51F59277300AF1441 /* BloodType+DisplayString.swift */,
+				34EF80771F71E409009C743B /* InformationAlert.swift */,
 			);
 			path = "UI Utils";
 			sourceTree = "<group>";
@@ -644,6 +647,7 @@
 				346F4CD51F591C9000AF1441 /* BloodTypeCollectionViewController.swift in Sources */,
 				34428DBD1F593A6A0017DFA4 /* BloodType+Storage.swift in Sources */,
 				340DAB241F62626400D5D156 /* ShowLocationAction.swift in Sources */,
+				34EF80781F71E409009C743B /* InformationAlert.swift in Sources */,
 				346F4CDE1F59205700AF1441 /* BloodTypeCollectionViewCell.swift in Sources */,
 				346F4CEA1F59292600AF1441 /* Router.swift in Sources */,
 				34C7AD5F1F636905004D1040 /* LoadingIndicator.swift in Sources */,
@@ -830,7 +834,7 @@
 				CODE_SIGN_ENTITLEMENTS = BloodDonationIOS/BloodDonationIOS.entitlements;
 				DEVELOPMENT_TEAM = 7HG6PP7Q5J;
 				INFOPLIST_FILE = BloodDonationIOS/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.trickysquirrel.BloodDonationIOS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -847,7 +851,7 @@
 				CODE_SIGN_ENTITLEMENTS = BloodDonationIOS/BloodDonationIOS.entitlements;
 				DEVELOPMENT_TEAM = 7HG6PP7Q5J;
 				INFOPLIST_FILE = BloodDonationIOS/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.trickysquirrel.BloodDonationIOS;
 				PRODUCT_NAME = "$(TARGET_NAME)";

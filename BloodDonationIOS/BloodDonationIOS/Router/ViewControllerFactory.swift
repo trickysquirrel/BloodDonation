@@ -36,12 +36,13 @@ struct ViewControllerFactory {
     
     
     func register(bloodType: BloodType, location: LocationModel) -> UIViewController {
+        let alert = Alert()
         let userDefaultsStorage = UserDefaultsPersistentStorage(userDefaults: UserDefaults.standard)
         let userStorage = UserPersistentStorage(userDefaultsPersistentStorage: userDefaultsStorage)
         let messagingSubscriber = MessagingSubscriber()
         let presenter = RegistrationPresenter(bloodType: bloodType, location: location, notificationRegister: notificationRegister, messagingSubscriber: messagingSubscriber, userStorage: userStorage)
         let viewController = storyboard.instantiateViewController(withIdentifier: "RegisterViewControllerId") as! RegistrationViewController
-        viewController.configure(presenter: presenter)
+        viewController.configure(presenter: presenter, alert: alert)
         return viewController
     }
 }

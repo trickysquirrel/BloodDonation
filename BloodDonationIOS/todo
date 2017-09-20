@@ -25,7 +25,7 @@ Then display a confirmation screen with blood type and location on selection
     . register topic
     . save blood type and location
 
-
+On app start detect when user has switched off notifications - show alert to put it back on
 On app start when user has already selected blood type but not location, ask for location
 On app start when user has already selected blood and location but not send notification, send notification
 On app start when user has already registered notifications just show the current choices they have already selected

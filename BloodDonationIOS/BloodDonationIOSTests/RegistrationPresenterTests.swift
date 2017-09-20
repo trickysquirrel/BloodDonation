@@ -96,34 +96,45 @@ extension RegistrationPresenterTests {
 // MARK: registerUser
 
 extension RegistrationPresenterTests {
-    
-    func test_registerUser_notigiationRegistrationError_returnErrorString() {
-        stubNotificationRegister.success = false
+
+    func test_registerUser_notifiationRegistrationError_returnErrorLocalisedString() {
+        let expectedLocalisedErrorString = "expected"
+        let error = NSError(domain: "", code: 0, userInfo: [NSLocalizedDescriptionKey:expectedLocalisedErrorString])
+        stubNotificationRegister.response = .error(error)
         let errorMessage = registerUserError()
-        XCTAssertEqual(errorMessage, "You must allow notifications so that we can inform you when your blood type is required")
+        XCTAssertEqual(errorMessage, expectedLocalisedErrorString)
+    }
+
+    func test_registerUser_notifiationRegistrationErrorNil_returnDefaultErrorString() {
+        stubNotificationRegister.response = .error(nil)
+        let errorMessage = registerUserError()
+        XCTAssertEqual(errorMessage, "unknown error please try again")
     }
 
     func test_registerUser_notigiationRegistrationError_doesNotUpdateUserPersistenceData() {
-        stubNotificationRegister.success = false
+        stubNotificationRegister.response = .error(nil)
         _ = registerUserError()
         XCTAssertEqual(stubPersistenceStorage.dictionaryStorage.count, 0)
     }
 
     func test_registerUser_notifiationRegistrationSuccess_registersForLocationBloodTopicAndAllDevices() {
-        stubNotificationRegister.success = true
+        stubNotificationRegister.response = .success
         _ = registerUserError()
+        XCTAssertEqual(stubMessagingSubscriber.providedTopic.count, 4)
         XCTAssertEqual(stubMessagingSubscriber.providedTopic[0], "au/victoria/eltham north/a-")
-        XCTAssertEqual(stubMessagingSubscriber.providedTopic[1], "alldevices")
+        XCTAssertEqual(stubMessagingSubscriber.providedTopic[1], "au/victoria/eltham north")
+        XCTAssertEqual(stubMessagingSubscriber.providedTopic[2], "au/victoria/a-")
+        XCTAssertEqual(stubMessagingSubscriber.providedTopic[3], "au/victoria")
     }
 
     func test_registerUser_notifiationRegistrationSuccess_registerTopicSuccess_returnsSuccess() {
-        stubNotificationRegister.success = true
+        stubNotificationRegister.response = .success
         let success = registerUserSuccess()
         XCTAssertTrue(success)
     }
 
     func test_registerUser_notifiationRegistrationSuccess_registerTopicSuccess_updateUserPersistenceData() {
-        stubNotificationRegister.success = true
+        stubNotificationRegister.response = .success
         _ = registerUserSuccess()
         XCTAssertEqual(stubPersistenceStorage.dictionaryStorage.count, 4)
         XCTAssertEqual(stubPersistenceStorage.dictionaryStorage["UserDefaultsBloodKey"] as! String, "A-")

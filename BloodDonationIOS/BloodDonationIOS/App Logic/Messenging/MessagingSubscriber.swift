@@ -9,6 +9,8 @@
 import Foundation
 import FirebaseMessaging
 
+// TODO: add this class to the notification register so 
+
 protocol MessagingSubscriberProtocol {
     func subscribe(topic: String)
 }

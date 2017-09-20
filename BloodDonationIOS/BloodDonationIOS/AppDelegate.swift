@@ -9,15 +9,15 @@
 import UIKit
 import UserNotifications
 import Firebase
-import FirebaseInstanceID
-import FirebaseMessaging
+//import FirebaseInstanceID
+//import FirebaseMessaging
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     var router: Router?
-    var notificationRegister: NotificationRegister?
+    var pushNotificationRegisterResponse: PushNotificationRegisterResponse?
     var backgroundTask: UIBackgroundTaskIdentifier = UIBackgroundTaskInvalid
 
 
@@ -27,10 +27,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         window = UIWindow(frame: UIScreen.main.bounds)
         
-        notificationRegister = NotificationRegister(application: application)
+        let notificationRegister = NotificationRegister(application: application)
+        pushNotificationRegisterResponse = notificationRegister
         
-        guard   let notificationRegister = notificationRegister,
-                let window = window else {
+        guard let window = window else {
             return true
         }
 
@@ -77,8 +77,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 }
 
-// MARK - notification
+// MARK - notification registration
 
+extension AppDelegate {
+    
+    // Called when APNs has assigned the device a unique token
+    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        guard let pushRegisterResponse = self.pushNotificationRegisterResponse else { return }
+        pushRegisterResponse.systemSuccessfullyRegistered()
+    }
+    
+    // Called when APNs failed to register the device for push notifications
+    func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
+        guard let pushRegisterResponse = self.pushNotificationRegisterResponse else { return }
+        pushRegisterResponse.systemFailedToRegister(error: error)
+    }
+
+}
+
+
+
+/*
 extension AppDelegate: UNUserNotificationCenterDelegate, MessagingDelegate {
     
     func messaging(_ messaging: Messaging, didRefreshRegistrationToken fcmToken: String) {
@@ -198,7 +217,7 @@ extension AppDelegate: UNUserNotificationCenterDelegate, MessagingDelegate {
     }
 
 }
-
+*/
     
 extension AppDelegate {
     

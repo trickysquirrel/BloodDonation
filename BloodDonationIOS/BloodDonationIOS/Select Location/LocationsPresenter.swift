@@ -75,8 +75,12 @@ extension LocationsPresenter {
     }
     
     private func respondWithViewModels(locationModels:[LocationModel]) {
+        var userInformation: String? = nil
+        if locationModels.count == 0 {
+            userInformation = Localisations.locationNotFound.localised()
+        }
         let viewModels = locationModels.map { LocationViewModel(title:$0.name + " / " + $0.area, location: $0) }
-        self.onEventViewModelsBlock?(viewModels, nil)
+        self.onEventViewModelsBlock?(viewModels, userInformation)
     }
     
     private func respondWithSearchStarting() {
