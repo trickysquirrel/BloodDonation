@@ -32,8 +32,8 @@ struct ViewControllerFactory: ViewControllerFactoryProtocol {
     
     func bloodTypeSelector(showLocationAction: ShowLocationAction) -> UIViewController {
         let viewController = storyboard.instantiateViewController(withIdentifier: "BloodTypeCollectionViewControllerId") as! BloodTypeCollectionViewController
-        let bloodTypeFetcher = BloodTypeFetcher()
-        let presenter = BloodTypePresenter(bloodTypeFetcher: bloodTypeFetcher)
+        let allBloodTypesFetcher = AllBloodTypesFetcher()
+        let presenter = BloodTypePresenter(allBloodTypesFetcher: allBloodTypesFetcher)
         let dataSource = CollectionViewDataSource<BloodTypeCollectionViewCell,BloodTypeViewModel>()
         viewController.configure(presenter: presenter, dataSource: dataSource, showLocationAction: showLocationAction)
         return viewController

@@ -13,28 +13,18 @@ import XCTest
 class BloodTypePresenterTests: XCTestCase {
     
     var presenter: BloodTypePresenter!
-//    var stubUserDefaultsStorage: StubPersistentStorage!
-//    var userStorage: UserPersistentStorage!
     
     override func setUp() {
         super.setUp()
-//        stubUserDefaultsStorage = StubPersistentStorage()
-//        userStorage = UserPersistentStorage(userDefaultsPersistentStorage: stubUserDefaultsStorage)
-//        let bloodTypeSetter = BloodTypeSetter(persistentStorage: userStorage)
-        let bloodTypeFetcher = BloodTypeFetcher()
-        presenter = BloodTypePresenter(bloodTypeFetcher: bloodTypeFetcher)
+        let allBloodTypesFetcher = AllBloodTypesFetcher()
+        presenter = BloodTypePresenter(allBloodTypesFetcher: allBloodTypesFetcher)
     }
     
     override func tearDown() {
-        //stubUserDefaultsStorage = nil
-        //userStorage = nil
         presenter = nil
         super.tearDown()
     }
     
-//    func setUpStorageWithBloodType(_ bloodType: BloodType) {
-//        userStorage.persistBloodType(bloodType)
-//    }
 }
 
 
@@ -88,52 +78,8 @@ extension BloodTypePresenterTests {
     }
      
     // This should be on the view controller
-    func test_onCellSelection_passesCorrectBloodTypeToAction() {
+    //func test_onCellSelection_passesCorrectBloodTypeToAction() {
         // TODO: create fake data source, for event to occur and check action is given correct value
-    }
+    //}
     
-//    func test_updateView_oPositiveBloodSelected_returnsCorrectColorOnAllViewModels() {
-//        setUpStorageWithBloodType(BloodType.oPositive)
-//
-//        var returnedViewModels: [BloodTypeViewModel] = []
-//        presenter.onEventUpdate{ viewModels in
-//            returnedViewModels = viewModels
-//        }
-//        presenter.updateView()
-//
-//        XCTAssertEqual(returnedViewModels[0].highlightColor, UIColor.bloodTypeUnfocused)
-//        XCTAssertEqual(returnedViewModels[1].highlightColor, UIColor.bloodTypeFocused)
-//        XCTAssertEqual(returnedViewModels[2].highlightColor, UIColor.bloodTypeUnfocused)
-//        XCTAssertEqual(returnedViewModels[3].highlightColor, UIColor.bloodTypeUnfocused)
-//        XCTAssertEqual(returnedViewModels[4].highlightColor, UIColor.bloodTypeUnfocused)
-//        XCTAssertEqual(returnedViewModels[5].highlightColor, UIColor.bloodTypeUnfocused)
-//        XCTAssertEqual(returnedViewModels[6].highlightColor, UIColor.bloodTypeUnfocused)
-//        XCTAssertEqual(returnedViewModels[7].highlightColor, UIColor.bloodTypeUnfocused)
-//    }
-
 }
-
-// MARK: Set blood type
-
-//extension BloodTypePresenterTests {
-//
-//    func test_updateBloodType_setsCorrectValueInPersistentStorage() {
-//        presenter.updateBloodType(BloodType.abNegative)
-//        let storedBloodTypeValue = stubUserDefaultsStorage.dictionaryStorage["UserDefaultsBloodKey"] as? String
-//        XCTAssertEqual(storedBloodTypeValue, "AB-")
-//    }
-//
-//
-//    func test_updateBloodType_callsUpdateEventBlock() {
-//
-//        var didCallUpdateEventBlock = false
-//        presenter.onEventUpdate{ _ in
-//            didCallUpdateEventBlock = true
-//        }
-//
-//        presenter.updateBloodType(BloodType.abNegative)
-//        XCTAssertTrue(didCallUpdateEventBlock)
-//    }
-//
-//}
-
