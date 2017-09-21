@@ -31,7 +31,7 @@ class StubViewControllerFactory: ViewControllerFactoryProtocol {
         return LocationTableViewController()
     }
     
-    func register(bloodType: BloodType, location: LocationModel) -> UIViewController {
+    func register(bloodType: BloodType, location: LocationModel, showUserRegisteredAction: Action) -> UIViewController {
         didCallRegister = true
         return UIViewController()
     }

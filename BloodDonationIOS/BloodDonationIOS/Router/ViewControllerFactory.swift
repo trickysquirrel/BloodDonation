@@ -13,7 +13,7 @@ protocol ViewControllerFactoryProtocol {
     func registeredUser(unreigisterAction: Action) -> UIViewController
     func bloodTypeSelector(showLocationAction: ShowLocationAction) -> UIViewController
     func locationSelector(showRegistrationAction: ShowRegistrationAction) -> UIViewController
-    func register(bloodType: BloodType, location: LocationModel) -> UIViewController
+    func register(bloodType: BloodType, location: LocationModel, showUserRegisteredAction: Action) -> UIViewController
 }
 
 
@@ -59,12 +59,12 @@ struct ViewControllerFactory: ViewControllerFactoryProtocol {
     }
     
     
-    func register(bloodType: BloodType, location: LocationModel) -> UIViewController {
+    func register(bloodType: BloodType, location: LocationModel, showUserRegisteredAction: Action) -> UIViewController {
         let alert = InformationAlert()
         let registerUser = RegisterUser(userStorage: userStorage, messagingTopicManager: messagingTopicManager, notificationRegister: notificationRegister, bloodType: bloodType, location: location)
         let presenter = RegistrationPresenter(notificationRegister: notificationRegister, messagingSubscriber: messagingTopicSubscriber, registerUser: registerUser)
         let viewController = storyboard.instantiateViewController(withIdentifier: "RegisterViewControllerId") as! RegistrationViewController
-        viewController.configure(presenter: presenter, alert: alert)
+        viewController.configure(presenter: presenter, alert: alert, showUserRegisteredAction: showUserRegisteredAction)
         return viewController
     }
 }

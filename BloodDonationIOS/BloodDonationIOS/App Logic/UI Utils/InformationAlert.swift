@@ -10,7 +10,7 @@ import UIKit
 
 class InformationAlert {
     
-    func displayErrorAlertTitle(title: String, message: String, presentingViewController: UIViewController?) {
+    func displayAlert(title: String, message: String, presentingViewController: UIViewController?) {
         
         guard let presentingViewController = presentingViewController else { return }
         let alertController = UIAlertController(title: title, message:

@@ -12,10 +12,12 @@ class RegistrationViewController: UIViewController {
     
     private var presenter: RegistrationPresenter?
     private var alert: InformationAlert?
+    private var showUserRegisteredAction: Action?
     
-    func configure(presenter: RegistrationPresenter, alert: InformationAlert) {
+    func configure(presenter: RegistrationPresenter, alert: InformationAlert, showUserRegisteredAction: Action?) {
         self.presenter = presenter
         self.alert = alert
+        self.showUserRegisteredAction = showUserRegisteredAction
     }
     
     
@@ -45,9 +47,9 @@ class RegistrationViewController: UIViewController {
         case .updateView(let viewModel):
             registrationView.configure(viewModel: viewModel)
         case .registrationSuccess:
-            print("registration success")
+            self.showUserRegisteredAction?.perform()
         case .error(let errorMessage):
-            self.alert?.displayErrorAlertTitle(title: Localisations.alertTitleError.localised(),
+            self.alert?.displayAlert(title: Localisations.alertTitleError.localised(),
                                                message: errorMessage,
                                                presentingViewController: self)
         }
