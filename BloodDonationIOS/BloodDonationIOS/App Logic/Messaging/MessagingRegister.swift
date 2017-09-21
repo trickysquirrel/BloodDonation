@@ -25,8 +25,6 @@ enum NotificationRegisterResponse {
     case error(Error?)
 }
 
-// TODO: maybe this class should perform the push notification register and register for topics
-// need to extract the messaging stuff into another wrapper class
 
 class MessagingRegister: NSObject, NotificationRegisterProtocol {
     

@@ -40,7 +40,7 @@ class RegistrationViewController: UIViewController {
         })
     }
     
-    
+    // TODO: show a please wait while we register
     private func handlePresenterResponse(response: RegistrationResponse) {
         guard let registrationView = view as? RegistrationView else { return }
         switch response {

@@ -41,9 +41,9 @@ class JsonNetworkRequester : JsonRequester {
                     completion(.error(error))
                 }
             case .failure(let error):
-                print(error)
-                completion(.error(error))
-                // TODO: change this so that it ignores ...
+                if error.localizedDescription != "cancelled" {
+                    completion(.error(error))
+                }
                 // error Domain=NSURLErrorDomain Code=-999 "cancelled" UserInfo={NSErrorFailingURLStringKey=http://api.geonames.org/searchJSON?u
             }
         }

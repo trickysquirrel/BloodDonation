@@ -49,10 +49,10 @@ class RegistrationPresenter {
                 return completion(.error(Localisations.unsubscribeCannotDetectNetwork.localised()))
             case .isNotConnectedToNetwork:
                 return completion(.error(Localisations.unsubscribeNoNetwork.localised()))
-            case .none:
-                completion(.registrationSuccess)
             case .notificationError(let error):
                 completion(.error(Localisations.localiseError(error)))
+            case .none:
+                completion(.registrationSuccess)
             }
         }
     }
