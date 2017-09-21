@@ -44,7 +44,7 @@ extension UserRegisteredPresenterTests {
 
     func test_updateView_noBloodStored_returnsViewModelWithDefaultValues() {
         
-        var viewModel: UserRegisteredViewModel?
+        var viewModel: UserDataViewModel?
         presenter.updateView( completion: { newViewModel in
             viewModel = newViewModel
         })
@@ -58,7 +58,7 @@ extension UserRegisteredPresenterTests {
         
         setStubbedUserPersistedInformation()
 
-        var viewModel: UserRegisteredViewModel?
+        var viewModel: UserDataViewModel?
         presenter.updateView( completion: { newViewModel in
             viewModel = newViewModel
         })
@@ -70,14 +70,21 @@ extension UserRegisteredPresenterTests {
 }
 
 
-// MARK:- UpdateView
+// MARK:- Reset
 
 extension UserRegisteredPresenterTests {
+    
+    func test_resetUser_noNetwork_returnsErrorMessage() {
+
+        // network connection not availiable
+        setStubbedUserPersistedInformation()
+        //let errorMessage = presenter.resetUser()
+        //XCTAssertEqual(errorMessage, "You must be connected to the network to unsubscribe")
+    }
 
     func test_resetUser_unSubscribesToAllTopics() {
         
         setStubbedUserPersistedInformation()
-
         presenter.resetUser()
         
         XCTAssertEqual(stubMessagingSubscriber.unsubscribeTopic.count, 4)

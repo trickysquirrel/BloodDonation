@@ -10,7 +10,7 @@ import UIKit
 
 
 protocol ViewControllerFactoryProtocol {
-    func registeredUser() -> UIViewController
+    func registeredUser(unreigisterAction: Action) -> UIViewController
     func bloodTypeSelector(showLocationAction: ShowLocationAction) -> UIViewController
     func locationSelector(showRegistrationAction: ShowRegistrationAction) -> UIViewController
     func register(bloodType: BloodType, location: LocationModel) -> UIViewController
@@ -21,11 +21,15 @@ struct ViewControllerFactory: ViewControllerFactoryProtocol {
     
     let notificationRegister: MessagingRegister
     let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+    let messagingSubscriber = MessagingTopicSubscriber()
     let userStorage: UserPersistentStorageProtocol
     
     
-    func registeredUser() -> UIViewController {
+    func registeredUser(unreigisterAction: Action) -> UIViewController {
+        let areYouSureAlert = AreYouSureAlert()
+        let presenter = UserRegisteredPresenter(userStorage: userStorage, messagingSubscriber: messagingSubscriber)
         let viewController = storyboard.instantiateViewController(withIdentifier: "UserRegisteredViewControllerId") as! UserRegisteredViewController
+        viewController.configure(presenter: presenter, areYouSureAlert: areYouSureAlert, unreigisterAction: unreigisterAction)
         return viewController
     }
     
@@ -53,9 +57,8 @@ struct ViewControllerFactory: ViewControllerFactoryProtocol {
     
     
     func register(bloodType: BloodType, location: LocationModel) -> UIViewController {
-        let alert = Alert()
+        let alert = InformationAlert()
         let registerUser = RegisterUser(userStorage: userStorage)
-        let messagingSubscriber = MessagingSubscriber()
         let presenter = RegistrationPresenter(bloodType: bloodType, location: location, notificationRegister: notificationRegister, messagingSubscriber: messagingSubscriber, registerUser: registerUser)
         let viewController = storyboard.instantiateViewController(withIdentifier: "RegisterViewControllerId") as! RegistrationViewController
         viewController.configure(presenter: presenter, alert: alert)

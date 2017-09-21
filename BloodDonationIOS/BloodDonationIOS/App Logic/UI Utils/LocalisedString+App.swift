@@ -10,7 +10,6 @@ import Foundation
 
 enum Localisations: String {
     
-    // Saved Jobs
     case selectBloodTypeTitle = "LOCALKEY_SelectBloodTypeTitle"
     case minimumLocationCharSearch = "LOCALKEY_MinimumLocationCharSearch"
     case searching = "LOCALKEY_Searching"
@@ -19,6 +18,13 @@ enum Localisations: String {
     case unknownLocation = "LOCALKEY_UnknownLocation"
     case notificationRegistrationError = "LOCALKEY_NotificationRegistrationError"
     case locationNotFound = "LOCALKEY_LocationNotFound"
+    case alertDismiss = "LOCALKEY_AlertDismiss"
+    case alertOk = "LOCALKEY_AlertOk"
+    case alertCancel = "LOCALKEY_AlertCancel"
+    case alertTitleError = "LOCALKEY_AlertTitleError"
+    case alertTitleWarning = "LOCALKEY_AlertTitleWarning";
+    case alertMsgUnRegister = "LOCALKEY_AlertMessageUnRegister"
+    
     
     func localised() -> String {
         return NSLocalizedString(self.rawValue, comment: self.rawValue)

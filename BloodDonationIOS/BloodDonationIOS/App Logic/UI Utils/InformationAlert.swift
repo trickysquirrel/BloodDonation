@@ -8,14 +8,14 @@
 
 import UIKit
 
-class Alert {
+class InformationAlert {
     
-    func displayErrorAlertTitle(title: String="Error", message: String, presentingViewController: UIViewController?) {
+    func displayErrorAlertTitle(title: String, message: String, presentingViewController: UIViewController?) {
         
         guard let presentingViewController = presentingViewController else { return }
         let alertController = UIAlertController(title: title, message:
             message, preferredStyle: UIAlertControllerStyle.alert)
-        alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.default,handler: nil))
+        alertController.addAction(UIAlertAction(title: Localisations.alertDismiss.localised(), style: UIAlertActionStyle.default,handler: nil))
         presentingViewController.present(alertController, animated: true, completion: nil)
     }
     

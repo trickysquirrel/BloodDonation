@@ -14,3 +14,9 @@
 "LOCALKEY_LocationNotFound" = "Location not found please try again";
 "LOCALKEY_UnknownBloodType" = "unknown";
 "LOCALKEY_UnknownLocation" = "unknown";
+"LOCALKEY_AlertTitleError" = "Error";
+"LOCALKEY_AlertTitleWarning" = "Warning";
+"LOCALKEY_AlertMessageUnRegister" = "Are you sure you want to remove your data and unsubscribe to notifications";
+"LOCALKEY_AlertDismiss" = "Dismiss";
+"LOCALKEY_AlertOk" = "OK";
+"LOCALKEY_AlertCancel" = "Cancel";

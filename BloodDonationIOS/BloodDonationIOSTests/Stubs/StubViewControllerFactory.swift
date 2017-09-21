@@ -16,7 +16,7 @@ class StubViewControllerFactory: ViewControllerFactoryProtocol {
     private(set) var didCallRegister = false
     private(set) var didCallRegisteredUser = false
 
-    func registeredUser() -> UIViewController {
+    func registeredUser(unreigisterAction: Action) -> UIViewController {
         didCallRegisteredUser = true
         return UIViewController()
     }

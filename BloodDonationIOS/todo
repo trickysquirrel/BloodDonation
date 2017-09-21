@@ -18,21 +18,12 @@ Authorization: key=AAAAnyeQBL8:APA91bHMrt9om8tj_88-j3YrAb-vznJR3pRiRtGVvd5hVQdsk
 todo
 ============
 
-On app start first time ask user for Blood type
-If user has selected blood type ask for location
-Then display a confirmation screen with blood type and location on selection
-    . generate a topic and au/vic/eltham/o+
-    . register topic
-    . save blood type and location
+Only be able to subscribe with network is detected, same for unsubscribe
 
-On app start detect when user has switched off notifications - show alert to put it back on
-On app start when user has already selected blood type but not location, ask for location
-On app start when user has already selected blood and location but not send notification, send notification
-On app start when user has already registered notifications just show the current choices they have already selected
-Allow user to change blood type and location
 On app start if the user is blocking notifications let them know to change it in settings
+
 Ask user if its ok to send some data about blood type and location so information can be used to figure out what kind of notification to send
-On receiving a silent notification, check for blood type and location, if its a match then generate local notification with the correct localisation text from app not server.
+
 On reciving a valid notification, add to notification list for view to see later
 
 
@@ -42,6 +33,8 @@ On reciving a valid notification, add to notification list for view to see later
 in progress
 ============
 
+On app start when user has already registered notifications just show the current choices they have already selected
+Allow user to change blood type and location
 
 
 

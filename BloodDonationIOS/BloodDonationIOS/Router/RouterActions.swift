@@ -37,3 +37,18 @@ class ShowRegistrationAction {
         performBlock(bloodType, location)
     }
 }
+
+
+class Action {
+    
+    private let performBlock: (()->())
+    
+    init(performBlock: @escaping (()->())) {
+        self.performBlock = performBlock
+    }
+    
+    func perform() {
+        performBlock()
+    }
+}
+

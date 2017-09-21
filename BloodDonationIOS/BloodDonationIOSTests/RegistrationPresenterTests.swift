@@ -43,8 +43,8 @@ class RegistrationPresenterTests: XCTestCase {
         super.tearDown()
     }
     
-    private func updateViewWithNewViewModel() -> RegistrationViewModel! {
-        var viewModel: RegistrationViewModel!
+    private func updateViewWithNewViewModel() -> UserDataViewModel! {
+        var viewModel: UserDataViewModel!
         presenter.updateView { response in
             switch response {
             case .updateView(let newViewModel):

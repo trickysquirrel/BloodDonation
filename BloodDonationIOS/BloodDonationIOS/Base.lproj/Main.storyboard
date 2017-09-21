@@ -184,6 +184,9 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7tO-g0-2Cj">
                                 <rect key="frame" x="24" y="288" width="35" height="30"/>
                                 <state key="normal" title="reset"/>
+                                <connections>
+                                    <action selector="userDidSelectToResetData" destination="de2-Vy-20P" eventType="touchUpInside" id="eIc-zT-6xY"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

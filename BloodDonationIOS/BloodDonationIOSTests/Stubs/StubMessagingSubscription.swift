@@ -10,7 +10,7 @@ import Foundation
 @testable import BloodDonationIOS
 
 
-class StubMessagingSubscriber: MessagingSubscriberProtocol {
+class StubMessagingSubscriber: MessagingTopicSubscriberProtocol {
     
     private(set) var providedTopic: [String] = []
     private(set) var unsubscribeTopic: [String] = []

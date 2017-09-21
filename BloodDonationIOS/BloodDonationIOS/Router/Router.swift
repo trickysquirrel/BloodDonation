@@ -39,7 +39,8 @@ class Router {
 private extension Router {
     
     func displayUserRegistered() {
-        let viewController = viewControllerFactory.registeredUser()
+        let action = makeUnRegisterAction()
+        let viewController = viewControllerFactory.registeredUser(unreigisterAction: action)
         pushOnController(viewController)
     }
     
@@ -55,6 +56,7 @@ private extension Router {
         pushOnController(viewController)
     }
     
+    // TODO: this should not be a push but remove all view controllers and replace this as the root
     func displayRegistration(bloodType: BloodType, location: LocationModel) {
         let viewController = viewControllerFactory.register(bloodType: bloodType, location: location)
         pushOnController(viewController)
@@ -64,6 +66,14 @@ private extension Router {
 // MARK:- Actions
 
 private extension Router {
+    
+    func makeUnRegisterAction() -> Action {
+        return Action(performBlock: { [weak self] in
+            self?.navigationController.popToRootViewController(animated: false)
+            self?.navigationController.viewControllers = []
+            self?.displayBloodTypeSeletion()
+        })
+    }
     
     func makeDisplayLocationSectionAction() -> ShowLocationAction {
         return ShowLocationAction(performBlock: { [weak self] bloodType in

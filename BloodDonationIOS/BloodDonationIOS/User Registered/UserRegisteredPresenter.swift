@@ -9,28 +9,22 @@
 import Foundation
 
 
-struct UserRegisteredViewModel {
-    let bloodTypeTitle: String
-    let locationTitle: String
-}
-
-
 class UserRegisteredPresenter {
     
     private let userStorage: UserPersistentStorageProtocol
-    private let messagingSubscriber: MessagingSubscriberProtocol
+    private let messagingSubscriber: MessagingTopicSubscriberProtocol
 
     
-    init(userStorage: UserPersistentStorageProtocol, messagingSubscriber: MessagingSubscriberProtocol) {
+    init(userStorage: UserPersistentStorageProtocol, messagingSubscriber: MessagingTopicSubscriberProtocol) {
         self.userStorage = userStorage
         self.messagingSubscriber = messagingSubscriber
     }
     
-    func updateView(completion:(UserRegisteredViewModel)->()) {
+    func updateView(completion:(UserDataViewModel)->()) {
         let storedBloodType = userStorage.fetchBloodType()
         let storedLocation = userStorage.fetchLocation()
-        completion(UserRegisteredViewModel(bloodTypeTitle: storedBloodTypeTitle(bloodType: storedBloodType),
-                                           locationTitle: storedLocationTitle(location: storedLocation)))
+        completion(UserDataViewModel(bloodTypeTitle: storedBloodTypeTitle(bloodType: storedBloodType),
+                                     locationTitle: storedLocationTitle(location: storedLocation)))
     }
     
     func resetUser() {
@@ -38,10 +32,9 @@ class UserRegisteredPresenter {
                 let storedLocation = userStorage.fetchLocation() else {
             return
         }
-        unsubscribeToAllTopics(location: storedLocation, bloodType: storedBloodType)
-        //userStorage.persistBloodType(storedBloodType)
-        //userStorage.persistLocation(storedLocation)
-
+        // TODO: check for network available
+        unSubscribeToAllTopics(location: storedLocation, bloodType: storedBloodType)
+        //userStorage.deleteAllData()
     }
 }
 
@@ -69,7 +62,7 @@ private extension UserRegisteredPresenter {
         return location.countryCode.rawValue + ", " + location.area + ", " + location.name
     }
 
-    private func unsubscribeToAllTopics(location: LocationModel, bloodType: BloodType) {
+    private func unSubscribeToAllTopics(location: LocationModel, bloodType: BloodType) {
         let topicList = MessagingTopicGenerator().allTopics(location: location, blood: bloodType)
         for topic in topicList {
             messagingSubscriber.unsubscribe(topic: topic)

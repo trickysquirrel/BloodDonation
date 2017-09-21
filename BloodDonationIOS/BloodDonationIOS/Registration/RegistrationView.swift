@@ -13,7 +13,7 @@ class RegistrationView: UIView {
     @IBOutlet weak var labelBloodType: UILabel!
     @IBOutlet weak var labelLocation: UILabel!
 
-    func configure(viewModel: RegistrationViewModel) {
+    func configure(viewModel: UserDataViewModel) {
         labelBloodType.text = viewModel.bloodTypeTitle
         labelLocation.text = viewModel.locationTitle
     }

@@ -8,13 +8,13 @@
 
 import Foundation
 
-struct RegistrationViewModel {
+struct UserDataViewModel {
     let bloodTypeTitle: String
     let locationTitle: String
 }
 
 enum RegistrationResponse {
-    case updateView(RegistrationViewModel)
+    case updateView(UserDataViewModel)
     case registrationSuccess
     case error(String)
 }
@@ -25,11 +25,11 @@ class RegistrationPresenter {
     private let bloodType: BloodType
     private let location: LocationModel
     private let notificationRegister: NotificationRegisterProtocol
-    private let messagingSubscriber: MessagingSubscriberProtocol
+    private let messagingSubscriber: MessagingTopicSubscriberProtocol
     private let registerUser: RegisterUser
     
     
-    init(bloodType: BloodType, location: LocationModel, notificationRegister: NotificationRegisterProtocol, messagingSubscriber: MessagingSubscriberProtocol, registerUser: RegisterUser) {
+    init(bloodType: BloodType, location: LocationModel, notificationRegister: NotificationRegisterProtocol, messagingSubscriber: MessagingTopicSubscriberProtocol, registerUser: RegisterUser) {
         self.bloodType = bloodType
         self.location = location
         self.notificationRegister = notificationRegister
@@ -39,8 +39,8 @@ class RegistrationPresenter {
     
     
     func updateView(completion:(RegistrationResponse)->())  {
-        let viewModel = RegistrationViewModel(bloodTypeTitle:bloodType.displayString(),
-                                              locationTitle: makeAreaNameTitle(location: location))
+        let viewModel = UserDataViewModel(bloodTypeTitle:bloodType.displayString(),
+                                          locationTitle: makeAreaNameTitle(location: location))
         completion(.updateView(viewModel))
     }
     

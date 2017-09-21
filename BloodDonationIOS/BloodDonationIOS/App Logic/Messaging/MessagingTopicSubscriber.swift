@@ -10,12 +10,12 @@ import Foundation
 import FirebaseMessaging
 
 
-protocol MessagingSubscriberProtocol {
+protocol MessagingTopicSubscriberProtocol {
     func subscribe(topic: String)
     func unsubscribe(topic: String)
 }
 
-class MessagingSubscriber: MessagingSubscriberProtocol {
+class MessagingTopicSubscriber: MessagingTopicSubscriberProtocol {
     
     func subscribe(topic: String) {
         Messaging.messaging().subscribe(toTopic: topic)
