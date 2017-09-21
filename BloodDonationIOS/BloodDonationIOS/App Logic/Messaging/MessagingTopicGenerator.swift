@@ -8,6 +8,7 @@
 
 import Foundation
 
+
 struct MessagingTopicGenerator {
     
     func allTopics(location: LocationModel, blood: BloodType) -> [String] {

@@ -11,6 +11,7 @@ import Foundation
 enum MessagingTopicManagerError: Error {
     case cannotDetectForReachability
     case notConnectedToNetwork
+    case none
 }
 
 
@@ -20,7 +21,7 @@ struct MessagingTopicManager {
     let messagingTopicSubscriber: MessagingTopicSubscriberProtocol
 
     
-    func subscribe(topics: [String]) -> MessagingTopicManagerError? {
+    func subscribe(topics: [String]) -> MessagingTopicManagerError {
         
         guard let reachability = reachability else {
             return .cannotDetectForReachability
@@ -31,11 +32,11 @@ struct MessagingTopicManager {
         }
 
         messagingTopicSubscriber.subscribe(topics: topics)
-        return nil
+        return .none
     }
     
     
-    func unsubscribe(topics: [String]) -> MessagingTopicManagerError? {
+    func unsubscribe(topics: [String]) -> MessagingTopicManagerError {
         
         guard let reachability = reachability else {
             return .cannotDetectForReachability
@@ -46,7 +47,7 @@ struct MessagingTopicManager {
         }
 
         messagingTopicSubscriber.unsubscribe(topics: topics)
-        return nil
+        return .none
     }
 
 }

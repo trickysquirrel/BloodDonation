@@ -38,8 +38,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let messagingTopicManager = MessagingTopicManager(reachability: reachability, messagingTopicSubscriber: messagingTopicSubscriber)
         let userRegistered = UserRegistered(userStorage: userStorage, messagingTopicManager: messagingTopicManager)
 
-        let viewControllerFactory = ViewControllerFactory(notificationRegister: notificationRegister, userStorage: userStorage, userRegistered: userRegistered)
+        let viewControllerFactory = ViewControllerFactory(notificationRegister: notificationRegister, userStorage: userStorage, userRegistered: userRegistered, messagingTopicManager: messagingTopicManager)
         
+        userStorage.persistBloodType(.abNegative)
+        userStorage.persistLocation(LocationModel(name: "a", area: "b", countryCode: .AU))
         
         router = Router(window: window, viewControllerFactory: viewControllerFactory, userRegistered: userRegistered)
         router?.displayFirstViewController()

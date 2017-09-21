@@ -19,20 +19,26 @@ class RegistrationPresenterTests: XCTestCase {
     var stubMessagingSubscriber: StubMessagingSubscriber!
     var stubPersistenceStorage: StubPersistentStorage!
     var registerUser: RegisterUser!
+    var userStorage: UserPersistentStorage!
+    var stubReachability: StubReachability!
     
     override func setUp() {
         super.setUp()
         stubPersistenceStorage = StubPersistentStorage()
-        let userPersistentStorage = UserPersistentStorage(userDefaultsPersistentStorage: stubPersistenceStorage)
-        registerUser = RegisterUser(userStorage: userPersistentStorage)
-        stubMessagingSubscriber = StubMessagingSubscriber()
-        stubNotificationRegister = StubNotificationRegister()
         expectedBloodType = BloodType.aNegative
         expectedLocation = LocationModel(name: "Eltham North", area:"Victoria", countryCode: .AU)
-        presenter = RegistrationPresenter(bloodType: expectedBloodType, location: expectedLocation, notificationRegister: stubNotificationRegister, messagingSubscriber: stubMessagingSubscriber, registerUser: registerUser)
+        stubNotificationRegister = StubNotificationRegister()
+        stubMessagingSubscriber = StubMessagingSubscriber()
+        userStorage = UserPersistentStorage(userDefaultsPersistentStorage: stubPersistenceStorage)
+        stubReachability = StubReachability()
+        let messagingTopicManager = MessagingTopicManager(reachability: stubReachability, messagingTopicSubscriber: stubMessagingSubscriber)
+        registerUser = RegisterUser(userStorage: userStorage, messagingTopicManager: messagingTopicManager, notificationRegister: stubNotificationRegister, bloodType: expectedBloodType, location: expectedLocation)
+        presenter = RegistrationPresenter(notificationRegister: stubNotificationRegister, messagingSubscriber: stubMessagingSubscriber, registerUser: registerUser)
     }
     
     override func tearDown() {
+        stubReachability = nil
+        userStorage = nil
         registerUser = nil
         expectedLocation = nil
         expectedBloodType = nil
@@ -151,26 +157,29 @@ extension RegistrationPresenterTests {
     }
     
     
-//    func test_registerUser_noReachabilityObjectProvided_returnsErrorMessageAndStoredDataNotDeleted() {
-//        let messagingTopicManager = MessagingTopicManager(reachability: nil, messagingTopicSubscriber: stubMessagingSubscriber)
-//        presenter = RegistrationPresenter(bloodType: expectedBloodType, location: expectedLocation, notificationRegister: stubNotificationRegister, messagingSubscriber: stubMessagingSubscriber, registerUser: registerUser)
-//
-//        let errorMessage = registerUserError()
-//        
-//        XCTAssertEqual(errorMessage!, "Unable to detect network")
-//        XCTAssertNotNil(userStorage.fetchBloodType())
-//        XCTAssertNotNil(userStorage.fetchLocation())
-//    }
-//    
-//    
-//    func test_resetUser_noNetwork_returnsErrorMessageAndStoredDataNotDeleted() {
-//        stubReachability.isConnected = false
-//        setStubbedUserPersistedInformation()
-//        let errorMessage = registerUserError()
-//        XCTAssertEqual(errorMessage!, "You must be connected to the network to unsubscribe")
-//        XCTAssertNotNil(userStorage.fetchBloodType())
-//        XCTAssertNotNil(userStorage.fetchLocation())
-//    }
+    func test_registerUser_noReachabilityObjectProvided_returnsErrorMessageAndStoredDataNotStored() {
+        stubNotificationRegister.response = .success
+        
+        let messagingTopicManager = MessagingTopicManager(reachability: nil, messagingTopicSubscriber: stubMessagingSubscriber)
+        let registerUser = RegisterUser(userStorage: userStorage, messagingTopicManager: messagingTopicManager, notificationRegister: stubNotificationRegister, bloodType: expectedBloodType, location: expectedLocation)
+        presenter = RegistrationPresenter(notificationRegister: stubNotificationRegister, messagingSubscriber: stubMessagingSubscriber, registerUser: registerUser)
+
+        let errorMessage = registerUserError()
+        
+        XCTAssertEqual(errorMessage!, "Unable to detect network")
+        XCTAssertNil(userStorage.fetchBloodType())
+        XCTAssertNil(userStorage.fetchLocation())
+    }
+    
+    
+    func test_resetUser_noNetwork_returnsErrorMessageAndStoredDataNotStored() {
+        stubNotificationRegister.response = .success
+        stubReachability.isConnected = false
+        let errorMessage = registerUserError()
+        XCTAssertEqual(errorMessage!, "You must be connected to the network to unsubscribe")
+        XCTAssertNil(userStorage.fetchBloodType())
+        XCTAssertNil(userStorage.fetchLocation())
+    }
 
 
 }

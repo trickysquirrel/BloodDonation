@@ -9,14 +9,80 @@
 import Foundation
 
 
-struct RegisterUser {
+enum RegisterUserError: Error {
+    case cannotDetectNetwork
+    case isNotConnectedToNetwork
+    case notificationError(Error?)
+    case none
+}
+
+
+class RegisterUser {
     
     let userStorage: UserPersistentStorageProtocol
+    let messagingTopicManager: MessagingTopicManager
+    let notificationRegister: NotificationRegisterProtocol
+    let bloodType: BloodType
+    let location: LocationModel
     
-    func register(location: LocationModel, bloodType: BloodType) {
+    init(userStorage: UserPersistentStorageProtocol,
+         messagingTopicManager: MessagingTopicManager,
+         notificationRegister: NotificationRegisterProtocol,
+         bloodType: BloodType,
+         location: LocationModel) {
+        self.userStorage = userStorage
+        self.messagingTopicManager = messagingTopicManager
+        self.notificationRegister = notificationRegister
+        self.bloodType = bloodType
+        self.location = location
+    }
+    
+    
+    func register(completion:@escaping (RegisterUserError)->()) {
+        
+        notificationRegister.register { [weak self] (response) in
+            
+            switch response {
+                
+            case .success:
+                
+                if let error = self?.registerAllTopics() {
+                    switch error {
+                    case .none:
+                        self?.persistAllData()
+                        completion(error)
+                    default:
+                        completion(error)
+                    }
+                }
+            case .error(let error):
+                completion(.notificationError(error))
+                break
+            }
+        }
+    }
+}
+
+// MARK:- Utils
+
+extension RegisterUser {
+    
+    private func persistAllData() {
         userStorage.persistBloodType(bloodType)
         userStorage.persistLocation(location)
     }
     
+    private func registerAllTopics() -> RegisterUserError {
+        let topics = MessagingTopicGenerator().allTopics(location: location, blood: bloodType)
+        let error = messagingTopicManager.subscribe(topics: topics)
+        switch error {
+        case .cannotDetectForReachability:
+            return .cannotDetectNetwork
+        case .notConnectedToNetwork:
+            return .isNotConnectedToNetwork
+        case .none:
+            return .none
+        }
+    }
     
 }

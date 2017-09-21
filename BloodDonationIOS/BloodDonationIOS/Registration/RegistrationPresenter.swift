@@ -22,16 +22,12 @@ enum RegistrationResponse {
 
 class RegistrationPresenter {
     
-    private let bloodType: BloodType
-    private let location: LocationModel
     private let notificationRegister: NotificationRegisterProtocol
     private let messagingSubscriber: MessagingTopicSubscriberProtocol
     private let registerUser: RegisterUser
     
     
-    init(bloodType: BloodType, location: LocationModel, notificationRegister: NotificationRegisterProtocol, messagingSubscriber: MessagingTopicSubscriberProtocol, registerUser: RegisterUser) {
-        self.bloodType = bloodType
-        self.location = location
+    init(notificationRegister: NotificationRegisterProtocol, messagingSubscriber: MessagingTopicSubscriberProtocol, registerUser: RegisterUser) {
         self.notificationRegister = notificationRegister
         self.messagingSubscriber = messagingSubscriber
         self.registerUser = registerUser
@@ -39,21 +35,23 @@ class RegistrationPresenter {
     
     
     func updateView(completion:(RegistrationResponse)->())  {
-        let viewModel = UserDataViewModel(bloodTypeTitle:bloodType.displayString(),
-                                          locationTitle: makeAreaNameTitle(location: location))
+        let viewModel = UserDataViewModel(bloodTypeTitle:registerUser.bloodType.displayString(),
+                                          locationTitle: makeAreaNameTitle(location: registerUser.location))
         completion(.updateView(viewModel))
     }
     
     
     func registerUser(completion:@escaping (RegistrationResponse)->())  {
         
-        notificationRegister.register { [weak self] (response) in            
-            switch response {
-            case .success:
-                self?.registerAllTopics()
-                self?.registerAllUserInfo()
+        registerUser.register { error in
+            switch error {
+            case .cannotDetectNetwork:
+                return completion(.error(Localisations.unsubscribeCannotDetectNetwork.localised()))
+            case .isNotConnectedToNetwork:
+                return completion(.error(Localisations.unsubscribeNoNetwork.localised()))
+            case .none:
                 completion(.registrationSuccess)
-            case .error(let error):
+            case .notificationError(let error):
                 completion(.error(Localisations.localiseError(error)))
             }
         }
@@ -63,16 +61,7 @@ class RegistrationPresenter {
 // MARK: Utils
 
 extension RegistrationPresenter {
-    
-    private func registerAllUserInfo() {
-        registerUser.register(location: location, bloodType: bloodType)
-    }
-    
-    private func registerAllTopics() {
-        let topics = MessagingTopicGenerator().allTopics(location: location, blood: bloodType)
-        messagingSubscriber.subscribe(topics: topics)
-    }
-    
+        
     private func makeAreaNameTitle(location: LocationModel) -> String {
         return location.countryCode.rawValue + ", " + location.area + ", " + location.name
     }

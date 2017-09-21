@@ -48,17 +48,17 @@ struct UserRegistered {
         
         let topics = MessagingTopicGenerator().allTopics(location: storedLocation, blood: storedBloodType)
         
-        if let error = messagingTopicManager.unsubscribe(topics: topics) {
-            switch error {
-            case .cannotDetectForReachability:
-                return .cannotDetectNetwork
-            case .notConnectedToNetwork:
-                return .isNotConnectedToNetwork
-            }
+        let error = messagingTopicManager.unsubscribe(topics: topics)
+
+        switch error {
+        case .cannotDetectForReachability:
+            return .cannotDetectNetwork
+        case .notConnectedToNetwork:
+            return .isNotConnectedToNetwork
+        case .none:
+            userStorage.deleteAllData()
         }
         
-        userStorage.deleteAllData()
-
         return .none
     }
 

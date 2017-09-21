@@ -12,14 +12,17 @@ class UserRegisteredViewController: UIViewController {
 
     private var presenter: UserRegisteredPresenter?
     private var areYouSureAlert: AreYouSureAlert?
+    private var informationAlert: InformationAlert?
     private var unreigisterAction: Action?
     
     
     func configure(presenter: UserRegisteredPresenter,
                    areYouSureAlert: AreYouSureAlert,
+                   informationAlert: InformationAlert?,
                    unreigisterAction: Action) {
         self.presenter = presenter
         self.areYouSureAlert = areYouSureAlert
+        self.informationAlert = informationAlert
         self.unreigisterAction = unreigisterAction
     }
     
@@ -38,10 +41,22 @@ class UserRegisteredViewController: UIViewController {
                                            message: Localisations.alertMsgUnRegister.localised(),
                                            presentingViewController: self,
                                            continueActionSelected: { [weak self] in
-                                            print("let delete some stuff")
-                                            //presnter un register
-                                            self?.unreigisterAction?.perform()
+            self?.resetUser()
         })
     }
+    
+    
+    private func resetUser() {
+        
+        if let errorMessage = self.presenter?.resetUser() {
 
+            self.informationAlert?.displayErrorAlertTitle(title: Localisations.alertTitleError.localised(),
+                                                          message: errorMessage,
+                                                          presentingViewController: self)
+        }
+        else {
+            self.unreigisterAction?.perform()
+        }
+    }
+    
 }

@@ -21,16 +21,18 @@ struct ViewControllerFactory: ViewControllerFactoryProtocol {
     
     let notificationRegister: MessagingRegister
     let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
-    let messagingSubscriber = MessagingTopicSubscriber()
+    let messagingTopicSubscriber = MessagingTopicSubscriber() //TODO remove this
     let userStorage: UserPersistentStorageProtocol
     let userRegistered: UserRegistered
+    let messagingTopicManager: MessagingTopicManager
     
     
     func registeredUser(unreigisterAction: Action) -> UIViewController {
         let areYouSureAlert = AreYouSureAlert()
+        let informationAlert = InformationAlert()
         let presenter = UserRegisteredPresenter(userRegistered: userRegistered)
         let viewController = storyboard.instantiateViewController(withIdentifier: "UserRegisteredViewControllerId") as! UserRegisteredViewController
-        viewController.configure(presenter: presenter, areYouSureAlert: areYouSureAlert, unreigisterAction: unreigisterAction)
+        viewController.configure(presenter: presenter, areYouSureAlert: areYouSureAlert, informationAlert: informationAlert, unreigisterAction: unreigisterAction)
         return viewController
     }
     
@@ -59,8 +61,8 @@ struct ViewControllerFactory: ViewControllerFactoryProtocol {
     
     func register(bloodType: BloodType, location: LocationModel) -> UIViewController {
         let alert = InformationAlert()
-        let registerUser = RegisterUser(userStorage: userStorage)
-        let presenter = RegistrationPresenter(bloodType: bloodType, location: location, notificationRegister: notificationRegister, messagingSubscriber: messagingSubscriber, registerUser: registerUser)
+        let registerUser = RegisterUser(userStorage: userStorage, messagingTopicManager: messagingTopicManager, notificationRegister: notificationRegister, bloodType: bloodType, location: location)
+        let presenter = RegistrationPresenter(notificationRegister: notificationRegister, messagingSubscriber: messagingTopicSubscriber, registerUser: registerUser)
         let viewController = storyboard.instantiateViewController(withIdentifier: "RegisterViewControllerId") as! RegistrationViewController
         viewController.configure(presenter: presenter, alert: alert)
         return viewController
