@@ -52,9 +52,7 @@ class UserRegisteredViewController: UIViewController {
     
     
     private func resetUser() {
-        
         if let errorMessage = self.presenter?.resetUser() {
-
             self.informationAlert?.displayErrorAlertTitle(title: Localisations.alertTitleError.localised(),
                                                           message: errorMessage,
                                                           presentingViewController: self)
