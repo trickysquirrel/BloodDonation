@@ -21,8 +21,11 @@ class RouterTests: XCTestCase {
     override func setUp() {
         super.setUp()
         let stubPersistentStorage = StubPersistentStorage()
+        let stubReachability = StubReachability()
+        let messagingTopicSubscriber = MessagingTopicSubscriber()
+        let messagingTopicManager = MessagingTopicManager(reachability: stubReachability, messagingTopicSubscriber: messagingTopicSubscriber)
         stubUserStorage = UserPersistentStorage(userDefaultsPersistentStorage: stubPersistentStorage)
-        userRegistered = UserRegistered(userStorage: stubUserStorage)
+        userRegistered = UserRegistered(userStorage: stubUserStorage, messagingTopicManager: messagingTopicManager)
         stubViewControllerFactory = StubViewControllerFactory()
         router = Router(window: UIWindow(), viewControllerFactory: stubViewControllerFactory, userRegistered: userRegistered)
     }

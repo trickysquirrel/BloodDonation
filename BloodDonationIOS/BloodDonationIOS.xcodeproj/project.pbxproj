@@ -53,6 +53,9 @@
 		34A1D8C11F723ABD00BF923F /* UserRegisteredPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34A1D8C01F723ABD00BF923F /* UserRegisteredPresenter.swift */; };
 		34A1D8C31F723ADF00BF923F /* UserRegisteredPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34A1D8C21F723ADF00BF923F /* UserRegisteredPresenterTests.swift */; };
 		34A1D8C51F73380B00BF923F /* AreYouSureAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34A1D8C41F73380B00BF923F /* AreYouSureAlert.swift */; };
+		34C075821F73536500B8464C /* MessagingTopicManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C075811F73536500B8464C /* MessagingTopicManager.swift */; };
+		34C075841F73538300B8464C /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C075831F73538300B8464C /* Reachability.swift */; };
+		34C075861F73576B00B8464C /* StubReachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C075851F73576B00B8464C /* StubReachability.swift */; };
 		34C7AD5F1F636905004D1040 /* LoadingIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C7AD5E1F636905004D1040 /* LoadingIndicator.swift */; };
 		34D4FAD01F35542500E63910 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34D4FACF1F35542500E63910 /* AppDelegate.swift */; };
 		34D4FAD51F35542500E63910 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 34D4FAD31F35542500E63910 /* Main.storyboard */; };
@@ -130,6 +133,9 @@
 		34A1D8C01F723ABD00BF923F /* UserRegisteredPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRegisteredPresenter.swift; sourceTree = "<group>"; };
 		34A1D8C21F723ADF00BF923F /* UserRegisteredPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRegisteredPresenterTests.swift; sourceTree = "<group>"; };
 		34A1D8C41F73380B00BF923F /* AreYouSureAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AreYouSureAlert.swift; sourceTree = "<group>"; };
+		34C075811F73536500B8464C /* MessagingTopicManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagingTopicManager.swift; sourceTree = "<group>"; };
+		34C075831F73538300B8464C /* Reachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
+		34C075851F73576B00B8464C /* StubReachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StubReachability.swift; sourceTree = "<group>"; };
 		34C7AD5E1F636905004D1040 /* LoadingIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingIndicator.swift; sourceTree = "<group>"; };
 		34D4FACC1F35542500E63910 /* BloodDonationIOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BloodDonationIOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		34D4FACF1F35542500E63910 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -255,6 +261,7 @@
 				343C78F41F6E5DE10096885B /* StubNotificationRegester.swift */,
 				343C78F81F6E62EC0096885B /* StubMessagingSubscription.swift */,
 				34E7F9051F7228BA00F99657 /* StubViewControllerFactory.swift */,
+				34C075851F73576B00B8464C /* StubReachability.swift */,
 			);
 			path = Stubs;
 			sourceTree = "<group>";
@@ -265,6 +272,7 @@
 				34F4ABEA1F356AAE00A2A882 /* MessagingRegister.swift */,
 				343C78F61F6E5FD90096885B /* MessagingTopicSubscriber.swift */,
 				34E7F9011F72213F00F99657 /* MessagingTopicGenerator.swift */,
+				34C075811F73536500B8464C /* MessagingTopicManager.swift */,
 			);
 			path = Messaging;
 			sourceTree = "<group>";
@@ -378,6 +386,7 @@
 				346F4CE31F59271D00AF1441 /* BloodType.swift */,
 				340DAB2B1F6268A900D5D156 /* Throttle.swift */,
 				3463FEC71F6BCD0B00B3DF02 /* String+UrlEncoding.swift */,
+				34C075831F73538300B8464C /* Reachability.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -640,6 +649,7 @@
 				340DAB2A1F62660700D5D156 /* LocationsPresenterTests.swift in Sources */,
 				34A0933C1F6E198800F81E47 /* RegistrationPresenterTests.swift in Sources */,
 				343C78F51F6E5DE10096885B /* StubNotificationRegester.swift in Sources */,
+				34C075861F73576B00B8464C /* StubReachability.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -651,6 +661,7 @@
 				340DAB311F6270A900D5D156 /* LocationsFetcher.swift in Sources */,
 				34428DB91F59364D0017DFA4 /* UserPersistentStorage.swift in Sources */,
 				341665311F723456002D4960 /* UserRegisteredViewController.swift in Sources */,
+				34C075841F73538300B8464C /* Reachability.swift in Sources */,
 				34A093381F6DE1A600F81E47 /* RegistrationViewController.swift in Sources */,
 				343C78F31F6E1CC10096885B /* LocationModel.swift in Sources */,
 				34F56CC11F6212A0002F3A8F /* BloodTypeSetter.swift in Sources */,
@@ -673,6 +684,7 @@
 				34A0933E1F6E1ADD00F81E47 /* RegistrationPresenter.swift in Sources */,
 				3416652E1F723234002D4960 /* RegisterUser.swift in Sources */,
 				34391DB41F6CC2F100BE4955 /* AllBloodTypesFetcher.swift in Sources */,
+				34C075821F73536500B8464C /* MessagingTopicManager.swift in Sources */,
 				34D4FAD01F35542500E63910 /* AppDelegate.swift in Sources */,
 				34E7F9081F722E5D00F99657 /* UserRegistered.swift in Sources */,
 				346F4CD51F591C9000AF1441 /* BloodTypeCollectionViewController.swift in Sources */,

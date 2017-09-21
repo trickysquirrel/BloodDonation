@@ -15,11 +15,11 @@ class StubMessagingSubscriber: MessagingTopicSubscriberProtocol {
     private(set) var providedTopic: [String] = []
     private(set) var unsubscribeTopic: [String] = []
 
-    func subscribe(topic: String) {
-        providedTopic.append(topic)
+    func subscribe(topics: [String]) {
+        providedTopic.append(contentsOf: topics)
     }
     
-    func unsubscribe(topic: String) {
-        unsubscribeTopic.append(topic)
+    func unsubscribe(topics: [String]) {
+        unsubscribeTopic.append(contentsOf: topics)
     }
 }

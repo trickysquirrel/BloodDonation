@@ -20,3 +20,6 @@
 "LOCALKEY_AlertDismiss" = "Dismiss";
 "LOCALKEY_AlertOk" = "OK";
 "LOCALKEY_AlertCancel" = "Cancel";
+"LOCALKEY_UnsubscribeMissingData" = "missing information, unable to unsubscribe";
+"LOCALKEY_UnsubscribeNoNetwork" = "You must be connected to the network to unsubscribe";
+"LOCALKEY_UnsubscribeCannotDetectNetwork" = "Unable to detect network";

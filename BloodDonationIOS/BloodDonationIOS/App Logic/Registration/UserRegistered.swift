@@ -9,12 +9,57 @@
 import Foundation
 
 
+enum UserUnRegistationError: Error {
+    case cannotDetectNetwork
+    case isNotConnectedToNetwork
+    case notAllInformationStored
+    case none
+}
+
+
 struct UserRegistered {
     
     let userStorage: UserPersistentStorageProtocol
+    let messagingTopicManager: MessagingTopicManager
 
+    
     func hasUserAlreadyRegistered() -> Bool {
         return userStorage.hasPersistedData()
+    }
+
+    
+    func fetchBloodType() -> BloodType? {
+        return userStorage.fetchBloodType()
+    }
+    
+    
+    func fetchLocation() -> LocationModel? {
+        return userStorage.fetchLocation()
+    }
+    
+    
+    func unRegister() -> UserUnRegistationError {
+        
+        guard   let storedBloodType = self.fetchBloodType(),
+                let storedLocation = self.fetchLocation() else {
+                userStorage.deleteAllData()
+                return .notAllInformationStored
+        }
+        
+        let topics = MessagingTopicGenerator().allTopics(location: storedLocation, blood: storedBloodType)
+        
+        if let error = messagingTopicManager.unsubscribe(topics: topics) {
+            switch error {
+            case .cannotDetectForReachability:
+                return .cannotDetectNetwork
+            case .notConnectedToNetwork:
+                return .isNotConnectedToNetwork
+            }
+        }
+        
+        userStorage.deleteAllData()
+
+        return .none
     }
 
 }

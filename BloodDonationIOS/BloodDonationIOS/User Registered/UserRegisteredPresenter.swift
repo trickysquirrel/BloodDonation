@@ -8,33 +8,41 @@
 
 import Foundation
 
+typealias ErrorString = String
 
 class UserRegisteredPresenter {
     
-    private let userStorage: UserPersistentStorageProtocol
-    private let messagingSubscriber: MessagingTopicSubscriberProtocol
+    private let userRegistered: UserRegistered
 
     
-    init(userStorage: UserPersistentStorageProtocol, messagingSubscriber: MessagingTopicSubscriberProtocol) {
-        self.userStorage = userStorage
-        self.messagingSubscriber = messagingSubscriber
+    init(userRegistered: UserRegistered) {
+        self.userRegistered = userRegistered
     }
     
+    
     func updateView(completion:(UserDataViewModel)->()) {
-        let storedBloodType = userStorage.fetchBloodType()
-        let storedLocation = userStorage.fetchLocation()
+        let storedBloodType = userRegistered.fetchBloodType()
+        let storedLocation = userRegistered.fetchLocation()
         completion(UserDataViewModel(bloodTypeTitle: storedBloodTypeTitle(bloodType: storedBloodType),
                                      locationTitle: storedLocationTitle(location: storedLocation)))
     }
     
-    func resetUser() {
-        guard   let storedBloodType = userStorage.fetchBloodType(),
-                let storedLocation = userStorage.fetchLocation() else {
-            return
+    // TODO: change this to Error
+    func resetUser() -> ErrorString? {
+        
+        let error = userRegistered.unRegister()
+        
+        switch error {
+        case .cannotDetectNetwork:
+            return Localisations.unsubscribeCannotDetectNetwork.localised()
+        case .isNotConnectedToNetwork:
+            return Localisations.unsubscribeNoNetwork.localised()
+        case .notAllInformationStored:
+            // do nothing
+            return nil
+        case .none:
+            return nil
         }
-        // TODO: check for network available
-        unSubscribeToAllTopics(location: storedLocation, bloodType: storedBloodType)
-        //userStorage.deleteAllData()
     }
 }
 
@@ -48,7 +56,7 @@ private extension UserRegisteredPresenter {
         }
         return bloodType.displayString()
     }
-
+    
     
     func storedLocationTitle(location: LocationModel?) -> String {
         guard let location = location else {
@@ -60,13 +68,6 @@ private extension UserRegisteredPresenter {
     
     func makeAreaNameTitle(location: LocationModel) -> String {
         return location.countryCode.rawValue + ", " + location.area + ", " + location.name
-    }
-
-    private func unSubscribeToAllTopics(location: LocationModel, bloodType: BloodType) {
-        let topicList = MessagingTopicGenerator().allTopics(location: location, blood: bloodType)
-        for topic in topicList {
-            messagingSubscriber.unsubscribe(topic: topic)
-        }
     }
 
 }

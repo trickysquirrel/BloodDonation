@@ -23,11 +23,12 @@ struct ViewControllerFactory: ViewControllerFactoryProtocol {
     let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
     let messagingSubscriber = MessagingTopicSubscriber()
     let userStorage: UserPersistentStorageProtocol
+    let userRegistered: UserRegistered
     
     
     func registeredUser(unreigisterAction: Action) -> UIViewController {
         let areYouSureAlert = AreYouSureAlert()
-        let presenter = UserRegisteredPresenter(userStorage: userStorage, messagingSubscriber: messagingSubscriber)
+        let presenter = UserRegisteredPresenter(userRegistered: userRegistered)
         let viewController = storyboard.instantiateViewController(withIdentifier: "UserRegisteredViewControllerId") as! UserRegisteredViewController
         viewController.configure(presenter: presenter, areYouSureAlert: areYouSureAlert, unreigisterAction: unreigisterAction)
         return viewController

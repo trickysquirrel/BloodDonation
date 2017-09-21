@@ -24,6 +24,9 @@ enum Localisations: String {
     case alertTitleError = "LOCALKEY_AlertTitleError"
     case alertTitleWarning = "LOCALKEY_AlertTitleWarning";
     case alertMsgUnRegister = "LOCALKEY_AlertMessageUnRegister"
+    case unsubscribeMissingData = "LOCALKEY_UnsubscribeMissingData"
+    case unsubscribeNoNetwork = "LOCALKEY_UnsubscribeNoNetwork"
+    case unsubscribeCannotDetectNetwork = "LOCALKEY_UnsubscribeCannotDetectNetwork"
     
     
     func localised() -> String {

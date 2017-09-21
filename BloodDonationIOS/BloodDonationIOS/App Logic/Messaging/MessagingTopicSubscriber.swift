@@ -11,17 +11,21 @@ import FirebaseMessaging
 
 
 protocol MessagingTopicSubscriberProtocol {
-    func subscribe(topic: String)
-    func unsubscribe(topic: String)
+    func subscribe(topics: [String])
+    func unsubscribe(topics: [String])
 }
 
 class MessagingTopicSubscriber: MessagingTopicSubscriberProtocol {
     
-    func subscribe(topic: String) {
-        Messaging.messaging().subscribe(toTopic: topic)
+    func subscribe(topics: [String]) {
+        topics.forEach { topic in
+            Messaging.messaging().subscribe(toTopic: topic)
+        }
     }
     
-    func unsubscribe(topic: String) {
-        Messaging.messaging().unsubscribe(fromTopic: topic)
+    func unsubscribe(topics: [String]) {
+        topics.forEach { topic in
+            Messaging.messaging().unsubscribe(fromTopic: topic)
+        }
     }
 }

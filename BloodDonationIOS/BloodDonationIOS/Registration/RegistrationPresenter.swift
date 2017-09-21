@@ -69,10 +69,8 @@ extension RegistrationPresenter {
     }
     
     private func registerAllTopics() {
-        let topicList = MessagingTopicGenerator().allTopics(location: location, blood: bloodType)
-        for topic in topicList {
-            messagingSubscriber.subscribe(topic: topic)
-        }
+        let topics = MessagingTopicGenerator().allTopics(location: location, blood: bloodType)
+        messagingSubscriber.subscribe(topics: topics)
     }
     
     private func makeAreaNameTitle(location: LocationModel) -> String {

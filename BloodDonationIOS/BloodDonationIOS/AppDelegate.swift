@@ -33,10 +33,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let userDefaultsStorage = UserDefaultsPersistentStorage(userDefaults: UserDefaults.standard)
         let userStorage = UserPersistentStorage(userDefaultsPersistentStorage: userDefaultsStorage)
+        let reachability = Reachability()
+        let messagingTopicSubscriber = MessagingTopicSubscriber()
+        let messagingTopicManager = MessagingTopicManager(reachability: reachability, messagingTopicSubscriber: messagingTopicSubscriber)
+        let userRegistered = UserRegistered(userStorage: userStorage, messagingTopicManager: messagingTopicManager)
 
-        let viewControllerFactory = ViewControllerFactory(notificationRegister: notificationRegister, userStorage: userStorage)
+        let viewControllerFactory = ViewControllerFactory(notificationRegister: notificationRegister, userStorage: userStorage, userRegistered: userRegistered)
         
-        let userRegistered = UserRegistered(userStorage: userStorage)
         
         router = Router(window: window, viewControllerFactory: viewControllerFactory, userRegistered: userRegistered)
         router?.displayFirstViewController()
