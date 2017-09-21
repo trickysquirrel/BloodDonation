@@ -29,10 +29,7 @@ class UserRegisteredViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        presenter?.updateView(completion: { [weak self] viewModel in
-            guard let registrationView = self?.view as? RegistrationView else { return }
-            registrationView.configure(viewModel: viewModel)
-        })
+        updateView()
     }
     
     
@@ -42,6 +39,14 @@ class UserRegisteredViewController: UIViewController {
                                            presentingViewController: self,
                                            continueActionSelected: { [weak self] in
             self?.resetUser()
+        })
+    }
+    
+    
+    private func updateView() {
+        presenter?.updateView(completion: { [weak self] viewModel in
+            guard let registrationView = self?.view as? RegistrationView else { return }
+            registrationView.configure(viewModel: viewModel)
         })
     }
     
