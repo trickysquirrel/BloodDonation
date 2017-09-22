@@ -60,6 +60,10 @@ class LocationsPresenter {
             }
         }
     }
+    
+    func cancelSearchingForLocations() {
+        locationFetcher.cancel()
+    }
 }
 
 // MARK: Responses

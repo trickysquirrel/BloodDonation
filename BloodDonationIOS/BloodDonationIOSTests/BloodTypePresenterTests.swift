@@ -78,6 +78,7 @@ extension BloodTypePresenterTests {
     }
      
     // This should be on the view controller
+    // really need to add in view controller acceptance tests to capture some of the light logic going on in there
     //func test_onCellSelection_passesCorrectBloodTypeToAction() {
         // TODO: create fake data source, for event to occur and check action is given correct value
     //}

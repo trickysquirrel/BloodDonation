@@ -254,7 +254,7 @@ extension LocationsPresenterTests {
 
 }
 
-// MARK:- onEventShowLoading
+// MARK:- search
 
 extension LocationsPresenterTests {
     
@@ -313,5 +313,22 @@ extension LocationsPresenterTests {
     }
 
     
+    func test_search_performTwoSearches_cancelsThePreviousRequest() {
+        presenter.search(string:"abc")
+        presenter.search(string:"abcd")
+        XCTAssertTrue(stubJsonNetworkRequester.didCancel!)
+    }
+
+    
 }
 
+// MARK:- onEventShowLoading
+
+extension LocationsPresenterTests {
+    
+    func test_cancelSearchingForLocations_requestsToCancelNetworkRequest() {
+        presenter.cancelSearchingForLocations()
+        XCTAssertTrue(stubJsonNetworkRequester.didCancel!)
+    }
+    
+}

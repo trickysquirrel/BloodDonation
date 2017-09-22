@@ -17,6 +17,7 @@ enum JsonRequesterResponse {
 
 protocol JsonRequester {
     func request(urlString: String, completion:@escaping (JsonRequesterResponse)->())
+    func cancel()
 }
 
 
@@ -26,8 +27,6 @@ class JsonNetworkRequester : JsonRequester {
     
     
     func request(urlString: String, completion:@escaping (JsonRequesterResponse)->()) {
-        
-        alamofireRequest?.cancel()
         
         alamofireRequest = Alamofire.request(urlString).validate().responseJSON { response in
             
@@ -47,6 +46,10 @@ class JsonNetworkRequester : JsonRequester {
                 // error Domain=NSURLErrorDomain Code=-999 "cancelled" UserInfo={NSErrorFailingURLStringKey=http://api.geonames.org/searchJSON?u
             }
         }
+    }
+    
+    func cancel() {
+        alamofireRequest?.cancel()
     }
 
 }

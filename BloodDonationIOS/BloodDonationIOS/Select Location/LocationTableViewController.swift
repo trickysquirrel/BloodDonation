@@ -16,7 +16,6 @@ class LocationTableViewController: UITableViewController {
     private var presenter: LocationsPresenter?
     private var loadingIndicator: LoadingIndicatorProtocol?
     private var showRegistrationAction: ShowRegistrationAction?
-    
 
     @IBOutlet weak var searchBar: SearchBar!
     
@@ -36,6 +35,12 @@ class LocationTableViewController: UITableViewController {
         super.viewDidLoad()
         observeChanges()
         dataSource?.configure(tableView: tableView)
+    }
+    
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        presenter?.cancelSearchingForLocations()
     }
     
     

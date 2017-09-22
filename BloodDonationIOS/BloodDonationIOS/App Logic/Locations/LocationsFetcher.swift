@@ -24,6 +24,7 @@ class LocationFetcher {
     }
     
     func search(string: String, completion:@escaping completionBlock) {
+        jsonRequester.cancel()
         jsonRequester.request(urlString: makeSearchURLString(string:string)) { [weak self] response in
             switch response {
             case .success(let dictionary):
@@ -35,6 +36,15 @@ class LocationFetcher {
             }
         }
     }
+    
+    func cancel() {
+        jsonRequester.cancel()
+    }
+}
+
+// MARK: Utils
+
+extension LocationFetcher {
     
     private func makeSearchURLString(string: String) -> String {
         return String(format: "http://api.geonames.org/searchJSON?username=richardmoult&country=AU&featureClass=P&name_startsWith=%@", string.stringByAddingPercentEncodingForRFC3986())

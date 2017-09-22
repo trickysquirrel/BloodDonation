@@ -52,7 +52,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 }
 
-// MARK - notification registration
+// MARK - push notification registration
 
 extension AppDelegate {
     

@@ -21,7 +21,7 @@ struct ViewControllerFactory: ViewControllerFactoryProtocol {
     
     let notificationRegister: MessagingRegister
     let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
-    let messagingTopicSubscriber = MessagingTopicSubscriber() //TODO remove this
+    let messagingTopicSubscriber = MessagingTopicSubscriber()
     let userStorage: UserPersistentStorageProtocol
     let userRegistered: UserRegistered
     let messagingTopicManager: MessagingTopicManager
