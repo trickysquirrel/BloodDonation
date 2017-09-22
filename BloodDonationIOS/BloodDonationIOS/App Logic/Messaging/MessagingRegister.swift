@@ -8,7 +8,7 @@ import UIKit
 import FirebaseMessaging
 
 
-protocol NotificationRegisterProtocol {
+protocol MessagingRegisterProtocol {
     typealias ResponseBlock = (NotificationRegisterResponse)->()
     func register(completion:@escaping (NotificationRegisterResponse)->())
 }
@@ -49,7 +49,7 @@ fileprivate class Registering {
 }
 
 
-class MessagingRegister: NSObject, NotificationRegisterProtocol {
+class MessagingRegister: NSObject, MessagingRegisterProtocol {
     
     private weak var application: UIApplication?
     private var completionBlock: ResponseBlock?
@@ -115,11 +115,7 @@ extension MessagingRegister: MessagingDelegate {
     }
 }
 
-
-
-
-
-
+// TODO: need to work on this extension
 
 extension MessagingRegister : UNUserNotificationCenterDelegate {
     

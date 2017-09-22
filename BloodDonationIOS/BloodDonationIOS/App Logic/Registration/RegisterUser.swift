@@ -21,13 +21,13 @@ class RegisterUser {
     
     let userStorage: UserPersistentStorageProtocol
     let messagingTopicManager: MessagingTopicManager
-    let notificationRegister: NotificationRegisterProtocol
+    let notificationRegister: MessagingRegisterProtocol
     let bloodType: BloodType
     let location: LocationModel
     
     init(userStorage: UserPersistentStorageProtocol,
          messagingTopicManager: MessagingTopicManager,
-         notificationRegister: NotificationRegisterProtocol,
+         notificationRegister: MessagingRegisterProtocol,
          bloodType: BloodType,
          location: LocationModel) {
         self.userStorage = userStorage

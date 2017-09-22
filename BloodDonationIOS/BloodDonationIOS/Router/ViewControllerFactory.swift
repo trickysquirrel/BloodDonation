@@ -19,12 +19,13 @@ protocol ViewControllerFactoryProtocol {
 
 struct ViewControllerFactory: ViewControllerFactoryProtocol {
     
-    let notificationRegister: MessagingRegister
+    let messagingRegister: MessagingRegisterProtocol
     let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
     let messagingTopicSubscriber = MessagingTopicSubscriber()
     let userStorage: UserPersistentStorageProtocol
     let userRegistered: UserRegistered
     let messagingTopicManager: MessagingTopicManager
+    let reporterFactory: ReporterFactory
     
     
     func registeredUser(unreigisterAction: Action) -> UIViewController {
@@ -42,7 +43,8 @@ struct ViewControllerFactory: ViewControllerFactoryProtocol {
         let allBloodTypesFetcher = AllBloodTypesFetcher()
         let presenter = BloodTypePresenter(allBloodTypesFetcher: allBloodTypesFetcher)
         let dataSource = CollectionViewDataSource<BloodTypeCollectionViewCell,BloodTypeViewModel>()
-        viewController.configure(presenter: presenter, dataSource: dataSource, showLocationAction: showLocationAction)
+        let reporter = reporterFactory.makeSelectBloodReporter()
+        viewController.configure(presenter: presenter, dataSource: dataSource, showLocationAction: showLocationAction, reporter: reporter)
         return viewController
     }
     
@@ -61,8 +63,8 @@ struct ViewControllerFactory: ViewControllerFactoryProtocol {
     
     func register(bloodType: BloodType, location: LocationModel, showUserRegisteredAction: Action) -> UIViewController {
         let alert = InformationAlert()
-        let registerUser = RegisterUser(userStorage: userStorage, messagingTopicManager: messagingTopicManager, notificationRegister: notificationRegister, bloodType: bloodType, location: location)
-        let presenter = RegistrationPresenter(notificationRegister: notificationRegister, messagingSubscriber: messagingTopicSubscriber, registerUser: registerUser)
+        let registerUser = RegisterUser(userStorage: userStorage, messagingTopicManager: messagingTopicManager, notificationRegister: messagingRegister, bloodType: bloodType, location: location)
+        let presenter = RegistrationPresenter(notificationRegister: messagingRegister, messagingSubscriber: messagingTopicSubscriber, registerUser: registerUser)
         let viewController = storyboard.instantiateViewController(withIdentifier: "RegisterViewControllerId") as! RegistrationViewController
         viewController.configure(presenter: presenter, alert: alert, showUserRegisteredAction: showUserRegisteredAction)
         return viewController

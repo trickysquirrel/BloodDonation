@@ -37,8 +37,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let messagingTopicSubscriber = MessagingTopicSubscriber()
         let messagingTopicManager = MessagingTopicManager(reachability: reachability, messagingTopicSubscriber: messagingTopicSubscriber)
         let userRegistered = UserRegistered(userStorage: userStorage, messagingTopicManager: messagingTopicManager)
+        
+        let analyticsReporter = AnalyticsReporter()
+        let reporterFactory = ReporterFactory(analyticsReporter: analyticsReporter)
 
-        let viewControllerFactory = ViewControllerFactory(notificationRegister: notificationRegister, userStorage: userStorage, userRegistered: userRegistered, messagingTopicManager: messagingTopicManager)
+        let viewControllerFactory = ViewControllerFactory(messagingRegister: notificationRegister,
+                                                          userStorage: userStorage,
+                                                          userRegistered: userRegistered,
+                                                          messagingTopicManager: messagingTopicManager,
+                                                          reporterFactory: reporterFactory)
         
 //        userStorage.persistBloodType(.abNegative)
 //        userStorage.persistLocation(LocationModel(name: "a", area: "b", countryCode: .AU))

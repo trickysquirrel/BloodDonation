@@ -23,6 +23,10 @@ struct MessagingTopicGenerator {
             ]
     }
     
+    func fullTopic(location: LocationModel, blood: BloodType) -> String {
+        return makeAreaNameBloodTopic(location: location, bloodType: blood)
+    }
+    
 }
 
 // MARK: Utils

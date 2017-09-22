@@ -15,15 +15,18 @@ class BloodTypeCollectionViewController: UICollectionViewController {
     private var dataSource: CollectionViewDataSource<BloodTypeCollectionViewCell,BloodTypeViewModel>?
     private var presenter: BloodTypePresenter?
     private var showLocationAction: ShowLocationAction?
+    private var reporter: SelectBloodReporter?
 
     
     func configure(presenter: BloodTypePresenter,
                    dataSource: CollectionViewDataSource<BloodTypeCollectionViewCell,BloodTypeViewModel>,
-                   showLocationAction: ShowLocationAction) {
+                   showLocationAction: ShowLocationAction,
+                   reporter: SelectBloodReporter) {
         self.title = Localisations.selectBloodTypeTitle.localised()
         self.presenter = presenter
         self.dataSource = dataSource
         self.showLocationAction = showLocationAction
+        self.reporter = reporter
         dataSource.configure(collectionView: self.collectionView)
         observeChanges()
     }
@@ -31,6 +34,7 @@ class BloodTypeCollectionViewController: UICollectionViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        reporter?.viewShown()
         presenter?.updateView()
     }
     

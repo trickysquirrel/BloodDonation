@@ -22,12 +22,12 @@ enum RegistrationResponse {
 
 class RegistrationPresenter {
     
-    private let notificationRegister: NotificationRegisterProtocol
+    private let notificationRegister: MessagingRegisterProtocol
     private let messagingSubscriber: MessagingTopicSubscriberProtocol
     private let registerUser: RegisterUser
     
     
-    init(notificationRegister: NotificationRegisterProtocol, messagingSubscriber: MessagingTopicSubscriberProtocol, registerUser: RegisterUser) {
+    init(notificationRegister: MessagingRegisterProtocol, messagingSubscriber: MessagingTopicSubscriberProtocol, registerUser: RegisterUser) {
         self.notificationRegister = notificationRegister
         self.messagingSubscriber = messagingSubscriber
         self.registerUser = registerUser

@@ -15,7 +15,7 @@ class RegistrationPresenterTests: XCTestCase {
     var expectedBloodType: BloodType!
     var expectedLocation: LocationModel!
     var presenter: RegistrationPresenter!
-    var stubNotificationRegister: StubNotificationRegister!
+    var stubMessagingRegister: StubMessagingRegister!
     var stubMessagingSubscriber: StubMessagingSubscriber!
     var stubPersistenceStorage: StubPersistentStorage!
     var registerUser: RegisterUser!
@@ -27,13 +27,13 @@ class RegistrationPresenterTests: XCTestCase {
         stubPersistenceStorage = StubPersistentStorage()
         expectedBloodType = BloodType.aNegative
         expectedLocation = LocationModel(name: "Eltham North", area:"New South Wales", countryCode: .AU)
-        stubNotificationRegister = StubNotificationRegister()
+        stubMessagingRegister = StubMessagingRegister()
         stubMessagingSubscriber = StubMessagingSubscriber()
         userStorage = UserPersistentStorage(userDefaultsPersistentStorage: stubPersistenceStorage)
         stubReachability = StubReachability()
         let messagingTopicManager = MessagingTopicManager(reachability: stubReachability, messagingTopicSubscriber: stubMessagingSubscriber)
-        registerUser = RegisterUser(userStorage: userStorage, messagingTopicManager: messagingTopicManager, notificationRegister: stubNotificationRegister, bloodType: expectedBloodType, location: expectedLocation)
-        presenter = RegistrationPresenter(notificationRegister: stubNotificationRegister, messagingSubscriber: stubMessagingSubscriber, registerUser: registerUser)
+        registerUser = RegisterUser(userStorage: userStorage, messagingTopicManager: messagingTopicManager, notificationRegister: stubMessagingRegister, bloodType: expectedBloodType, location: expectedLocation)
+        presenter = RegistrationPresenter(notificationRegister: stubMessagingRegister, messagingSubscriber: stubMessagingSubscriber, registerUser: registerUser)
     }
     
     override func tearDown() {
@@ -42,7 +42,7 @@ class RegistrationPresenterTests: XCTestCase {
         registerUser = nil
         expectedLocation = nil
         expectedBloodType = nil
-        stubNotificationRegister = nil
+        stubMessagingRegister = nil
         stubMessagingSubscriber = nil
         stubPersistenceStorage = nil
         presenter = nil
@@ -108,28 +108,28 @@ extension RegistrationPresenterTests {
     func test_registerUser_notifiationRegistrationError_returnErrorLocalisedString() {
         let expectedLocalisedErrorString = "expected"
         let error = NSError(domain: "", code: 0, userInfo: [NSLocalizedDescriptionKey:expectedLocalisedErrorString])
-        stubNotificationRegister.response = .error(error)
+        stubMessagingRegister.response = .error(error)
         let errorMessage = registerUserError()
         XCTAssertEqual(errorMessage, expectedLocalisedErrorString)
     }
 
     
     func test_registerUser_notifiationRegistrationErrorNil_returnDefaultErrorString() {
-        stubNotificationRegister.response = .error(nil)
+        stubMessagingRegister.response = .error(nil)
         let errorMessage = registerUserError()
         XCTAssertEqual(errorMessage, "unknown error please try again")
     }
     
 
     func test_registerUser_notigiationRegistrationError_doesNotUpdateUserPersistenceData() {
-        stubNotificationRegister.response = .error(nil)
+        stubMessagingRegister.response = .error(nil)
         _ = registerUserError()
         XCTAssertEqual(stubPersistenceStorage.dictionaryStorage.count, 0)
     }
 
     
     func test_registerUser_notifiationRegistrationSuccess_registersForLocationBloodTopicAndAllDevices() {
-        stubNotificationRegister.response = .success
+        stubMessagingRegister.response = .success
         _ = registerUserError()
         XCTAssertEqual(stubMessagingSubscriber.providedTopic.count, 4)
         XCTAssertEqual(stubMessagingSubscriber.providedTopic[0], "au_new.south.wales_eltham.north_a-")
@@ -140,14 +140,14 @@ extension RegistrationPresenterTests {
 
     
     func test_registerUser_notifiationRegistrationSuccess_registerTopicSuccess_returnsSuccess() {
-        stubNotificationRegister.response = .success
+        stubMessagingRegister.response = .success
         let success = registerUserSuccess()
         XCTAssertTrue(success)
     }
 
     
     func test_registerUser_notifiationRegistrationSuccess_registerTopicSuccess_updateUserPersistenceData() {
-        stubNotificationRegister.response = .success
+        stubMessagingRegister.response = .success
         _ = registerUserSuccess()
         XCTAssertEqual(stubPersistenceStorage.dictionaryStorage.count, 4)
         XCTAssertEqual(stubPersistenceStorage.dictionaryStorage["UserDefaultsBloodKey"] as! String, "A-")
@@ -158,11 +158,11 @@ extension RegistrationPresenterTests {
     
     
     func test_registerUser_noReachabilityObjectProvided_returnsErrorMessageAndStoredDataNotStored() {
-        stubNotificationRegister.response = .success
+        stubMessagingRegister.response = .success
         
         let messagingTopicManager = MessagingTopicManager(reachability: nil, messagingTopicSubscriber: stubMessagingSubscriber)
-        let registerUser = RegisterUser(userStorage: userStorage, messagingTopicManager: messagingTopicManager, notificationRegister: stubNotificationRegister, bloodType: expectedBloodType, location: expectedLocation)
-        presenter = RegistrationPresenter(notificationRegister: stubNotificationRegister, messagingSubscriber: stubMessagingSubscriber, registerUser: registerUser)
+        let registerUser = RegisterUser(userStorage: userStorage, messagingTopicManager: messagingTopicManager, notificationRegister: stubMessagingRegister, bloodType: expectedBloodType, location: expectedLocation)
+        presenter = RegistrationPresenter(notificationRegister: stubMessagingRegister, messagingSubscriber: stubMessagingSubscriber, registerUser: registerUser)
 
         let errorMessage = registerUserError()
         
@@ -173,7 +173,7 @@ extension RegistrationPresenterTests {
     
     
     func test_resetUser_noNetwork_returnsErrorMessageAndStoredDataNotStored() {
-        stubNotificationRegister.response = .success
+        stubMessagingRegister.response = .success
         stubReachability.isConnected = false
         let errorMessage = registerUserError()
         XCTAssertEqual(errorMessage!, "You must be connected to the network to unsubscribe")

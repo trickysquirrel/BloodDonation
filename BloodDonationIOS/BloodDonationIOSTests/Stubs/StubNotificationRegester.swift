@@ -10,7 +10,7 @@ import Foundation
 @testable import BloodDonationIOS
 
 
-class StubNotificationRegister: NotificationRegisterProtocol {
+class StubMessagingRegister: MessagingRegisterProtocol {
     
     public var response: NotificationRegisterResponse?
     
