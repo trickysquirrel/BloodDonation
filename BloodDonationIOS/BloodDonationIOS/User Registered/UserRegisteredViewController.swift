@@ -14,16 +14,19 @@ class UserRegisteredViewController: UIViewController {
     private var areYouSureAlert: AreYouSureAlert?
     private var informationAlert: InformationAlert?
     private var unreigisterAction: Action?
+    private var reporter: UserRegisteredReporter?
     
     
     func configure(presenter: UserRegisteredPresenter,
                    areYouSureAlert: AreYouSureAlert,
                    informationAlert: InformationAlert?,
-                   unreigisterAction: Action) {
+                   unreigisterAction: Action,
+                   reporter: UserRegisteredReporter) {
         self.presenter = presenter
         self.areYouSureAlert = areYouSureAlert
         self.informationAlert = informationAlert
         self.unreigisterAction = unreigisterAction
+        self.reporter = reporter
     }
     
     
@@ -32,6 +35,12 @@ class UserRegisteredViewController: UIViewController {
         updateView()
     }
     
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        reporter?.viewShown()
+    }
+
     
     @IBAction func userDidSelectToResetData() {
         areYouSureAlert?.displayAlertTitle(title: Localisations.alertTitleWarning.localised(),

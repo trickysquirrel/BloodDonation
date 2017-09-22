@@ -39,6 +39,10 @@
 		34428DBD1F593A6A0017DFA4 /* BloodType+Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34428DBC1F593A6A0017DFA4 /* BloodType+Storage.swift */; };
 		34428DBF1F593A9C0017DFA4 /* UserDefaultsStorageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34428DBE1F593A9C0017DFA4 /* UserDefaultsStorageTests.swift */; };
 		34428DC21F593B560017DFA4 /* StubPersistentStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34428DC11F593B560017DFA4 /* StubPersistentStorage.swift */; };
+		3451C1B71F74D69A00F727A3 /* SelectLocationAcceptanceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3451C1B61F74D69A00F727A3 /* SelectLocationAcceptanceTests.swift */; };
+		3451C1B91F74D6DA00F727A3 /* AcceptanceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3451C1B81F74D6DA00F727A3 /* AcceptanceTest.swift */; };
+		3451C1BB1F74DA0100F727A3 /* RegisterAcceptanceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3451C1BA1F74DA0100F727A3 /* RegisterAcceptanceTests.swift */; };
+		3451C1BD1F74DB3500F727A3 /* UserRegisteredAcceptanceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3451C1BC1F74DB3500F727A3 /* UserRegisteredAcceptanceTests.swift */; };
 		3454B3F71F74C53F00FC5B59 /* AnalyticsReporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3454B3F61F74C53F00FC5B59 /* AnalyticsReporter.swift */; };
 		3463FEC81F6BCD0B00B3DF02 /* String+UrlEncoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3463FEC71F6BCD0B00B3DF02 /* String+UrlEncoding.swift */; };
 		346F4CD51F591C9000AF1441 /* BloodTypeCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 346F4CD41F591C9000AF1441 /* BloodTypeCollectionViewController.swift */; };
@@ -127,6 +131,10 @@
 		34428DBC1F593A6A0017DFA4 /* BloodType+Storage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BloodType+Storage.swift"; sourceTree = "<group>"; };
 		34428DBE1F593A9C0017DFA4 /* UserDefaultsStorageTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsStorageTests.swift; sourceTree = "<group>"; };
 		34428DC11F593B560017DFA4 /* StubPersistentStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StubPersistentStorage.swift; sourceTree = "<group>"; };
+		3451C1B61F74D69A00F727A3 /* SelectLocationAcceptanceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectLocationAcceptanceTests.swift; sourceTree = "<group>"; };
+		3451C1B81F74D6DA00F727A3 /* AcceptanceTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcceptanceTest.swift; sourceTree = "<group>"; };
+		3451C1BA1F74DA0100F727A3 /* RegisterAcceptanceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterAcceptanceTests.swift; sourceTree = "<group>"; };
+		3451C1BC1F74DB3500F727A3 /* UserRegisteredAcceptanceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRegisteredAcceptanceTests.swift; sourceTree = "<group>"; };
 		3454B3F61F74C53F00FC5B59 /* AnalyticsReporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsReporter.swift; sourceTree = "<group>"; };
 		3463FEC71F6BCD0B00B3DF02 /* String+UrlEncoding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+UrlEncoding.swift"; sourceTree = "<group>"; };
 		346F4CD41F591C9000AF1441 /* BloodTypeCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BloodTypeCollectionViewController.swift; sourceTree = "<group>"; };
@@ -266,7 +274,11 @@
 		343E0B021F74CDE100BF9B3F /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				3451C1B81F74D6DA00F727A3 /* AcceptanceTest.swift */,
 				343E0B031F74CE0900BF9B3F /* SelectBloodTypeAcceptanceTests.swift */,
+				3451C1B61F74D69A00F727A3 /* SelectLocationAcceptanceTests.swift */,
+				3451C1BA1F74DA0100F727A3 /* RegisterAcceptanceTests.swift */,
+				3451C1BC1F74DB3500F727A3 /* UserRegisteredAcceptanceTests.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -696,19 +708,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3451C1B91F74D6DA00F727A3 /* AcceptanceTest.swift in Sources */,
 				34E7F9041F7227DC00F99657 /* RouterTests.swift in Sources */,
 				34A1D8C31F723ADF00BF923F /* UserRegisteredPresenterTests.swift in Sources */,
 				34428DBF1F593A9C0017DFA4 /* UserDefaultsStorageTests.swift in Sources */,
 				34E7F9061F7228BA00F99657 /* StubViewControllerFactory.swift in Sources */,
+				3451C1BD1F74DB3500F727A3 /* UserRegisteredAcceptanceTests.swift in Sources */,
 				343E0B061F74CF1800BF9B3F /* StubAnalyticsReporter.swift in Sources */,
 				34428DC21F593B560017DFA4 /* StubPersistentStorage.swift in Sources */,
 				340DAB351F62744800D5D156 /* StubJsonNetworkRequester.swift in Sources */,
 				34428DBB1F5938D10017DFA4 /* BloodTypeStorageTests.swift in Sources */,
 				343C78F91F6E62EC0096885B /* StubMessagingSubscription.swift in Sources */,
+				3451C1B71F74D69A00F727A3 /* SelectLocationAcceptanceTests.swift in Sources */,
 				34428DB21F59310A0017DFA4 /* BloodTypePresenterTests.swift in Sources */,
 				343E0B041F74CE0900BF9B3F /* SelectBloodTypeAcceptanceTests.swift in Sources */,
 				340DAB2A1F62660700D5D156 /* LocationsPresenterTests.swift in Sources */,
 				34A0933C1F6E198800F81E47 /* RegistrationPresenterTests.swift in Sources */,
+				3451C1BB1F74DA0100F727A3 /* RegisterAcceptanceTests.swift in Sources */,
 				343C78F51F6E5DE10096885B /* StubNotificationRegester.swift in Sources */,
 				34C075861F73576B00B8464C /* StubReachability.swift in Sources */,
 			);

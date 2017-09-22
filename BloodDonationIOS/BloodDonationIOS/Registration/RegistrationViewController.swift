@@ -13,17 +13,26 @@ class RegistrationViewController: UIViewController {
     private var presenter: RegistrationPresenter?
     private var alert: InformationAlert?
     private var showUserRegisteredAction: Action?
+    private var reporter: RegisterReporter?
     
-    func configure(presenter: RegistrationPresenter, alert: InformationAlert, showUserRegisteredAction: Action?) {
+    
+    func configure(presenter: RegistrationPresenter, alert: InformationAlert, showUserRegisteredAction: Action?, reporter: RegisterReporter) {
         self.presenter = presenter
         self.alert = alert
         self.showUserRegisteredAction = showUserRegisteredAction
+        self.reporter = reporter
     }
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         updateView()
+    }
+
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        reporter?.viewShown()
     }
     
     

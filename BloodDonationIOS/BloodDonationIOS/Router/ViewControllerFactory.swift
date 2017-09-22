@@ -33,7 +33,8 @@ struct ViewControllerFactory: ViewControllerFactoryProtocol {
         let informationAlert = InformationAlert()
         let presenter = UserRegisteredPresenter(userRegistered: userRegistered)
         let viewController = storyboard.instantiateViewController(withIdentifier: "UserRegisteredViewControllerId") as! UserRegisteredViewController
-        viewController.configure(presenter: presenter, areYouSureAlert: areYouSureAlert, informationAlert: informationAlert, unreigisterAction: unreigisterAction)
+        let reporter = reporterFactory.makeUserRegisteredReporter(location: userStorage.fetchLocation(), bloodType: userStorage.fetchBloodType())
+        viewController.configure(presenter: presenter, areYouSureAlert: areYouSureAlert, informationAlert: informationAlert, unreigisterAction: unreigisterAction, reporter: reporter)
         return viewController
     }
     
@@ -56,7 +57,8 @@ struct ViewControllerFactory: ViewControllerFactoryProtocol {
         let dataSource = TableViewDataSource<UITableViewCell, LocationViewModel>()
         let loadingIndicator = LoadingIndicator()        
         let viewController = storyboard.instantiateViewController(withIdentifier: "LocationTableViewControllerId") as! LocationTableViewController
-        viewController.configure(presenter: presenter, dataSource: dataSource, loadingIndicator: loadingIndicator, showRegistrationAction: showRegistrationAction)
+        let reporter = reporterFactory.makeSelectLocationReporter()
+        viewController.configure(presenter: presenter, dataSource: dataSource, loadingIndicator: loadingIndicator, showRegistrationAction: showRegistrationAction, reporter: reporter)
         return viewController
     }
     
@@ -66,7 +68,8 @@ struct ViewControllerFactory: ViewControllerFactoryProtocol {
         let registerUser = RegisterUser(userStorage: userStorage, messagingTopicManager: messagingTopicManager, notificationRegister: messagingRegister, bloodType: bloodType, location: location)
         let presenter = RegistrationPresenter(notificationRegister: messagingRegister, messagingSubscriber: messagingTopicSubscriber, registerUser: registerUser)
         let viewController = storyboard.instantiateViewController(withIdentifier: "RegisterViewControllerId") as! RegistrationViewController
-        viewController.configure(presenter: presenter, alert: alert, showUserRegisteredAction: showUserRegisteredAction)
+        let reporter = reporterFactory.makeRegisterReporterReporter(location: location, bloodType: bloodType)
+        viewController.configure(presenter: presenter, alert: alert, showUserRegisteredAction: showUserRegisteredAction, reporter: reporter)
         return viewController
     }
 }

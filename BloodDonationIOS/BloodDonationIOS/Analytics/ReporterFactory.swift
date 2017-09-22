@@ -25,7 +25,7 @@ struct ReporterFactory {
         return RegisterReporter(analyticsReporter: analyticsReporter, location: location, bloodType: bloodType)
     }
 
-    func makeUserRegisteredReporter(location: LocationModel, bloodType: BloodType) -> UserRegisteredReporter {
+    func makeUserRegisteredReporter(location: LocationModel?, bloodType: BloodType?) -> UserRegisteredReporter {
         return UserRegisteredReporter(analyticsReporter: analyticsReporter, location: location, bloodType: bloodType)
     }
 }

@@ -10,65 +10,40 @@ import XCTest
 @testable import BloodDonationIOS
 
 
-class SelectBloodTypeAcceptanceTests: XCTestCase {
-    
-    var viewControllerFactory: ViewControllerFactory!
-    var stubAnalyticsReporting: StubAnalyticsReporting!
-    
-    override func setUp() {
-        super.setUp()
-        
-        let stubMessagingRegister = StubMessagingRegister()
-        let stubPersistentStorage = StubPersistentStorage()
-        let stubReachability = StubReachability()
-        stubAnalyticsReporting = StubAnalyticsReporting()
-        let stubMessagingSubscriber = StubMessagingSubscriber()
+//  Not really acceptance tests yet,
+//  need to be able to....
+//  test number of objects shown to user
+//  selecting one of them results in a call to action etc
+//  show alerts in correct conditions if there are any
 
-        let userStorage = UserPersistentStorage(userDefaultsPersistentStorage: stubPersistentStorage)
-        let messagingTopicManager = MessagingTopicManager(reachability: stubReachability, messagingTopicSubscriber: stubMessagingSubscriber)
-        let userRegistered = UserRegistered(userStorage: userStorage, messagingTopicManager: messagingTopicManager)
-        let reporterFactory = ReporterFactory(analyticsReporter: stubAnalyticsReporting)
-        
-        viewControllerFactory = ViewControllerFactory(messagingRegister: stubMessagingRegister, userStorage: userStorage, userRegistered: userRegistered, messagingTopicManager: messagingTopicManager, reporterFactory: reporterFactory)
-    }
-    
-    override func tearDown() {
-        stubAnalyticsReporting = nil
-        viewControllerFactory = nil
-        super.tearDown()
-    }
-    
-    func enumatorShowingViewController(_ viewController: UIViewController) {
-        // viewDidLoad and viewWillAppear
-        viewController.beginAppearanceTransition(true, animated: false)
-    }
-}
 
-// MARK: Reporting
-
-extension SelectBloodTypeAcceptanceTests {
+class SelectBloodTypeAcceptanceTests: AcceptanceTest {
     
+    let dummyShowLocationAction = ShowLocationAction { _ in }
+
+
     func test_viewWillAppear_sendCorrectReportingData() {
-        let action = ShowLocationAction { _ in }
-        let viewController = viewControllerFactory.bloodTypeSelector(showLocationAction: action)
-
+        let viewController = viewControllerFactory.bloodTypeSelector(showLocationAction: dummyShowLocationAction)
+        
         enumatorShowingViewController(viewController)
-
+        
         XCTAssertEqual(stubAnalyticsReporting.loggedEvents.count, 1)
         XCTAssertEqual(stubAnalyticsReporting.loggedEvents[0].name, .showingBloodTypeSelector)
         XCTAssertNil(stubAnalyticsReporting.loggedEvents[0].parameters)
     }
-
+    
     func test_viewWillAppear_calledTwice_sendCorrectReportingDataTwice() {
-        let action = ShowLocationAction { _ in }
-        let viewController = viewControllerFactory.bloodTypeSelector(showLocationAction: action)
-
+        let viewController = viewControllerFactory.bloodTypeSelector(showLocationAction: dummyShowLocationAction)
+        
         enumatorShowingViewController(viewController)
         viewController.viewWillAppear(false)
-
+        
         XCTAssertEqual(stubAnalyticsReporting.loggedEvents.count, 2)
         XCTAssertEqual(stubAnalyticsReporting.loggedEvents[1].name, .showingBloodTypeSelector)
         XCTAssertNil(stubAnalyticsReporting.loggedEvents[1].parameters)
     }
-
+    
+    // TODO: we add more test but will need to create a presenter factory to see can fake stuff
 }
+
+

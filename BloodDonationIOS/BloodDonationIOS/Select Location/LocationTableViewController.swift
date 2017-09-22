@@ -16,6 +16,7 @@ class LocationTableViewController: UITableViewController {
     private var presenter: LocationsPresenter?
     private var loadingIndicator: LoadingIndicatorProtocol?
     private var showRegistrationAction: ShowRegistrationAction?
+    private var reporter: LocationReporter?
 
     @IBOutlet weak var searchBar: SearchBar!
     
@@ -23,11 +24,13 @@ class LocationTableViewController: UITableViewController {
     func configure(presenter: LocationsPresenter,
                    dataSource: TableViewDataSource<UITableViewCell, LocationViewModel>,
                    loadingIndicator: LoadingIndicatorProtocol,
-                   showRegistrationAction: ShowRegistrationAction) {
+                   showRegistrationAction: ShowRegistrationAction,
+                   reporter: LocationReporter) {
         self.presenter = presenter
         self.dataSource = dataSource
         self.loadingIndicator = loadingIndicator
         self.showRegistrationAction = showRegistrationAction
+        self.reporter = reporter
     }
     
     
@@ -36,7 +39,11 @@ class LocationTableViewController: UITableViewController {
         observeChanges()
         dataSource?.configure(tableView: tableView)
     }
-    
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        reporter?.viewShown()
+    }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)

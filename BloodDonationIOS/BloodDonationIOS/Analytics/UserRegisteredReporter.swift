@@ -11,8 +11,8 @@ import Foundation
 struct UserRegisteredReporter {
     
     let analyticsReporter: AnalyticsReporting
-    let location: LocationModel
-    let bloodType: BloodType
+    let location: LocationModel?
+    let bloodType: BloodType?
 
     func viewShown() {
         analyticsReporter.logEvent(name: .showingUserRegistered, parameters: nil)
@@ -27,6 +27,7 @@ struct UserRegisteredReporter {
     }
     
     func userUnRegisterd() {
+        guard let location = location, let bloodType = bloodType else { return }
         let topic = MessagingTopicGenerator().fullTopic(location: location, blood: bloodType)
         analyticsReporter.logEvent(name: .userUnRegisterd, parameters: ["blood":bloodType.displayString(), "topic":topic])
     }
