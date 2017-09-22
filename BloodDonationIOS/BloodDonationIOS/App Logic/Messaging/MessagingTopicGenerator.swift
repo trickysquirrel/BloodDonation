@@ -11,6 +11,9 @@ import Foundation
 
 struct MessagingTopicGenerator {
     
+    private var seperator = "_"
+    private var spaceReplacement = "."
+    
     func allTopics(location: LocationModel, blood: BloodType) -> [String] {
         return [
             makeAreaNameBloodTopic(location: location, bloodType: blood),
@@ -26,29 +29,28 @@ struct MessagingTopicGenerator {
 
 private extension MessagingTopicGenerator {
     
-    private func seperator() -> String {
-        // cannot use characters like '/' please check before changing
-        return "_"
-    }
-    
     private func makeAreaNameBloodTopic(location: LocationModel, bloodType: BloodType) -> String {
-        let upperCaseString = location.countryCode.rawValue + seperator() + location.area + seperator() + location.name + seperator() + bloodType.displayString()
+        let upperCaseString = location.countryCode.rawValue + seperator + topic(location.area) + seperator + topic(location.name) + seperator + bloodType.displayString()
         return upperCaseString.lowercased()
     }
     
     private func makeAreaNameTopic(location: LocationModel, bloodType: BloodType) -> String {
-        let upperCaseString = location.countryCode.rawValue + seperator() + location.area + seperator() + location.name
+        let upperCaseString = location.countryCode.rawValue + seperator + topic(location.area) + seperator + topic(location.name)
         return upperCaseString.lowercased()
     }
     
     private func makeAreaBloodTopic(location: LocationModel, bloodType: BloodType) -> String {
-        let upperCaseString = location.countryCode.rawValue + seperator() + location.area + seperator() + bloodType.displayString()
+        let upperCaseString = location.countryCode.rawValue + seperator + topic(location.area) + seperator + bloodType.displayString()
         return upperCaseString.lowercased()
     }
     
     private func makeAreaTopic(location: LocationModel, bloodType: BloodType) -> String {
-        let upperCaseString = location.countryCode.rawValue + seperator() + location.area
+        let upperCaseString = location.countryCode.rawValue + seperator + topic(location.area)
         return upperCaseString.lowercased()
+    }
+    
+    private func topic(_ string: String) -> String {
+        return string.replacingOccurrences(of: " ", with: spaceReplacement)
     }
 
 }

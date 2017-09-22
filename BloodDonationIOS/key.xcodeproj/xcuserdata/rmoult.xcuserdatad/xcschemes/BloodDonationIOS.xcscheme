@@ -17,7 +17,7 @@
                BlueprintIdentifier = "34D4FACB1F35542500E63910"
                BuildableName = "BloodDonationIOS.app"
                BlueprintName = "BloodDonationIOS"
-               ReferencedContainer = "container:BloodDonationIOS.xcodeproj">
+               ReferencedContainer = "container:key.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -36,7 +36,7 @@
                BlueprintIdentifier = "34428DA61F592ED90017DFA4"
                BuildableName = "BloodDonationIOSTests.xctest"
                BlueprintName = "BloodDonationIOSTests"
-               ReferencedContainer = "container:BloodDonationIOS.xcodeproj">
+               ReferencedContainer = "container:key.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -46,7 +46,7 @@
             BlueprintIdentifier = "34D4FACB1F35542500E63910"
             BuildableName = "BloodDonationIOS.app"
             BlueprintName = "BloodDonationIOS"
-            ReferencedContainer = "container:BloodDonationIOS.xcodeproj">
+            ReferencedContainer = "container:key.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -70,7 +70,7 @@
             BlueprintIdentifier = "34D4FACB1F35542500E63910"
             BuildableName = "BloodDonationIOS.app"
             BlueprintName = "BloodDonationIOS"
-            ReferencedContainer = "container:BloodDonationIOS.xcodeproj">
+            ReferencedContainer = "container:key.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -89,7 +89,7 @@
             BlueprintIdentifier = "34D4FACB1F35542500E63910"
             BuildableName = "BloodDonationIOS.app"
             BlueprintName = "BloodDonationIOS"
-            ReferencedContainer = "container:BloodDonationIOS.xcodeproj">
+            ReferencedContainer = "container:key.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

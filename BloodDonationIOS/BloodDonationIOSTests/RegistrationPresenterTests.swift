@@ -26,7 +26,7 @@ class RegistrationPresenterTests: XCTestCase {
         super.setUp()
         stubPersistenceStorage = StubPersistentStorage()
         expectedBloodType = BloodType.aNegative
-        expectedLocation = LocationModel(name: "Eltham North", area:"Victoria", countryCode: .AU)
+        expectedLocation = LocationModel(name: "Eltham North", area:"New South Wales", countryCode: .AU)
         stubNotificationRegister = StubNotificationRegister()
         stubMessagingSubscriber = StubMessagingSubscriber()
         userStorage = UserPersistentStorage(userDefaultsPersistentStorage: stubPersistenceStorage)
@@ -97,7 +97,7 @@ extension RegistrationPresenterTests {
     func test_updateView_providesCorrectViewModelValues() {
         let viewModel = updateViewWithNewViewModel()
         XCTAssertEqual(viewModel!.bloodTypeTitle, "A-")
-        XCTAssertEqual(viewModel!.locationTitle, "AU, Victoria, Eltham North")
+        XCTAssertEqual(viewModel!.locationTitle, "AU, New South Wales, Eltham North")
     }
 }
 
@@ -132,10 +132,10 @@ extension RegistrationPresenterTests {
         stubNotificationRegister.response = .success
         _ = registerUserError()
         XCTAssertEqual(stubMessagingSubscriber.providedTopic.count, 4)
-        XCTAssertEqual(stubMessagingSubscriber.providedTopic[0], "au/victoria/eltham north/a-")
-        XCTAssertEqual(stubMessagingSubscriber.providedTopic[1], "au/victoria/eltham north")
-        XCTAssertEqual(stubMessagingSubscriber.providedTopic[2], "au/victoria/a-")
-        XCTAssertEqual(stubMessagingSubscriber.providedTopic[3], "au/victoria")
+        XCTAssertEqual(stubMessagingSubscriber.providedTopic[0], "au_new.south.wales_eltham.north_a-")
+        XCTAssertEqual(stubMessagingSubscriber.providedTopic[1], "au_new.south.wales_eltham.north")
+        XCTAssertEqual(stubMessagingSubscriber.providedTopic[2], "au_new.south.wales_a-")
+        XCTAssertEqual(stubMessagingSubscriber.providedTopic[3], "au_new.south.wales")
     }
 
     
@@ -152,7 +152,7 @@ extension RegistrationPresenterTests {
         XCTAssertEqual(stubPersistenceStorage.dictionaryStorage.count, 4)
         XCTAssertEqual(stubPersistenceStorage.dictionaryStorage["UserDefaultsBloodKey"] as! String, "A-")
         XCTAssertEqual(stubPersistenceStorage.dictionaryStorage["UserDefaultsLocationCodeKey"] as! String, "AU")
-        XCTAssertEqual(stubPersistenceStorage.dictionaryStorage["UserDefaultsLocationAreaKey"] as! String, "Victoria")
+        XCTAssertEqual(stubPersistenceStorage.dictionaryStorage["UserDefaultsLocationAreaKey"] as! String, "New South Wales")
         XCTAssertEqual(stubPersistenceStorage.dictionaryStorage["UserDefaultsLocationNameKey"] as! String, "Eltham North")
     }
     

@@ -26,10 +26,34 @@ enum NotificationRegisterResponse {
 }
 
 
+fileprivate class Registering {
+    
+    private var pushNotificationRegistered = false
+    private var firebaseRegistered = false
+    
+    func hasCompletedRegistration(applePushCompleted: Bool) -> Bool {
+        pushNotificationRegistered = true
+        if pushNotificationRegistered == true && firebaseRegistered == true {
+            return true
+        }
+        return false
+    }
+    
+    func hasCompletedRegistration(fireBaseCompleted: Bool) -> Bool {
+        firebaseRegistered = true
+        if pushNotificationRegistered == true && firebaseRegistered == true {
+            return true
+        }
+        return false
+    }
+}
+
+
 class MessagingRegister: NSObject, NotificationRegisterProtocol {
     
     private weak var application: UIApplication?
     private var completionBlock: ResponseBlock?
+    private var registering: Registering?
     
     init(application: UIApplication) {
         self.application = application
@@ -37,6 +61,10 @@ class MessagingRegister: NSObject, NotificationRegisterProtocol {
     
     func register(completion:@escaping ResponseBlock) {
         self.completionBlock = completion
+        registering = Registering()
+        if Messaging.messaging().apnsToken != nil {
+            _ = registering?.hasCompletedRegistration(fireBaseCompleted: true)
+        }
         requestPushNotificationAuthorization()
     }
         
@@ -58,7 +86,10 @@ class MessagingRegister: NSObject, NotificationRegisterProtocol {
 extension MessagingRegister: PushNotificationRegisterResponse {
     
     func systemSuccessfullyRegistered() {
-        completionBlock?(.success)
+        guard let registering = self.registering else { return }
+        if registering.hasCompletedRegistration(applePushCompleted: true) {
+            completionBlock?(.success)
+        }
     }
     
     func systemFailedToRegister(error: Error) {
@@ -77,6 +108,10 @@ extension MessagingRegister: MessagingDelegate {
     
     func messaging(_ messaging: Messaging, didRefreshRegistrationToken fcmToken: String) {
         NSLog("[RemoteNotification] didRefreshRegistrationToken: \(fcmToken)")
+        guard let registering = self.registering else { return }
+        if registering.hasCompletedRegistration(fireBaseCompleted: true) {
+            completionBlock?(.success)
+        }
     }
 }
 

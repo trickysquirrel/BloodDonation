@@ -46,41 +46,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         router = Router(window: window, viewControllerFactory: viewControllerFactory, userRegistered: userRegistered)
         router?.displayFirstViewController()
         
-
-        
-        
-        // Override point for customization after application launch.
-                
-        
-//        if #available(iOS 10.0, *) {
-//            // For iOS 10 display notification (sent via APNS)
-//            UNUserNotificationCenter.current().delegate = self
-//            let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
-//            UNUserNotificationCenter.current().requestAuthorization(
-//                options: authOptions,
-//                completionHandler: {_, _ in })
-//            // For iOS 10 data message (sent via FCM
-//            Messaging.messaging().delegate = self
-//        } else {
-//            let settings: UIUserNotificationSettings =
-//                UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil)
-//            application.registerUserNotificationSettings(settings)
-//        }
-//
-//        application.registerForRemoteNotifications()
-//
-//        FirebaseApp.configure()
-//
-//        if let notification = launchOptions?[.remoteNotification] as? [String: AnyObject] {
-//            // 2
-//            let aps = notification["aps"] as! [String: AnyObject]
-//            print(">>> \(notification)")
-//            print(">>> \(aps)")
-//            sendLocalNotification()
-//        }
-//
-//
-        
+        // TODO: only call this when the user views the notifications
+        UIApplication.shared.applicationIconBadgeNumber = 0
         return true
     }
 }

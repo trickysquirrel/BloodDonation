@@ -47,9 +47,9 @@ class LocationTableViewController: UITableViewController {
         }
 
         presenter?.onEventNewLocations(block: { [weak self] viewModels, userInformation in
+            // TODO: no longer correct need to pass through loading indicator
             self?.loadingIndicator?.show(false)
             self?.dataSource?.resetSections(title: userInformation, viewModels: [viewModels], cellIdentifier: reuseIdentifier)
-            print(userInformation ?? "error dummy")
         })
         
         dataSource?.onEventConfigureCell { cell, viewModel in

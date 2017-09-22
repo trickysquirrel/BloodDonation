@@ -25,14 +25,15 @@ Ask user if its ok to send some data about blood type and location so informatio
 
 On reciving a valid notification, add to notification list for view to see later
 
+remove badge on viewing notifications
 
+only keep the latest notiifcations
 
 
 ============
 in progress
 ============
 
-
-
+On location back button presses stop any current location search in proccess
 
 

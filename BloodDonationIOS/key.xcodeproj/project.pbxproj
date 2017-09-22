@@ -491,6 +491,9 @@
 							com.apple.BackgroundModes = {
 								enabled = 1;
 							};
+							com.apple.Keychain = {
+								enabled = 1;
+							};
 							com.apple.Push = {
 								enabled = 1;
 							};
@@ -498,7 +501,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 34D4FAC71F35542500E63910 /* Build configuration list for PBXProject "BloodDonationIOS" */;
+			buildConfigurationList = 34D4FAC71F35542500E63910 /* Build configuration list for PBXProject "key" */;
 			compatibilityVersion = "Xcode 8.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -916,7 +919,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		34D4FAC71F35542500E63910 /* Build configuration list for PBXProject "BloodDonationIOS" */ = {
+		34D4FAC71F35542500E63910 /* Build configuration list for PBXProject "key" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				34D4FAF21F35542500E63910 /* Debug */,

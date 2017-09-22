@@ -125,10 +125,10 @@ extension UserRegisteredPresenterTests {
         _ = presenter.resetUser()
         
         XCTAssertEqual(stubMessagingSubscriber.unsubscribeTopic.count, 4)
-        XCTAssertEqual(stubMessagingSubscriber.unsubscribeTopic[0], "au/area/name/b-")
-        XCTAssertEqual(stubMessagingSubscriber.unsubscribeTopic[1], "au/area/name")
-        XCTAssertEqual(stubMessagingSubscriber.unsubscribeTopic[2], "au/area/b-")
-        XCTAssertEqual(stubMessagingSubscriber.unsubscribeTopic[3], "au/area")
+        XCTAssertEqual(stubMessagingSubscriber.unsubscribeTopic[0], "au_area_name_b-")
+        XCTAssertEqual(stubMessagingSubscriber.unsubscribeTopic[1], "au_area_name")
+        XCTAssertEqual(stubMessagingSubscriber.unsubscribeTopic[2], "au_area_b-")
+        XCTAssertEqual(stubMessagingSubscriber.unsubscribeTopic[3], "au_area")
     }
 
     
