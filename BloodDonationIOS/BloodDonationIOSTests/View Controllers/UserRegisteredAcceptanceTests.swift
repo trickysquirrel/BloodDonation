@@ -24,14 +24,14 @@ class UserRegisteredAcceptanceTests: AcceptanceTest {
     }
     
     
-    func test_viewWillAppear_calledTwice_sendCorrectReportingDataTwice() {
-        let viewController = viewControllerFactory.registeredUser(unreigisterAction: dummyAction)
-        enumatorShowingViewController(viewController)
-        viewController.viewWillAppear(false)        
-        XCTAssertEqual(stubAnalyticsReporting.loggedEvents.count, 2)
-        XCTAssertEqual(stubAnalyticsReporting.loggedEvents[1].name, .showingUserRegistered)
-        XCTAssertEqual(stubAnalyticsReporting.loggedEvents[1].parameters["blood"] as! String, )
-    }
+//    func test_viewWillAppear_calledTwice_sendCorrectReportingDataTwice() {
+//        let viewController = viewControllerFactory.registeredUser(unreigisterAction: dummyAction)
+//        enumatorShowingViewController(viewController)
+//        viewController.viewWillAppear(false)        
+//        XCTAssertEqual(stubAnalyticsReporting.loggedEvents.count, 2)
+//        XCTAssertEqual(stubAnalyticsReporting.loggedEvents[1].name, .showingUserRegistered)
+//        XCTAssertEqual(stubAnalyticsReporting.loggedEvents[1].parameters["blood"] as! String, )
+//    }
     // analyticsReporter.logEvent(name: .userDidRegister, parameters: ["blood":bloodType.displayString(), "topic":topic])
 }
 

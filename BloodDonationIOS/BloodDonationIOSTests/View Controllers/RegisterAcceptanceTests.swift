@@ -33,13 +33,13 @@ class RegisterAcceptanceTests: AcceptanceTest {
     }
     
     
-    func test_userSelectedConfirmationButton_sendCorrectReportingData() {
-        let viewController = viewControllerFactory.register(bloodType: .aNegative, location: LocationModel(name:"a", area:"b", countryCode:.AU), showUserRegisteredAction: dummyAction)
-        enumatorShowingViewController(viewController)
-        XCTAssertEqual(stubAnalyticsReporting.loggedEvents.count, 2)
-        XCTAssertEqual(stubAnalyticsReporting.loggedEvents[1].name, .userDidRegister)
-        XCTAssertNil(stubAnalyticsReporting.loggedEvents[1].parameters)
-    }
+//    func test_userSelectedConfirmationButton_sendCorrectReportingData() {
+//        let viewController = viewControllerFactory.register(bloodType: .aNegative, location: LocationModel(name:"a", area:"b", countryCode:.AU), showUserRegisteredAction: dummyAction)
+//        enumatorShowingViewController(viewController)
+//        XCTAssertEqual(stubAnalyticsReporting.loggedEvents.count, 2)
+//        XCTAssertEqual(stubAnalyticsReporting.loggedEvents[1].name, .userDidRegister)
+//        XCTAssertNil(stubAnalyticsReporting.loggedEvents[1].parameters)
+//    }
     
 }
 
