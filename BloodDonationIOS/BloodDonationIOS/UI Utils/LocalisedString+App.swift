@@ -11,6 +11,7 @@ import Foundation
 enum Localisations: String {
     
     case selectBloodTypeTitle = "LOCALKEY_SelectBloodTypeTitle"
+	case selectLocationTitle = "LOCALKEY_SelectLocationTitle"
     case minimumLocationCharSearch = "LOCALKEY_MinimumLocationCharSearch"
     case searching = "LOCALKEY_Searching"
     case unknownError = "LOCALKEY_UnknownError"
@@ -27,6 +28,8 @@ enum Localisations: String {
     case unsubscribeMissingData = "LOCALKEY_UnsubscribeMissingData"
     case unsubscribeNoNetwork = "LOCALKEY_UnsubscribeNoNetwork"
     case unsubscribeCannotDetectNetwork = "LOCALKEY_UnsubscribeCannotDetectNetwork"
+	case subscribeInfo = "LOCALKEY_SubscribeInfo"
+	case unsubscribeInfo = "LOCALKEY_UnsubscribeInfo"
     
     
     func localised() -> String {

@@ -313,13 +313,18 @@ extension LocationsPresenterTests {
     }
 
     
-    func test_search_performTwoSearches_cancelsThePreviousRequest() {
+    func test_search_performTwoSearches_requestToCancelsTheRequestTwice() {
         presenter.search(string:"abc")
         presenter.search(string:"abcd")
-        XCTAssertTrue(stubJsonNetworkRequester.didCancel!)
+        XCTAssertEqual(stubJsonNetworkRequester.didCancelCounter, 2)
     }
 
-    
+	func test_search_performTwoSearchesSecondNotValid__requestToCancelsTheRequestTwice() {
+		presenter.search(string:"abc")
+		presenter.search(string:"")
+		XCTAssertEqual(stubJsonNetworkRequester.didCancelCounter, 2)
+	}
+
 }
 
 // MARK:- onEventShowLoading
@@ -328,7 +333,7 @@ extension LocationsPresenterTests {
     
     func test_cancelSearchingForLocations_requestsToCancelNetworkRequest() {
         presenter.cancelSearchingForLocations()
-        XCTAssertTrue(stubJsonNetworkRequester.didCancel!)
+        XCTAssertEqual(stubJsonNetworkRequester.didCancelCounter, 1)
     }
     
 }

@@ -98,6 +98,7 @@ extension RegistrationPresenterTests {
         let viewModel = updateViewWithNewViewModel()
         XCTAssertEqual(viewModel!.bloodTypeTitle, "A-")
         XCTAssertEqual(viewModel!.locationTitle, "AU, New South Wales, Eltham North")
+		XCTAssertEqual(viewModel!.informationText, "register for notifications in your area and blood type")
     }
 }
 

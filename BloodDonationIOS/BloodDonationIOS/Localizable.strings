@@ -7,6 +7,7 @@
 */
 
 "LOCALKEY_SelectBloodTypeTitle" = "Select Blood Type";
+"LOCALKEY_SelectLocationTitle" = "Select Location";
 "LOCALKEY_MinimumLocationCharSearch" = "minimum 3 characters";
 "LOCALKEY_Searching" = "searching...";
 "LOCALKEY_UnknownError" = "unknown error please try again";
@@ -23,3 +24,5 @@
 "LOCALKEY_UnsubscribeMissingData" = "missing information, unable to unsubscribe";
 "LOCALKEY_UnsubscribeNoNetwork" = "You must be connected to the network to unsubscribe";
 "LOCALKEY_UnsubscribeCannotDetectNetwork" = "Unable to detect network";
+"LOCALKEY_SubscribeInfo" = "register for notifications in your area and blood type";
+"LOCALKEY_UnsubscribeInfo" = "you are now registered to receive notifications in your region and blood type";

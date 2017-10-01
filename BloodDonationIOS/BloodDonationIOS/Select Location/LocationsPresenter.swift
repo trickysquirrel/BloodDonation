@@ -40,9 +40,10 @@ class LocationsPresenter {
     
     
     func search(string: String) {
-        
+
         guard string.characters.count > 2 else {
             respondWithNotEnoughCharacters()
+			self.locationFetcher.cancel()
             return
         }
         

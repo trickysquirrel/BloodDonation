@@ -8,7 +8,7 @@
 
 import UIKit
 
-class UserRegisteredViewController: UIViewController {
+class UserRegisteredViewController: CustomTransitionViewController {
 
     private var presenter: UserRegisteredPresenter?
     private var areYouSureAlert: AreYouSureAlert?
@@ -41,6 +41,14 @@ class UserRegisteredViewController: UIViewController {
         reporter?.viewShown()
     }
 
+
+	private func updateView() {
+		presenter?.updateView(completion: { [weak self] viewModel in
+			guard let registrationView = self?.view as? RegistrationView else { return }
+			registrationView.configure(viewModel: viewModel)
+		})
+	}
+
     
     @IBAction func userDidSelectToResetData() {
         areYouSureAlert?.displayAlertTitle(title: Localisations.alertTitleWarning.localised(),
@@ -50,16 +58,8 @@ class UserRegisteredViewController: UIViewController {
             self?.resetUser()
         })
     }
-    
-    
-    private func updateView() {
-        presenter?.updateView(completion: { [weak self] viewModel in
-            guard let registrationView = self?.view as? RegistrationView else { return }
-            registrationView.configure(viewModel: viewModel)
-        })
-    }
-    
-    
+
+
     private func resetUser() {
         if let errorMessage = self.presenter?.resetUser() {
             self.informationAlert?.displayAlert(title: Localisations.alertTitleError.localised(),

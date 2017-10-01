@@ -24,7 +24,8 @@ class UserRegisteredPresenter {
         let storedBloodType = userRegistered.fetchBloodType()
         let storedLocation = userRegistered.fetchLocation()
         completion(UserDataViewModel(bloodTypeTitle: storedBloodTypeTitle(bloodType: storedBloodType),
-                                     locationTitle: storedLocationTitle(location: storedLocation)))
+                                     locationTitle: storedLocationTitle(location: storedLocation),
+                                     informationText: Localisations.unsubscribeInfo.localised()))
     }
     
     // TODO: change this to Error

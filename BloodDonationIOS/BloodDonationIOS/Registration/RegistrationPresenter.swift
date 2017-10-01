@@ -11,6 +11,7 @@ import Foundation
 struct UserDataViewModel {
     let bloodTypeTitle: String
     let locationTitle: String
+	let informationText: String
 }
 
 enum RegistrationResponse {
@@ -36,13 +37,14 @@ class RegistrationPresenter {
     
     func updateView(completion:(RegistrationResponse)->())  {
         let viewModel = UserDataViewModel(bloodTypeTitle:registerUser.bloodType.displayString(),
-                                          locationTitle: makeAreaNameTitle(location: registerUser.location))
+                                          locationTitle: makeAreaNameTitle(location: registerUser.location),
+                                          informationText: Localisations.subscribeInfo.localised())
         completion(.updateView(viewModel))
     }
     
     
     func registerUser(completion:@escaping (RegistrationResponse)->())  {
-        
+
         registerUser.register { error in
             switch error {
             case .cannotDetectNetwork:

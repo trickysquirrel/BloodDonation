@@ -46,18 +46,37 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                                                           userRegistered: userRegistered,
                                                           messagingTopicManager: messagingTopicManager,
                                                           reporterFactory: reporterFactory)
+
+		let navigationController = makeNavigationController()
         
 //        userStorage.persistBloodType(.abNegative)
 //        userStorage.persistLocation(LocationModel(name: "a", area: "b", countryCode: .AU))
         
-        router = Router(window: window, viewControllerFactory: viewControllerFactory, userRegistered: userRegistered)
+		router = Router(window: window, navigationController: navigationController, viewControllerFactory: viewControllerFactory, userRegistered: userRegistered)
         router?.displayFirstViewController()
         
         // TODO: only call this when the user views the notifications
         UIApplication.shared.applicationIconBadgeNumber = 0
         return true
     }
+
+
+	private func makeNavigationController() -> UINavigationController {
+
+		UINavigationBar.appearance().titleTextAttributes = [
+			NSAttributedStringKey.font: UIFont(name: "Helvetica", size: 24)!
+		]
+
+		UINavigationBar.appearance().tintColor = UIColor.black
+
+		let navigationController = UINavigationController()
+		navigationController.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
+		navigationController.navigationBar.shadowImage = UIImage()
+		return navigationController
+	}
+
 }
+
 
 // MARK - push notification registration
 

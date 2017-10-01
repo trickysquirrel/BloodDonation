@@ -13,7 +13,7 @@ class StubJsonNetworkRequester: JsonRequester {
     
     public var fakeResponse: JsonRequesterResponse?
     private(set) var providedUrlString: String?
-    private(set) var didCancel: Bool?
+    private(set) var didCancelCounter: Int = 0
     
     func request(urlString: String, completion:@escaping (JsonRequesterResponse)->()) {
         providedUrlString = urlString
@@ -23,7 +23,7 @@ class StubJsonNetworkRequester: JsonRequester {
     }
     
     func cancel() {
-        didCancel = true
+        didCancelCounter += 1
     }
     
 }

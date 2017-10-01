@@ -9,7 +9,8 @@
 import UIKit
 
 class RegistrationViewController: UIViewController {
-    
+
+	@IBOutlet weak var confirmationButton: TransitionButton!
     private var presenter: RegistrationPresenter?
     private var alert: InformationAlert?
     private var showUserRegisteredAction: Action?
@@ -26,6 +27,7 @@ class RegistrationViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+		configureConfirmationButton()
         updateView()
     }
 
@@ -44,6 +46,7 @@ class RegistrationViewController: UIViewController {
     
     
     @IBAction func userSelectedConfirmationButton() {
+		confirmationButton.startAnimation()
         presenter?.registerUser(completion: { [weak self] response in
             self?.handlePresenterResponse(response: response)
         })
@@ -56,12 +59,24 @@ class RegistrationViewController: UIViewController {
         case .updateView(let viewModel):
             registrationView.configure(viewModel: viewModel)
         case .registrationSuccess:
-            self.showUserRegisteredAction?.perform()
+			confirmationButton.stopAnimation(animationStyle: .expand, revertAfterDelay: 0.5, completion: {
+				self.showUserRegisteredAction?.perform()
+			})
         case .error(let errorMessage):
+			confirmationButton.stopAnimation(animationStyle: .shake, revertAfterDelay: 0.2, completion: nil)
             self.alert?.displayAlert(title: Localisations.alertTitleError.localised(),
                                                message: errorMessage,
                                                presentingViewController: self)
         }
     }
+
+}
+
+extension RegistrationViewController {
+
+	func configureConfirmationButton() {
+		confirmationButton.cornerRadius = 20
+		confirmationButton.spinnerColor = .white
+	}
 
 }

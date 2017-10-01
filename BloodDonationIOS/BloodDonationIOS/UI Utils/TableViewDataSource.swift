@@ -96,6 +96,9 @@ class TableViewDataSource<CellType, DataType>: NSObject, UITableViewDelegate, UI
             selectCellBlock?(viewModel, indexPath)
         }
     }
-    
+
+	func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int){
+		view.tintColor = UIColor.clear
+	}
     
 }

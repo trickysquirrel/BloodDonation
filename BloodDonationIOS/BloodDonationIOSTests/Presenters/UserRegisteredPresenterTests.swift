@@ -74,6 +74,7 @@ extension UserRegisteredPresenterTests {
         
         XCTAssertEqual(viewModel!.bloodTypeTitle, "B-")
         XCTAssertEqual(viewModel!.locationTitle, "AU, area, name")
+		XCTAssertEqual(viewModel!.informationText, "you are now registered to receive notifications in your region and blood type")
     }
     
 }

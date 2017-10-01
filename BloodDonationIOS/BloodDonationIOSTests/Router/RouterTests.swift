@@ -27,7 +27,7 @@ class RouterTests: XCTestCase {
         stubUserStorage = UserPersistentStorage(userDefaultsPersistentStorage: stubPersistentStorage)
         userRegistered = UserRegistered(userStorage: stubUserStorage, messagingTopicManager: messagingTopicManager)
         stubViewControllerFactory = StubViewControllerFactory()
-        router = Router(window: UIWindow(), viewControllerFactory: stubViewControllerFactory, userRegistered: userRegistered)
+		router = Router(window: UIWindow(), navigationController: UINavigationController(), viewControllerFactory: stubViewControllerFactory, userRegistered: userRegistered)
     }
     
     override func tearDown() {

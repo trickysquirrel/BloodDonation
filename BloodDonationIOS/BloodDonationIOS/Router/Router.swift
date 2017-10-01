@@ -10,20 +10,23 @@ import UIKit
 
 class Router {
     
-    let window: UIWindow?
-    let viewControllerFactory: ViewControllerFactoryProtocol
-    let navigationController: UINavigationController
-    let userRegistered: UserRegistered
-    
-    init(window: UIWindow?, viewControllerFactory: ViewControllerFactoryProtocol, userRegistered: UserRegistered) {
-        self.window = window
-        self.viewControllerFactory = viewControllerFactory
-        self.navigationController = UINavigationController()
-        self.userRegistered = userRegistered
-        window?.rootViewController = navigationController
-        window?.makeKeyAndVisible()
-    }
-    
+	private let window: UIWindow?
+	private let viewControllerFactory: ViewControllerFactoryProtocol
+	private let navigationController: UINavigationController
+	private let userRegistered: UserRegistered
+
+	init(window: UIWindow?,
+	     navigationController: UINavigationController,
+	     viewControllerFactory: ViewControllerFactoryProtocol,
+	     userRegistered: UserRegistered) {
+		self.window = window
+		self.viewControllerFactory = viewControllerFactory
+		self.navigationController = navigationController
+		self.userRegistered = userRegistered
+		window?.rootViewController = navigationController
+		window?.makeKeyAndVisible()
+	}
+
     func displayFirstViewController() {
         if userRegistered.hasUserAlreadyRegistered() {
             displayUserRegistered()

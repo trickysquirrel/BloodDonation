@@ -36,6 +36,7 @@ class LocationTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+		self.title = Localisations.selectLocationTitle.localised()
         observeChanges()
         dataSource?.configure(tableView: tableView)
     }
