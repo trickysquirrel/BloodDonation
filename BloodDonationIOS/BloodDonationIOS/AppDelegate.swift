@@ -72,6 +72,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		let navigationController = UINavigationController()
 		navigationController.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
 		navigationController.navigationBar.shadowImage = UIImage()
+
+		if #available(iOS 11.0, *) {
+			navigationController.navigationBar.prefersLargeTitles = true
+			//navigationItem.largeTitleDisplayMode = .always
+		} else {
+			// Fallback on earlier versions
+		}
+
 		return navigationController
 	}
 

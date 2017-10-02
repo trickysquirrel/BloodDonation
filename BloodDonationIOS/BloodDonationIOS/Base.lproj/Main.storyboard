@@ -210,7 +210,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tick" translatesAutoresizingMaskIntoConstraints="NO" id="lSl-fb-ZHm">
-                                <rect key="frame" x="117.5" y="60.5" width="140" height="140"/>
+                                <rect key="frame" x="117.5" y="83" width="140" height="140"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="140" id="CDz-xh-8e5"/>
                                     <constraint firstAttribute="width" constant="140" id="wuH-hx-oc7"/>
@@ -236,7 +236,7 @@
                             <constraint firstItem="HiX-Gf-suh" firstAttribute="top" secondItem="sHn-so-QQk" secondAttribute="bottom" constant="20" id="ZTY-8F-e5r"/>
                             <constraint firstItem="K0t-tY-MTE" firstAttribute="centerX" secondItem="dpU-ow-3iy" secondAttribute="centerX" id="Zys-Hv-F4Z"/>
                             <constraint firstItem="HiX-Gf-suh" firstAttribute="leading" secondItem="XNF-F1-ypp" secondAttribute="leading" constant="20" id="bfA-Jd-Qo5"/>
-                            <constraint firstItem="uu9-1J-QbL" firstAttribute="top" secondItem="lSl-fb-ZHm" secondAttribute="bottom" constant="38.5" id="bxP-SP-3tP"/>
+                            <constraint firstItem="uu9-1J-QbL" firstAttribute="top" secondItem="lSl-fb-ZHm" secondAttribute="bottom" constant="16" id="bxP-SP-3tP"/>
                             <constraint firstItem="XNF-F1-ypp" firstAttribute="trailing" secondItem="HiX-Gf-suh" secondAttribute="trailing" constant="20" id="eJ4-ib-IjM"/>
                             <constraint firstItem="uu9-1J-QbL" firstAttribute="centerX" secondItem="dpU-ow-3iy" secondAttribute="centerX" id="fLV-xT-FGz"/>
                             <constraint firstItem="lSl-fb-ZHm" firstAttribute="centerX" secondItem="dpU-ow-3iy" secondAttribute="centerX" id="i0l-jH-e1i"/>
