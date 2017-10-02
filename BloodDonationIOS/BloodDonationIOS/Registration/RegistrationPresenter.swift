@@ -45,18 +45,21 @@ class RegistrationPresenter {
     
     func registerUser(completion:@escaping (RegistrationResponse)->())  {
 
-        registerUser.register { error in
-            switch error {
-            case .cannotDetectNetwork:
-                return completion(.error(Localisations.unsubscribeCannotDetectNetwork.localised()))
-            case .isNotConnectedToNetwork:
-                return completion(.error(Localisations.unsubscribeNoNetwork.localised()))
-            case .notificationError(let error):
-                completion(.error(Localisations.localiseError(error)))
-            case .none:
-                completion(.registrationSuccess)
-            }
-        }
+		completion(.registrationSuccess)
+		return
+
+//        registerUser.register { error in
+//            switch error {
+//            case .cannotDetectNetwork:
+//                return completion(.error(Localisations.unsubscribeCannotDetectNetwork.localised()))
+//            case .isNotConnectedToNetwork:
+//                return completion(.error(Localisations.unsubscribeNoNetwork.localised()))
+//            case .notificationError(let error):
+//                completion(.error(Localisations.localiseError(error)))
+//            case .none:
+//                completion(.registrationSuccess)
+//            }
+//        }
     }
 }
 

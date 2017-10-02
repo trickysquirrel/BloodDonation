@@ -75,7 +75,7 @@ class RegistrationViewController: UIViewController {
 extension RegistrationViewController {
 
 	func configureConfirmationButton() {
-		confirmationButton.cornerRadius = 20
+		confirmationButton.cornerRadius = confirmationButton.frame.size.height / 2
 		confirmationButton.spinnerColor = .white
 	}
 
