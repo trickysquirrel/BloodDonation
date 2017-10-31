@@ -50,7 +50,7 @@ class BloodTypeCollectionViewController: UICollectionViewController {
         }
 
         dataSource?.onEventItemSelected { [weak self] (viewModel, indexPath) in
-            self?.showLocationAction?.perform(bloodType: viewModel.type)
+            self?.showLocationAction?.perform(bloodType: viewModel.type, countryCode: .AU)
         }
     }
 

@@ -10,11 +10,12 @@ import UIKit
 @testable import BloodDonationIOS
 
 class StubViewControllerFactory: ViewControllerFactoryProtocol {
-    
+
     private(set) var didCallBloodTypeSelector = false
     private(set) var didCallLocationSelector = false
     private(set) var didCallRegister = false
     private(set) var didCallRegisteredUser = false
+    private(set) var didCallRegionSelector = false
 
     func registeredUser(unreigisterAction: Action) -> UIViewController {
         didCallRegisteredUser = true
@@ -25,8 +26,13 @@ class StubViewControllerFactory: ViewControllerFactoryProtocol {
         didCallBloodTypeSelector = true
         return BloodTypeCollectionViewController()
     }
+
+    func regionSelector(showLocationAction: ShowLocationAction) -> UIViewController {
+        didCallRegionSelector = true
+        return UIViewController()
+    }
     
-    func locationSelector(showRegistrationAction: ShowRegistrationAction) -> UIViewController {
+    func locationSelector(showRegistrationAction: ShowRegistrationAction, countryCode: CountryCode) -> UIViewController {
         didCallLocationSelector = true
         return LocationTableViewController()
     }

@@ -19,7 +19,7 @@ import XCTest
 
 class SelectBloodTypeAcceptanceTests: AcceptanceTest {
     
-    let dummyShowLocationAction = ShowLocationAction { _ in }
+    let dummyShowLocationAction = ShowLocationAction { _,_ in }
 
 
     func test_viewWillAppear_sendCorrectReportingData() {

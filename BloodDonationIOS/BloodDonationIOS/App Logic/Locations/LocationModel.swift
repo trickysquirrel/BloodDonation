@@ -9,11 +9,6 @@
 import Foundation
 
 
-enum CountryCode: String {
-    case AU
-}
-
-
 struct LocationModel {
     let name: String
     let area: String

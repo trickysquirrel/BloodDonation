@@ -7,11 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		301D713F1FA86270007D29DE /* CountryCodes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 301D713E1FA86270007D29DE /* CountryCodes.swift */; };
 		304FBCC11F7CF67500362DEA /* CGRectExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 304FBCBC1F7CF67500362DEA /* CGRectExtension.swift */; };
 		304FBCC21F7CF67500362DEA /* CustomTransitionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 304FBCBD1F7CF67500362DEA /* CustomTransitionViewController.swift */; };
 		304FBCC31F7CF67500362DEA /* FadeTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 304FBCBE1F7CF67500362DEA /* FadeTransition.swift */; };
 		304FBCC41F7CF67500362DEA /* SpinerLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 304FBCBF1F7CF67500362DEA /* SpinerLayer.swift */; };
 		304FBCC51F7CF67500362DEA /* TransitionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 304FBCC01F7CF67500362DEA /* TransitionButton.swift */; };
+		308112831FA72A9800333EE1 /* SelectRegionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 308112821FA72A9800333EE1 /* SelectRegionViewController.swift */; };
+		308112861FA72B2C00333EE1 /* SelectRegionPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 308112851FA72B2C00333EE1 /* SelectRegionPresenter.swift */; };
+		308112881FA72B4800333EE1 /* SelectRegionPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 308112871FA72B4800333EE1 /* SelectRegionPresenterTests.swift */; };
+		3081128A1FA72D3900333EE1 /* SelectRegionViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 308112891FA72D3900333EE1 /* SelectRegionViewControllerTests.swift */; };
 		340DAB1E1F62605B00D5D156 /* LocalisedString+App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 340DAB1D1F62605B00D5D156 /* LocalisedString+App.swift */; };
 		340DAB201F6260BE00D5D156 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 340DAB1F1F6260BE00D5D156 /* Localizable.strings */; };
 		340DAB241F62626400D5D156 /* RouterActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 340DAB231F62626400D5D156 /* RouterActions.swift */; };
@@ -102,11 +107,16 @@
 
 /* Begin PBXFileReference section */
 		2ED44360FA27BE9A52618DA3 /* Pods-BloodDonationIOSUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BloodDonationIOSUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-BloodDonationIOSUITests/Pods-BloodDonationIOSUITests.release.xcconfig"; sourceTree = "<group>"; };
+		301D713E1FA86270007D29DE /* CountryCodes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryCodes.swift; sourceTree = "<group>"; };
 		304FBCBC1F7CF67500362DEA /* CGRectExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CGRectExtension.swift; sourceTree = "<group>"; };
 		304FBCBD1F7CF67500362DEA /* CustomTransitionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTransitionViewController.swift; sourceTree = "<group>"; };
 		304FBCBE1F7CF67500362DEA /* FadeTransition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FadeTransition.swift; sourceTree = "<group>"; };
 		304FBCBF1F7CF67500362DEA /* SpinerLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpinerLayer.swift; sourceTree = "<group>"; };
 		304FBCC01F7CF67500362DEA /* TransitionButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransitionButton.swift; sourceTree = "<group>"; };
+		308112821FA72A9800333EE1 /* SelectRegionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectRegionViewController.swift; sourceTree = "<group>"; };
+		308112851FA72B2C00333EE1 /* SelectRegionPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectRegionPresenter.swift; sourceTree = "<group>"; };
+		308112871FA72B4800333EE1 /* SelectRegionPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectRegionPresenterTests.swift; sourceTree = "<group>"; };
+		308112891FA72D3900333EE1 /* SelectRegionViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectRegionViewControllerTests.swift; sourceTree = "<group>"; };
 		340DAB1D1F62605B00D5D156 /* LocalisedString+App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocalisedString+App.swift"; sourceTree = "<group>"; };
 		340DAB1F1F6260BE00D5D156 /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		340DAB231F62626400D5D156 /* RouterActions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouterActions.swift; sourceTree = "<group>"; };
@@ -238,6 +248,15 @@
 			path = TransitionButton;
 			sourceTree = "<group>";
 		};
+		308112811FA72A4C00333EE1 /* Select Country Code */ = {
+			isa = PBXGroup;
+			children = (
+				308112821FA72A9800333EE1 /* SelectRegionViewController.swift */,
+				308112851FA72B2C00333EE1 /* SelectRegionPresenter.swift */,
+			);
+			path = "Select Country Code";
+			sourceTree = "<group>";
+		};
 		340DAB211F62613E00D5D156 /* Select Location */ = {
 			isa = PBXGroup;
 			children = (
@@ -290,6 +309,7 @@
 				34A0933B1F6E198800F81E47 /* RegistrationPresenterTests.swift */,
 				34428DB11F59310A0017DFA4 /* BloodTypePresenterTests.swift */,
 				340DAB291F62660700D5D156 /* LocationsPresenterTests.swift */,
+				308112871FA72B4800333EE1 /* SelectRegionPresenterTests.swift */,
 			);
 			path = Presenters;
 			sourceTree = "<group>";
@@ -310,6 +330,7 @@
 				3451C1B61F74D69A00F727A3 /* SelectLocationAcceptanceTests.swift */,
 				3451C1BA1F74DA0100F727A3 /* RegisterAcceptanceTests.swift */,
 				3451C1BC1F74DB3500F727A3 /* UserRegisteredAcceptanceTests.swift */,
+				308112891FA72D3900333EE1 /* SelectRegionViewControllerTests.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -444,6 +465,7 @@
 				34F56CC21F6217F2002F3A8F /* App Logic */,
 				3454B3F51F74C50E00FC5B59 /* Analytics */,
 				346F4CD31F591C5100AF1441 /* Select Blood Type */,
+				308112811FA72A4C00333EE1 /* Select Country Code */,
 				340DAB211F62613E00D5D156 /* Select Location */,
 				34B6BBC51F6CC9890006915F /* Registration */,
 				3416652F1F723438002D4960 /* User Registered */,
@@ -488,6 +510,7 @@
 				340DAB2B1F6268A900D5D156 /* Throttle.swift */,
 				3463FEC71F6BCD0B00B3DF02 /* String+UrlEncoding.swift */,
 				34C075831F73538300B8464C /* Reachability.swift */,
+				301D713E1FA86270007D29DE /* CountryCodes.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -739,7 +762,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				308112881FA72B4800333EE1 /* SelectRegionPresenterTests.swift in Sources */,
 				3451C1B91F74D6DA00F727A3 /* AcceptanceTest.swift in Sources */,
+				3081128A1FA72D3900333EE1 /* SelectRegionViewControllerTests.swift in Sources */,
 				34E7F9041F7227DC00F99657 /* RouterTests.swift in Sources */,
 				34A1D8C31F723ADF00BF923F /* UserRegisteredPresenterTests.swift in Sources */,
 				34428DBF1F593A9C0017DFA4 /* UserDefaultsStorageTests.swift in Sources */,
@@ -767,6 +792,7 @@
 			files = (
 				304FBCC51F7CF67500362DEA /* TransitionButton.swift in Sources */,
 				348A67B31F627E2F00D4853C /* TableViewDataSource.swift in Sources */,
+				308112861FA72B2C00333EE1 /* SelectRegionPresenter.swift in Sources */,
 				340DAB311F6270A900D5D156 /* LocationsFetcher.swift in Sources */,
 				34428DB91F59364D0017DFA4 /* UserPersistentStorage.swift in Sources */,
 				341665311F723456002D4960 /* UserRegisteredViewController.swift in Sources */,
@@ -799,8 +825,10 @@
 				34391DB41F6CC2F100BE4955 /* AllBloodTypesFetcher.swift in Sources */,
 				34C075821F73536500B8464C /* MessagingTopicManager.swift in Sources */,
 				343E0AF91F74C8C200BF9B3F /* SelectBloodReporter.swift in Sources */,
+				301D713F1FA86270007D29DE /* CountryCodes.swift in Sources */,
 				34D4FAD01F35542500E63910 /* AppDelegate.swift in Sources */,
 				34E7F9081F722E5D00F99657 /* UserRegistered.swift in Sources */,
+				308112831FA72A9800333EE1 /* SelectRegionViewController.swift in Sources */,
 				343E0AF71F74C7CD00BF9B3F /* ReporterFactory.swift in Sources */,
 				346F4CD51F591C9000AF1441 /* BloodTypeCollectionViewController.swift in Sources */,
 				34428DBD1F593A6A0017DFA4 /* BloodType+Storage.swift in Sources */,

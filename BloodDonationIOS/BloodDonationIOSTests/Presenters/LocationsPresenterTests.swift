@@ -17,7 +17,7 @@ class LocationsPresenterTests: XCTestCase {
     override func setUp() {
         super.setUp()
         stubJsonNetworkRequester = StubJsonNetworkRequester()
-        let locationFetcher = LocationFetcher(jsonRequester: stubJsonNetworkRequester)
+        let locationFetcher = LocationFetcher(jsonRequester: stubJsonNetworkRequester, countryCode: .AU)
         presenter = LocationsPresenter(locationFetcher: locationFetcher)
     }
     
@@ -208,6 +208,14 @@ extension LocationsPresenterTests {
     func test_search_3character_generatedCorrectUrlString() {
         presenter.search(string:"abc def")
         XCTAssertEqual(stubJsonNetworkRequester.providedUrlString, "http://api.geonames.org/searchJSON?username=richardmoult&country=AU&featureClass=P&name_startsWith=abc%20def")
+    }
+
+
+    func test_search_3character_generatedCorrectUrlStringBasedOnCountryCode() {
+        let locationFetcher = LocationFetcher(jsonRequester: stubJsonNetworkRequester, countryCode: .NZ)
+        presenter = LocationsPresenter(locationFetcher: locationFetcher)
+        presenter.search(string:"abc def")
+        XCTAssertEqual(stubJsonNetworkRequester.providedUrlString, "http://api.geonames.org/searchJSON?username=richardmoult&country=NZ&featureClass=P&name_startsWith=abc%20def")
     }
 
     

@@ -53,9 +53,9 @@ private extension Router {
         pushOnController(viewController)
     }
     
-    func displayLocationSelection(bloodType: BloodType) {
+    func displayLocationSelection(bloodType: BloodType, countryCode: CountryCode) {
         let action = makeDisplayRegistrationAction(bloodType: bloodType)
-        let viewController = viewControllerFactory.locationSelector(showRegistrationAction: action)
+        let viewController = viewControllerFactory.locationSelector(showRegistrationAction: action, countryCode: countryCode)
         pushOnController(viewController)
     }
     
@@ -88,8 +88,8 @@ private extension Router {
     }
     
     func makeDisplayLocationSectionAction() -> ShowLocationAction {
-        return ShowLocationAction(performBlock: { [weak self] bloodType in
-            self?.displayLocationSelection(bloodType: bloodType)
+        return ShowLocationAction(performBlock: { [weak self] bloodType, countryCode in
+            self?.displayLocationSelection(bloodType: bloodType, countryCode: countryCode)
         })
     }
     

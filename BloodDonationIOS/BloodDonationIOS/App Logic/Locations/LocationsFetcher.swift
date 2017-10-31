@@ -18,9 +18,11 @@ class LocationFetcher {
     
     typealias completionBlock = (LocationFetcherResponse) -> ()
     private let jsonRequester: JsonRequester
+    private let countryCode: CountryCode
     
-    init(jsonRequester: JsonRequester) {
+    init(jsonRequester: JsonRequester, countryCode: CountryCode) {
         self.jsonRequester = jsonRequester
+        self.countryCode = countryCode
     }
     
     func search(string: String, completion:@escaping completionBlock) {
@@ -47,7 +49,7 @@ class LocationFetcher {
 extension LocationFetcher {
     
     private func makeSearchURLString(string: String) -> String {
-        return String(format: "http://api.geonames.org/searchJSON?username=richardmoult&country=AU&featureClass=P&name_startsWith=%@", string.stringByAddingPercentEncodingForRFC3986())
+        return String(format: "http://api.geonames.org/searchJSON?username=richardmoult&country=%@&featureClass=P&name_startsWith=%@", countryCode.rawValue, string.stringByAddingPercentEncodingForRFC3986())
     }
     
     private func extractGeoNames(dictionary: [String:Any]) -> [[String:Any]]? {

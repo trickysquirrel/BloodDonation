@@ -48,5 +48,4 @@ class RouterTests: XCTestCase {
         router.displayFirstViewController()
         XCTAssertTrue(stubViewControllerFactory.didCallRegisteredUser)
     }
-
 }

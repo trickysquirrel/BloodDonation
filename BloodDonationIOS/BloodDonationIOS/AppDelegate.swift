@@ -40,12 +40,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let analyticsReporter = AnalyticsReporter()
         let reporterFactory = ReporterFactory(analyticsReporter: analyticsReporter)
+        let routerActionsFactory = RouterActionsFactory()
 
         let viewControllerFactory = ViewControllerFactory(messagingRegister: notificationRegister,
                                                           userStorage: userStorage,
                                                           userRegistered: userRegistered,
                                                           messagingTopicManager: messagingTopicManager,
-                                                          reporterFactory: reporterFactory)
+                                                          reporterFactory: reporterFactory,
+                                                          routerActionsFactory: routerActionsFactory)
 
 		let navigationController = makeNavigationController()
         

@@ -12,7 +12,8 @@ import UIKit
 protocol ViewControllerFactoryProtocol {
     func registeredUser(unreigisterAction: Action) -> UIViewController
     func bloodTypeSelector(showLocationAction: ShowLocationAction) -> UIViewController
-    func locationSelector(showRegistrationAction: ShowRegistrationAction) -> UIViewController
+    func regionSelector(showLocationAction: ShowLocationAction) -> UIViewController
+    func locationSelector(showRegistrationAction: ShowRegistrationAction, countryCode: CountryCode) -> UIViewController
     func register(bloodType: BloodType, location: LocationModel, showUserRegisteredAction: Action) -> UIViewController
 }
 
@@ -26,6 +27,7 @@ struct ViewControllerFactory: ViewControllerFactoryProtocol {
     let userRegistered: UserRegistered
     let messagingTopicManager: MessagingTopicManager
     let reporterFactory: ReporterFactory
+    let routerActionsFactory: RouterActionFactoryProtocol
     
     
     func registeredUser(unreigisterAction: Action) -> UIViewController {
@@ -48,11 +50,19 @@ struct ViewControllerFactory: ViewControllerFactoryProtocol {
         viewController.configure(presenter: presenter, dataSource: dataSource, showLocationAction: showLocationAction, reporter: reporter)
         return viewController
     }
+
+
+    func regionSelector(showLocationAction: ShowLocationAction) -> UIViewController {
+        let presenter = SelectRegionPresenter()
+        let viewController = storyboard.instantiateViewController(withIdentifier: "SelectRegionViewControllerID") as! SelectRegionViewController
+        viewController.configure(presenter: presenter, actions: showLocationAction)
+        return viewController
+    }
     
     
-    func locationSelector(showRegistrationAction: ShowRegistrationAction) -> UIViewController {
+    func locationSelector(showRegistrationAction: ShowRegistrationAction, countryCode: CountryCode) -> UIViewController {
         let jsonNetworkRequester = JsonNetworkRequester()
-        let locationFetcher = LocationFetcher(jsonRequester: jsonNetworkRequester)
+        let locationFetcher = LocationFetcher(jsonRequester: jsonNetworkRequester, countryCode: countryCode)
         let presenter = LocationsPresenter(locationFetcher: locationFetcher)
         let dataSource = TableViewDataSource<UITableViewCell, LocationViewModel>()
         let loadingIndicator = LoadingIndicator()        
