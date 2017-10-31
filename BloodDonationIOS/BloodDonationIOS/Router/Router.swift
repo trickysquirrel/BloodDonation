@@ -48,8 +48,8 @@ private extension Router {
     }
     
     func displayBloodTypeSeletion() {
-        let action = makeDisplayLocationSectionAction()
-        let viewController = viewControllerFactory.bloodTypeSelector(showLocationAction: action)
+        let action = makeDisplayCountryCodeSectionAction()
+        let viewController = viewControllerFactory.bloodTypeSelector(showCountryCodeAction: action)
         pushOnController(viewController)
     }
     
@@ -64,11 +64,23 @@ private extension Router {
         let viewController = viewControllerFactory.register(bloodType: bloodType, location: location, showUserRegisteredAction: action)
         pushOnController(viewController)
     }
+
+    func displayCountryCode(bloodType: BloodType) {
+        let action = makeDisplayLocationSectionAction()
+        let viewController = viewControllerFactory.regionSelector(showLocationAction: action)
+        pushOnController(viewController)
+    }
 }
 
 // MARK:- Actions
 
 private extension Router {
+
+    func makeDisplayCountryCodeSectionAction() -> ShowCountryCodeAction {
+        return ShowCountryCodeAction(performBlock: { [weak self] (bloodType) in
+            self?.displayCountryCode(bloodType: bloodType)
+        })
+    }
 
     func makeUserRegisteredAction() -> Action {
         return Action(performBlock: { [weak self] in
@@ -77,7 +89,6 @@ private extension Router {
             self?.displayUserRegistered()
         })
     }
-
     
     func makeUnRegisterAction() -> Action {
         return Action(performBlock: { [weak self] in

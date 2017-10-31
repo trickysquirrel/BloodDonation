@@ -9,31 +9,6 @@
 import XCTest
 @testable import BloodDonationIOS
 
-class StubRouterActionFactory: RouterActionFactoryProtocol {
-
-    private(set) var didCallShowLocationActionWithCountryCode: CountryCode?
-
-    func makeShowCountryCodeAction(bloodType: BloodType, performBlock: @escaping (BloodType, CountryCode) -> ()) -> ShowCountryCodeAction {
-        return ShowCountryCodeAction(bloodType: bloodType, performBlock: { (bloodType, countryCode) in
-        })
-    }
-
-    func makeShowLocationAction(performBlock: @escaping ((BloodType, CountryCode)->())) -> ShowLocationAction {
-        return ShowLocationAction(performBlock: { [weak self] bloodType, countryCode in
-            self?.didCallShowLocationActionWithCountryCode = countryCode
-        })
-    }
-
-    func makeShowRegistrationAction(bloodType: BloodType, countryCode: String, performBlock: @escaping ((BloodType, LocationModel)->())) -> ShowRegistrationAction {
-        // todo write tests to pass in value
-        return ShowRegistrationAction(bloodType: .abNegative, performBlock: { _, _ in })
-    }
-
-    func makeAction(performBlock: @escaping (()->())) -> Action {
-        return Action(performBlock: {})
-    }
-}
-
 
 class AcceptanceTest: XCTestCase {
     

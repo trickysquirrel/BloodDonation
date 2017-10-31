@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		301D713F1FA86270007D29DE /* CountryCodes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 301D713E1FA86270007D29DE /* CountryCodes.swift */; };
+		301D71411FA91E1A007D29DE /* StubRouterActionFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 301D71401FA91E1A007D29DE /* StubRouterActionFactory.swift */; };
+		301D71431FA91EF3007D29DE /* StubPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 301D71421FA91EF3007D29DE /* StubPickerView.swift */; };
 		304FBCC11F7CF67500362DEA /* CGRectExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 304FBCBC1F7CF67500362DEA /* CGRectExtension.swift */; };
 		304FBCC21F7CF67500362DEA /* CustomTransitionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 304FBCBD1F7CF67500362DEA /* CustomTransitionViewController.swift */; };
 		304FBCC31F7CF67500362DEA /* FadeTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 304FBCBE1F7CF67500362DEA /* FadeTransition.swift */; };
@@ -108,6 +110,8 @@
 /* Begin PBXFileReference section */
 		2ED44360FA27BE9A52618DA3 /* Pods-BloodDonationIOSUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BloodDonationIOSUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-BloodDonationIOSUITests/Pods-BloodDonationIOSUITests.release.xcconfig"; sourceTree = "<group>"; };
 		301D713E1FA86270007D29DE /* CountryCodes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryCodes.swift; sourceTree = "<group>"; };
+		301D71401FA91E1A007D29DE /* StubRouterActionFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StubRouterActionFactory.swift; sourceTree = "<group>"; };
+		301D71421FA91EF3007D29DE /* StubPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StubPickerView.swift; sourceTree = "<group>"; };
 		304FBCBC1F7CF67500362DEA /* CGRectExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CGRectExtension.swift; sourceTree = "<group>"; };
 		304FBCBD1F7CF67500362DEA /* CustomTransitionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTransitionViewController.swift; sourceTree = "<group>"; };
 		304FBCBE1F7CF67500362DEA /* FadeTransition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FadeTransition.swift; sourceTree = "<group>"; };
@@ -338,7 +342,7 @@
 		34428DA81F592EDA0017DFA4 /* BloodDonationIOSTests */ = {
 			isa = PBXGroup;
 			children = (
-				34428DC01F593B480017DFA4 /* Stubs */,
+				34428DC01F593B480017DFA4 /* Test Doubles */,
 				34F56CBF1F620756002F3A8F /* Persistent Storage */,
 				343E0B011F74CDD700BF9B3F /* Router */,
 				343E0B001F74CDC300BF9B3F /* Presenters */,
@@ -358,7 +362,7 @@
 			path = "Persistent Storage";
 			sourceTree = "<group>";
 		};
-		34428DC01F593B480017DFA4 /* Stubs */ = {
+		34428DC01F593B480017DFA4 /* Test Doubles */ = {
 			isa = PBXGroup;
 			children = (
 				34428DC11F593B560017DFA4 /* StubPersistentStorage.swift */,
@@ -368,8 +372,10 @@
 				34E7F9051F7228BA00F99657 /* StubViewControllerFactory.swift */,
 				34C075851F73576B00B8464C /* StubReachability.swift */,
 				343E0B051F74CF1800BF9B3F /* StubAnalyticsReporter.swift */,
+				301D71401FA91E1A007D29DE /* StubRouterActionFactory.swift */,
+				301D71421FA91EF3007D29DE /* StubPickerView.swift */,
 			);
-			path = Stubs;
+			path = "Test Doubles";
 			sourceTree = "<group>";
 		};
 		3454B3F51F74C50E00FC5B59 /* Analytics */ = {
@@ -773,10 +779,12 @@
 				343E0B061F74CF1800BF9B3F /* StubAnalyticsReporter.swift in Sources */,
 				34428DC21F593B560017DFA4 /* StubPersistentStorage.swift in Sources */,
 				340DAB351F62744800D5D156 /* StubJsonNetworkRequester.swift in Sources */,
+				301D71411FA91E1A007D29DE /* StubRouterActionFactory.swift in Sources */,
 				34428DBB1F5938D10017DFA4 /* BloodTypeStorageTests.swift in Sources */,
 				343C78F91F6E62EC0096885B /* StubMessagingSubscription.swift in Sources */,
 				3451C1B71F74D69A00F727A3 /* SelectLocationAcceptanceTests.swift in Sources */,
 				34428DB21F59310A0017DFA4 /* BloodTypePresenterTests.swift in Sources */,
+				301D71431FA91EF3007D29DE /* StubPickerView.swift in Sources */,
 				343E0B041F74CE0900BF9B3F /* SelectBloodTypeAcceptanceTests.swift in Sources */,
 				340DAB2A1F62660700D5D156 /* LocationsPresenterTests.swift in Sources */,
 				34A0933C1F6E198800F81E47 /* RegistrationPresenterTests.swift in Sources */,

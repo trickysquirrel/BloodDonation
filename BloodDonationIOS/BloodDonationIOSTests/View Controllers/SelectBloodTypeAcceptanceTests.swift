@@ -19,11 +19,10 @@ import XCTest
 
 class SelectBloodTypeAcceptanceTests: AcceptanceTest {
     
-    let dummyShowLocationAction = ShowLocationAction { _,_ in }
-
+    let dummyShowCountryCodeAction = ShowCountryCodeAction { _ in }
 
     func test_viewWillAppear_sendCorrectReportingData() {
-        let viewController = viewControllerFactory.bloodTypeSelector(showLocationAction: dummyShowLocationAction)
+        let viewController = viewControllerFactory.bloodTypeSelector(showCountryCodeAction: dummyShowCountryCodeAction)
         enumatorShowingViewController(viewController)
         XCTAssertEqual(stubAnalyticsReporting.loggedEvents.count, 1)
         XCTAssertEqual(stubAnalyticsReporting.loggedEvents[0].name, .showingBloodTypeSelector)
@@ -31,7 +30,7 @@ class SelectBloodTypeAcceptanceTests: AcceptanceTest {
     }
     
     func test_viewWillAppear_calledTwice_sendCorrectReportingDataTwice() {
-        let viewController = viewControllerFactory.bloodTypeSelector(showLocationAction: dummyShowLocationAction)
+        let viewController = viewControllerFactory.bloodTypeSelector(showCountryCodeAction: dummyShowCountryCodeAction)
         enumatorShowingViewController(viewController)
         viewController.viewWillAppear(false)        
         XCTAssertEqual(stubAnalyticsReporting.loggedEvents.count, 2)

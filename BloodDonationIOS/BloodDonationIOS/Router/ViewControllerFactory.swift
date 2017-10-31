@@ -11,7 +11,7 @@ import UIKit
 
 protocol ViewControllerFactoryProtocol {
     func registeredUser(unreigisterAction: Action) -> UIViewController
-    func bloodTypeSelector(showLocationAction: ShowLocationAction) -> UIViewController
+    func bloodTypeSelector(showCountryCodeAction: ShowCountryCodeAction) -> UIViewController
     func regionSelector(showLocationAction: ShowLocationAction) -> UIViewController
     func locationSelector(showRegistrationAction: ShowRegistrationAction, countryCode: CountryCode) -> UIViewController
     func register(bloodType: BloodType, location: LocationModel, showUserRegisteredAction: Action) -> UIViewController
@@ -19,7 +19,7 @@ protocol ViewControllerFactoryProtocol {
 
 
 struct ViewControllerFactory: ViewControllerFactoryProtocol {
-    
+
     let messagingRegister: MessagingRegisterProtocol
     let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
     let messagingTopicSubscriber = MessagingTopicSubscriber()
@@ -41,13 +41,13 @@ struct ViewControllerFactory: ViewControllerFactoryProtocol {
     }
     
     
-    func bloodTypeSelector(showLocationAction: ShowLocationAction) -> UIViewController {
+    func bloodTypeSelector(showCountryCodeAction: ShowCountryCodeAction) -> UIViewController {
         let viewController = storyboard.instantiateViewController(withIdentifier: "BloodTypeCollectionViewControllerId") as! BloodTypeCollectionViewController
         let allBloodTypesFetcher = AllBloodTypesFetcher()
         let presenter = BloodTypePresenter(allBloodTypesFetcher: allBloodTypesFetcher)
         let dataSource = CollectionViewDataSource<BloodTypeCollectionViewCell,BloodTypeViewModel>()
         let reporter = reporterFactory.makeSelectBloodReporter()
-        viewController.configure(presenter: presenter, dataSource: dataSource, showLocationAction: showLocationAction, reporter: reporter)
+        viewController.configure(presenter: presenter, dataSource: dataSource, showCountryCodeAction: showCountryCodeAction, reporter: reporter)
         return viewController
     }
 

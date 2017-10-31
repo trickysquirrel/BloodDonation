@@ -90,7 +90,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
-                                    <action selector="userSelectedConfirmationButton" destination="ULU-7O-KZJ" eventType="touchUpInside" id="uNV-Ha-wMd"/>
+                                    <action selector="userDidSelectConfirmButton" destination="f5p-KD-GKZ" eventType="touchUpInside" id="6hY-5O-W2y"/>
                                 </connections>
                             </button>
                         </subviews>

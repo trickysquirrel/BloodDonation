@@ -22,7 +22,7 @@ class StubViewControllerFactory: ViewControllerFactoryProtocol {
         return UIViewController()
     }
     
-    func bloodTypeSelector(showLocationAction: ShowLocationAction) -> UIViewController {
+    func bloodTypeSelector(showCountryCodeAction: ShowCountryCodeAction) -> UIViewController {
         didCallBloodTypeSelector = true
         return BloodTypeCollectionViewController()
     }

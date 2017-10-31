@@ -21,6 +21,9 @@ class SelectRegionViewControllerTests: AcceptanceTest {
         viewController = nil
         super.tearDown()
     }
+}
+
+extension SelectRegionViewControllerTests {
 
     func test_onViewDidLoad_hasCorrectTitle() {
         XCTAssertEqual(viewController.title, "Select Region")
@@ -40,14 +43,18 @@ class SelectRegionViewControllerTests: AcceptanceTest {
     }
 
     func test_didSelectRow_firstRow_doesNotCallToDisplayNextViewController() {
-        let regionPicker = viewController.regionPicker!
-        viewController.pickerView(regionPicker, didSelectRow: 0, inComponent: 0)
+        viewController.userDidSelectConfirmButton()
         XCTAssertNil(stubRouterActionFactory.didCallShowLocationActionWithCountryCode)
     }
 
     func test_didSelectRow_secondRow_doesCallToDisplayNextViewControllerWithCorrectCountryCode() {
-        let regionPicker = viewController.regionPicker!
-        viewController.pickerView(regionPicker, didSelectRow: 1, inComponent: 0)
+        // switch the picker view so we can stub the selected row
+        let stubPickerView = StubPickerView()
+        stubPickerView.stubbedSelectedRow = 1
+        viewController.regionPicker = stubPickerView
+
+        viewController.userDidSelectConfirmButton()
+
         XCTAssertEqual(stubRouterActionFactory.didCallShowLocationActionWithCountryCode, .AU)
     }
 

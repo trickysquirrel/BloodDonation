@@ -27,6 +27,18 @@ class SelectRegionViewController: UIViewController {
 }
 
 
+extension SelectRegionViewController {
+    
+    @IBAction func userDidSelectConfirmButton() {
+        let row = regionPicker.selectedRow(inComponent: 0)
+        let countryCode = viewModels[safe: row]?.countryCode ?? .unknown
+        if countryCode != .unknown {
+            showLocationAction?.perform(bloodType: .oPositive, countryCode: countryCode)
+        }
+    }
+}
+
+
 extension SelectRegionViewController: UIPickerViewDelegate {
 
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
@@ -34,10 +46,6 @@ extension SelectRegionViewController: UIPickerViewDelegate {
     }
 
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        let countryCode = viewModels[safe: row]?.countryCode ?? .unknown
-        if countryCode != .unknown {
-            showLocationAction?.perform(bloodType: .oPositive, countryCode: countryCode)
-        }
     }
 }
 

@@ -14,18 +14,18 @@ class BloodTypeCollectionViewController: UICollectionViewController {
     
     private var dataSource: CollectionViewDataSource<BloodTypeCollectionViewCell,BloodTypeViewModel>?
     private var presenter: BloodTypePresenter?
-    private var showLocationAction: ShowLocationAction?
+    private var showCountryCodeAction: ShowCountryCodeAction?
     private var reporter: SelectBloodReporter?
 
     
     func configure(presenter: BloodTypePresenter,
                    dataSource: CollectionViewDataSource<BloodTypeCollectionViewCell,BloodTypeViewModel>,
-                   showLocationAction: ShowLocationAction,
+                   showCountryCodeAction: ShowCountryCodeAction,
                    reporter: SelectBloodReporter) {
         self.title = Localisations.selectBloodTypeTitle.localised()
         self.presenter = presenter
         self.dataSource = dataSource
-        self.showLocationAction = showLocationAction
+        self.showCountryCodeAction = showCountryCodeAction
         self.reporter = reporter
         dataSource.configure(collectionView: self.collectionView)
         observeChanges()
@@ -50,7 +50,7 @@ class BloodTypeCollectionViewController: UICollectionViewController {
         }
 
         dataSource?.onEventItemSelected { [weak self] (viewModel, indexPath) in
-            self?.showLocationAction?.perform(bloodType: viewModel.type, countryCode: .AU)
+            self?.showCountryCodeAction?.perform(bloodType: viewModel.type)
         }
     }
 

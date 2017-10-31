@@ -10,7 +10,7 @@ import Foundation
 
 
 protocol RouterActionFactoryProtocol {
-    func makeShowCountryCodeAction(bloodType: BloodType, performBlock: @escaping (BloodType, CountryCode)->()) -> ShowCountryCodeAction
+    func makeShowCountryCodeAction(performBlock: @escaping (BloodType)->()) -> ShowCountryCodeAction
     func makeShowLocationAction(performBlock: @escaping (BloodType, CountryCode)->()) -> ShowLocationAction
     func makeShowRegistrationAction(bloodType: BloodType, countryCode: String, performBlock: @escaping ((BloodType, LocationModel)->())) -> ShowRegistrationAction
     func makeAction(performBlock: @escaping (()->())) -> Action
@@ -19,8 +19,8 @@ protocol RouterActionFactoryProtocol {
 
 struct RouterActionsFactory: RouterActionFactoryProtocol {
 
-    func makeShowCountryCodeAction(bloodType: BloodType, performBlock: @escaping (BloodType, CountryCode)->()) -> ShowCountryCodeAction {
-        return ShowCountryCodeAction(bloodType: bloodType, performBlock: performBlock)
+    func makeShowCountryCodeAction(performBlock: @escaping (BloodType)->()) -> ShowCountryCodeAction {
+        return ShowCountryCodeAction(performBlock: performBlock)
     }
 
     func makeShowLocationAction(performBlock: @escaping ((BloodType, CountryCode)->())) -> ShowLocationAction {
@@ -39,16 +39,14 @@ struct RouterActionsFactory: RouterActionFactoryProtocol {
 
 class ShowCountryCodeAction {
 
-    private let bloodType: BloodType
-    private let performBlock: (BloodType, CountryCode)->()
+    private let performBlock: (BloodType)->()
 
-    init(bloodType: BloodType, performBlock: @escaping ((BloodType, CountryCode)->())) {
-        self.bloodType = bloodType
+    init(performBlock: @escaping ((BloodType)->())) {
         self.performBlock = performBlock
     }
 
-    func perform(countryCode: CountryCode) {
-        performBlock(bloodType, countryCode)
+    func perform(bloodType: BloodType) {
+        performBlock(bloodType)
     }
 }
 
